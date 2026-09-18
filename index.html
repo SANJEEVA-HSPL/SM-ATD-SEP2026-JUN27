@@ -1,258 +1,311 @@
+<!-- CM001 - HTML Setup and Head with Favicon -->
 <!DOCTYPE html>
-<html>
+<html lang="en" class="scroll-smooth">
 <head>
-<title>Sanjeeva Hospital - Attendance Portal</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Sanjeeva Hospital - ATD</title>
+<link rel="icon" type="image/png" sizes="32x32" href="https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png">
+<link rel="apple-touch-icon" href="https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {} } }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
 
-/* CM127 - CSS Reset and Compact Base Styles */
-body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: linear-gradient(135deg, #f4f7f6 0%, #e0eafc 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow-x: hidden; font-size: 12px; color: #333; }
+/* CM002 - CSS Reset and Scrollbar Hide */
+* { scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; box-sizing: border-box; }
+::-webkit-scrollbar { display: none; }
+body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0f4f8; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow-x: hidden; font-size: 11px; color: #1a202c; -webkit-font-smoothing: antialiased; }
 
-/* CM128 - CSS App Main Container */
+/* CM003 - CSS App Main Container */
 #appContainer { width: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; }
 
-/* CM129 - CSS Compact Login Card Wrapper */
-.wrapper { overflow: hidden; max-width: 320px; background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0px 10px 25px rgba(0,0,0,0.1); width: 92%; box-sizing: border-box; }
+/* CM004 - CSS 3D Login Card Decreased Size */
+.wrapper { overflow: hidden; width: 240px; background: #ffffff; padding: 14px 12px; border-radius: 16px; box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff; border-top: 5px solid #3182ce; }
 
-/* CM130 - CSS Hospital Logo Setup Compact */
-.hospital-logo-container { display: flex; justify-content: center; margin-bottom: 10px; width: 100%; }
-.hospital-logo-container img { width: 65px; height: 65px; border-radius: 50%; border: 2px solid #0056b3; padding: 3px; object-fit: contain; background: #fff; box-shadow: 0px 4px 10px rgba(0,86,179,0.2); }
+/* CM005 - CSS Hospital Logo Styling */
+.hospital-logo-container { display: flex; justify-content: center; margin-bottom: 6px; width: 100%; }
+.hospital-logo-container img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #3182ce; padding: 2px; object-fit: contain; background: #fff; box-shadow: 0px 4px 10px rgba(49,130,206,0.2); }
 
-/* CM131 - CSS Hospital Name Setup Compact */
-.hospital-name { font-size: 14px; font-weight: 700; text-align: center; margin-bottom: 15px; color: #0056b3; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.3; }
+/* CM006 - CSS Hospital Name HD Text */
+.hospital-name { font-size: 10px; font-weight: 900; text-align: center; margin-bottom: 10px; color: #2b6cb0; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.3; text-shadow: 0px 1px 1px rgba(0,0,0,0.1); }
 
-/* CM132 - CSS Login Title Text Compact */
-.wrapper .title-text { display: flex; width: 200%; margin-bottom: 10px; }
-.wrapper .title { width: 50%; font-size: 16px; font-weight: 700; text-align: center; transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55); color: #222; }
+/* CM007 - CSS Login Title Text */
+.wrapper .title-text { display: flex; width: 100%; margin-bottom: 10px; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; justify-content: center; }
+.wrapper .title { font-size: 11px; font-weight: 900; color: #1a365d; text-transform: uppercase; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
 
-/* CM133 - CSS Slider Tab Container Compact */
-.wrapper .slide-controls { position: relative; display: flex; height: 35px; width: 100%; overflow: hidden; margin: 10px 0; justify-content: space-between; border-radius: 8px; background: #f0f2f5; box-shadow: inset 0px 2px 4px rgba(0,0,0,0.1); }
-.slide-controls .slide { height: 100%; width: 100%; color: #555; font-size: 13px; font-weight: 700; text-align: center; line-height: 35px; cursor: pointer; z-index: 1; transition: all 0.6s ease; }
-.slide-controls label.signup { color: #555; }
-.slide-controls .slider-tab { position: absolute; height: 100%; width: 50%; left: 0; z-index: 0; border-radius: 8px; background: linear-gradient(135deg, #007bff, #0056b3); box-shadow: 0px 3px 8px rgba(0,123,255,0.4); transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55); }
-input[type="radio"] { display: none; }
-#signup:checked ~ .slider-tab { left: 50%; }
-#signup:checked ~ label.signup { color: #fff; cursor: default; }
-#signup:checked ~ label.login { color: #555; }
-#login:checked ~ label.signup { color: #555; }
-#login:checked ~ label.login { color: #fff; cursor: default; }
+/* CM008 - CSS Form Fields HD with 3D Icons */
+.form-inner form .field { height: 36px; width: 100%; margin-top: 10px; position: relative; }
+.input-icon { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); font-size: 12px; color: #3182ce; z-index: 10; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1)); }
+.form-inner form .field input { height: 100%; width: 100%; outline: none; padding-left: 28px; border-radius: 8px; border: 1px solid #cbd5e0; font-family: 'Roboto Slab', serif; font-size: 10px; transition: all 0.3s ease; background: inset 2px 2px 5px rgba(0,0,0,0.03); color: #2d3748; font-weight: 800; box-shadow: inset 0px 2px 4px rgba(0,0,0,0.04); }
+.form-inner form .field input:focus { border-color: #3182ce; background: #fff; box-shadow: 0px 0px 0px 2px rgba(49,130,206,0.2); }
 
-/* CM134 - CSS Form Container and Compact Fields */
-.wrapper .form-container { width: 100%; overflow: hidden; }
-.form-container .form-inner { display: flex; width: 200%; }
-.form-container .form-inner form { width: 50%; transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55); }
-.form-inner form .field { height: 40px; width: 100%; margin-top: 12px; box-sizing: border-box; }
-.form-inner form .field input { height: 100%; width: 100%; outline: none; padding-left: 10px; border-radius: 6px; border: 1px solid #ccc; font-family: 'Roboto Slab', serif; font-size: 12px; transition: all 0.3s ease; box-sizing: border-box; background: #fafafa; }
-.form-inner form .field input:focus { border-color: #007bff; background: #fff; box-shadow: 0px 0px 5px rgba(0,123,255,0.2); }
+/* CM009 - CSS Submit Button & Forgot Link */
+.form-inner form .btn { height: 38px; border-radius: 8px; overflow: hidden; margin-top: 14px; background: linear-gradient(145deg, #4299e1, #2b6cb0); box-shadow: 0px 4px 10px rgba(43,108,176,0.3); display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; transition: 0.2s; }
+.form-inner form .btn:active { transform: translateY(2px); box-shadow: 0px 2px 5px rgba(43,108,176,0.4); }
+.form-inner form .btn input[type="submit"] { background: none; border: none; color: #fff; font-size: 11px; font-weight: 900; font-family: 'Roboto Slab', serif; cursor: pointer; text-transform: uppercase; text-shadow: 0px 1px 2px rgba(0,0,0,0.4); outline: none; padding: 0; }
+.btn-icon { font-size: 12px; color: #fff; text-shadow: 0px 1px 2px rgba(0,0,0,0.4); }
+.forgot-pass { text-align: center; margin-top: 10px; font-size: 9px; display: flex; justify-content: center; align-items: center; gap: 4px; }
+.forgot-pass a { color: #4a5568; text-decoration: none; font-weight: 800; transition: 0.2s; text-transform: uppercase; }
+.forgot-pass a:hover { text-decoration: underline; color: #3182ce; }
+.forgot-icon { font-size: 10px; color: #e53e3e; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.2)); }
 
-/* CM135 - CSS Submit Button Compact Styling */
-.form-inner form .btn { height: 40px; width: 100%; border-radius: 6px; position: relative; overflow: hidden; margin-top: 20px; box-shadow: 0px 4px 10px rgba(0,123,255,0.3); }
-.form-inner form .btn .btn-layer { height: 100%; width: 300%; position: absolute; left: -100%; background: linear-gradient(to right, #0056b3, #007bff, #0056b3, #007bff); border-radius: 6px; transition: all 0.4s ease; }
-.form-inner form .btn:hover .btn-layer { left: 0; }
-.form-inner form .btn input[type="submit"] { height: 100%; width: 100%; z-index: 1; position: relative; background: none; border: none; color: #fff; padding-left: 0; border-radius: 6px; font-size: 14px; font-weight: 700; font-family: 'Roboto Slab', serif; cursor: pointer; }
+/* CM010 - CSS Dashboard Views Shared */
+.dashboard-view { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f0f4f8; }
 
-/* CM136 - CSS Dashboard Main Layout Compact */
-.dashboard-view { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f4f7f6; }
-.dash-header { background: #fff; padding: 10px 15px; box-shadow: 0px 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0056b3; position: sticky; top: 0; z-index: 100; }
-.dash-title { display: flex; align-items: center; font-size: 13px; font-weight: 700; color: #0056b3; line-height: 1.2; }
-.dash-logo { width: 35px; height: 35px; border-radius: 50%; border: 1.5px solid #007bff; object-fit: contain; margin-right: 8px; }
-.header-actions { display: flex; align-items: center; gap: 10px; }
-.icon-btn-header { background: #f0f2f5; border: 1px solid #ddd; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; color: #555; transition: 0.3s; }
-.icon-btn-header:hover { background: #e2e6ea; color: #000; }
-.header-requests-btn { background: #ffebee; color: #d32f2f; border: 1px solid #ffcdd2; padding: 5px 10px; border-radius: 15px; font-weight: 700; font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.3s; }
-.header-requests-btn .badge { background: #d32f2f; color: #fff; border-radius: 50%; padding: 1px 5px; font-size: 10px; }
+/* CM011 - CSS Header Modern HD Increased Size */
+.dash-header { background: #ffffff; padding: 12px 16px; box-shadow: 0px 4px 15px rgba(0,0,0,0.06); display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #3182ce; position: sticky; top: 0; z-index: 100; }
+.dash-title-wrap { display: flex; align-items: center; gap: 10px; }
+.dash-logo-small { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #3182ce; object-fit: contain; background: #fff; box-shadow: 0px 2px 6px rgba(0,0,0,0.1); }
+.dash-title-text { font-size: 14px; font-weight: 900; color: #1a365d; line-height: 1.2; display: flex; flex-direction: column; text-transform: uppercase; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
 
-/* CM137 - CSS Dashboard Content Container Compact */
-.dash-content { padding: 10px; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-.section-headline { font-size: 14px; font-weight: 700; color: #222; margin-bottom: 10px; border-left: 3px solid #007bff; padding-left: 8px; }
+/* CM012 - CSS Header 3D HD Icons */
+.header-actions { display: flex; align-items: center; gap: 8px; }
+.hd-icon-btn { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 15px; transition: 0.2s; box-shadow: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff; text-decoration: none; padding:0; outline: none; }
+.hd-icon-btn:active { box-shadow: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff; transform: translateY(1px); }
+.hd-icon-btn.down { color: #3182ce; }
+.hd-icon-btn.req { color: #d69e2e; position: relative; }
+.hd-icon-btn.req .badge { position: absolute; top: -5px; right: -5px; background: #e53e3e; color: #fff; font-size: 8px; font-weight: 900; border-radius: 50%; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid #fff; box-shadow: 0px 2px 4px rgba(0,0,0,0.3); }
+.hd-icon-btn.reload { color: #38a169; font-weight: 900; }
+.hd-icon-btn.out { color: #e53e3e; font-weight: 900; }
 
-/* CM138 - CSS Compact Profile Card */
-.profile-card { background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0px 3px 10px rgba(0,0,0,0.05); margin-bottom: 15px; border-top: 3px solid #0056b3; }
-.profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; }
-.info-item { display: flex; flex-direction: column; font-size: 11px; color: #444; font-weight: 600; }
-.info-item strong { color: #0056b3; font-size: 10px; text-transform: uppercase; margin-bottom: 2px; }
-.info-item select { padding: 4px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Roboto Slab', serif; font-size: 11px; outline: none; background: #fdfdfd; font-weight: 600; }
+/* CM013 - CSS Dashboard Content Wrap */
+.dash-content { padding: 12px; max-width: 1400px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 12px; }
 
-/* CM139 - CSS Compact Summary Stats */
-.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); gap: 8px; margin-bottom: 15px; }
-.stat-card { background: #fff; padding: 10px 5px; border-radius: 8px; text-align: center; box-shadow: 0px 2px 8px rgba(0,0,0,0.05); }
-.stat-card.total { border-bottom: 3px solid #17a2b8; } .stat-card.present { border-bottom: 3px solid #28a745; }
-.stat-card.absent { border-bottom: 3px solid #dc3545; } .stat-card.late { border-bottom: 3px solid #ffc107; }
-.stat-num { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 2px; }
-.stat-label { font-size: 9px; color: #666; text-transform: uppercase; font-weight: 700; }
+/* CM014 - CSS Staff Profile HD Text with Icons */
+.profile-clean { padding: 6px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #2d3748; text-transform: uppercase; background: transparent; }
+.prof-item { display: flex; align-items: center; gap: 4px; padding: 2px 6px; background: #fff; border-radius: 6px; box-shadow: 2px 2px 5px #d1d9e6, -2px -2px 5px #ffffff; }
+.prof-icon { font-size: 13px; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1)); }
+.val-bold { font-weight: 900; color: #1a365d; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
+.select-micro { padding: 2px 4px; border: 1px solid #cbd5e0; border-radius: 4px; font-family: 'Roboto Slab', serif; font-size: 10px; outline: none; background: #fff; font-weight: 900; color: #3182ce; cursor: pointer; box-shadow: inset 0px 1px 2px rgba(0,0,0,0.05); }
 
-/* CM140 - CSS Compact Live Punch Section */
-.punch-section { background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0px 3px 10px rgba(0,0,0,0.05); margin-bottom: 15px; text-align: center; }
-.punch-buttons-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px; }
-.punch-btn { padding: 6px 15px; border: none; border-radius: 20px; font-size: 11px; font-weight: 700; color: #fff; cursor: pointer; transition: 0.2s; font-family: 'Roboto Slab', serif; display: flex; align-items: center; gap: 4px; }
-.punch-in { background: linear-gradient(135deg, #28a745, #218838); box-shadow: 0px 3px 6px rgba(40,167,69,0.3); }
-.punch-out { background: linear-gradient(135deg, #dc3545, #c82333); box-shadow: 0px 3px 6px rgba(220,53,69,0.3); }
-.punch-icon { font-size: 14px; }
+/* CM015 - CSS Summary Stats Cards Single Line Format */
+.summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.stat-card { background: #ffffff; padding: 10px 4px; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 4px; flex-direction: row; box-shadow: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff; border: 1px solid #e2e8f0; }
+.stat-card.total { border-left: 3px solid #3182ce; } .stat-card.present { border-left: 3px solid #38a169; }
+.stat-card.absent { border-left: 3px solid #e53e3e; } .stat-card.late { border-left: 3px solid #d69e2e; }
+.stat-label { font-size: 10px; color: #4a5568; text-transform: uppercase; font-weight: 900; letter-spacing: 0.5px; }
+.stat-num { font-size: 12px; font-weight: 900; color: #1a365d; line-height: 1; text-shadow: 0px 1px 1px rgba(0,0,0,0.1); }
 
-/* CM141 - CSS Compact Table Design */
-.table-wrapper { background: #fff; border-radius: 10px; box-shadow: 0px 3px 10px rgba(0,0,0,0.05); overflow-x: auto; margin-bottom: 20px; }
-.att-table { width: 100%; border-collapse: collapse; min-width: 800px; }
-.att-table th, .att-table td { padding: 8px 6px; border-bottom: 1px solid #eee; text-align: left; font-size: 11px; vertical-align: middle; }
-.att-table th { background: #f8f9fa; color: #0056b3; font-weight: 700; position: sticky; top: 0; font-size: 10px; text-transform: uppercase; }
-.att-table tr:hover { background: #fdfdfd; }
-.date-col { font-weight: 700; color: #222; }
-.time-cell { display: inline-flex; align-items: center; gap: 4px; background: #f4f7f6; padding: 2px 6px; border-radius: 4px; border: 1px solid #e0e0e0; font-family: monospace; font-size: 11px; }
+/* CM016 - CSS Live Punch Rectangles HD with Inside Time */
+.punch-section { background: #fff; padding: 12px; border-radius: 12px; text-align: center; box-shadow: 4px 4px 10px #d1d9e6, -4px -4px 10px #ffffff; border: 1px solid #e2e8f0; }
+.section-headline { font-size: 13px; font-weight: 900; color: #1a365d; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px dashed #cbd5e0; padding-bottom: 4px; display: inline-block; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
+.punch-buttons-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; align-items: center; }
+.neo-btn { height: 40px; padding: 0 16px; border-radius: 8px; background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; outline: none; min-width: 120px; }
+.neo-btn:active { box-shadow: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff; transform: translateY(1px); }
+.punch-btn-inner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+.neo-text-in { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; }
+.neo-text-in.in { color: #3182ce; } .neo-text-in.out { color: #e53e3e; }
+.punch-time-disp { font-size: 9px; font-weight: 900; color: #1a365d; background: #e2e8f0; padding: 2px 6px; border-radius: 4px; display: none; box-shadow: inset 0px 1px 2px rgba(0,0,0,0.05); letter-spacing: 0.5px; }
 
-/* CM142 - CSS Table Pencils and Status Badges */
-.status-badge { padding: 2px 6px; border-radius: 10px; font-size: 9px; font-weight: 700; color: #fff; display: inline-block; text-align: center; }
-.bg-present { background: #28a745; } .bg-absent { background: #dc3545; } .bg-late { background: #ffc107; color: #000; }
-.pencil-btn { background: none; border: none; font-size: 12px; cursor: pointer; color: #007bff; padding: 0; margin-left: 3px; }
-.comment-box-container { display: flex; align-items: center; gap: 4px; }
-.comment-input { width: 90px; padding: 4px; border: 1px solid #ccc; border-radius: 4px; font-size: 10px; font-family: 'Roboto Slab'; }
-.action-btn { background: #007bff; color: #fff; border: none; padding: 3px 6px; border-radius: 4px; font-size: 9px; font-weight: 700; cursor: pointer; }
-.action-btn.leave { background: #17a2b8; } .action-btn.submit { background: #28a745; }
-.status-icon { font-size: 12px; }
+/* CM017 - CSS Dynamic Table Container & Icons */
+.table-wrapper { background: #fff; border-radius: 12px; box-shadow: 4px 4px 12px #d1d9e6, -4px -4px 12px #ffffff; overflow-x: auto; padding: 6px; border: 1px solid #e2e8f0; }
+.att-table { width: 100%; border-collapse: collapse; min-width: 1000px; }
+.att-table th, .att-table td { padding: 8px 6px; border-bottom: 1px solid #edf2f7; text-align: center; font-size: 10px; vertical-align: middle; white-space: nowrap; font-weight: 800; color: #2d3748; }
+.att-table th { background: linear-gradient(to bottom, #ffffff, #f7fafc); color: #1a365d; font-weight: 900; position: sticky; top: 0; font-size: 10px; text-transform: uppercase; z-index: 10; border-bottom: 3px solid #3182ce; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
+.att-table tr:hover { background: #f0f4f8; }
+.date-col { font-weight: 900; color: #3182ce; text-align: left; }
+.hrs-bold { color: #000000; font-weight: 900; font-size: 12px; text-shadow: 0px 1px 2px rgba(0,0,0,0.3); background: #f7fafc; padding: 4px 6px; border-radius: 4px; border: 1px solid #cbd5e0; display: inline-block; min-width: 40px; }
 
-/* CM143 - CSS Compact Modals */
-.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 1000; }
-.modal-box { background: #fff; width: 90%; max-width: 320px; padding: 15px; border-radius: 12px; box-shadow: 0px 5px 20px rgba(0,0,0,0.2); position: relative; }
-.modal-close { position: absolute; top: 10px; right: 12px; font-size: 18px; cursor: pointer; color: #888; border: none; background: none; }
-.modal-title { font-size: 14px; font-weight: 700; color: #0056b3; margin-bottom: 12px; border-bottom: 1px solid #eee; padding-bottom: 6px; }
-.modal-field { margin-bottom: 10px; }
-.modal-field label { display: block; font-size: 10px; font-weight: 700; color: #555; margin-bottom: 3px; text-transform: uppercase; }
-.modal-field input, .modal-field textarea, .modal-field select { width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Roboto Slab', serif; font-size: 11px; box-sizing: border-box; }
-.modal-btn { width: 100%; background: #28a745; color: #fff; border: none; padding: 8px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 5px; font-size: 12px; }
-.req-item { font-size: 11px; padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
-.req-withdraw { background: #dc3545; color: #fff; border: none; padding: 2px 6px; border-radius: 4px; font-size: 9px; cursor: pointer; font-weight: 700; }
+/* CM018 - CSS Table Cells & Pencil Actions */
+.time-cell { display: inline-flex; align-items: center; justify-content: center; gap: 4px; background: #f7fafc; padding: 4px 6px; border-radius: 4px; border: 1px solid #cbd5e0; font-family: 'Roboto Slab', monospace; font-size: 10px; font-weight: 900; color: #1a365d; box-shadow: inset 0px 1px 2px rgba(0,0,0,0.05); }
+.pencil-btn { background: none; border: none; font-size: 13px; cursor: pointer; color: #718096; padding: 0; font-weight: 900; transition: 0.2s; outline: none; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1)); }
+.pencil-btn:hover { color: #3182ce; transform: scale(1.2); }
+.status-badge { padding: 4px 6px; border-radius: 4px; font-size: 9px; font-weight: 900; color: #fff; text-transform: uppercase; box-shadow: 2px 2px 4px rgba(0,0,0,0.15); display: inline-block; min-width: 50px; letter-spacing: 0.5px; }
+.bg-present { background: linear-gradient(145deg, #48bb78, #38a169); } .bg-absent { background: linear-gradient(145deg, #f56565, #e53e3e); } .bg-late { background: linear-gradient(145deg, #ecc94b, #d69e2e); color: #1a202c; } .bg-pending { background: #a0aec0; }
 
-/* CM144 - CSS Admin Controls */
-.admin-action-btn { border: none; padding: 3px 6px; border-radius: 4px; font-size: 9px; font-weight: 700; cursor: pointer; color: #fff; margin-right: 2px; }
-.admin-approve { background: #28a745; } .admin-reject { background: #dc3545; }
+/* CM019 - CSS Bigger Comments & Leave Action */
+.comment-box-container { display: flex; align-items: center; justify-content: center; gap: 4px; }
+.comment-input { height: 26px; width: 110px; padding: 0 8px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 10px; font-family: 'Roboto Slab'; outline: none; font-weight: 800; background: #fff; color: #1a365d; box-shadow: inset 0px 1px 3px rgba(0,0,0,0.1); }
+.comment-input:focus { border-color: #3182ce; box-shadow: 0px 0px 0px 2px rgba(49,130,206,0.2); }
+.action-btn { background: linear-gradient(145deg, #4299e1, #3182ce); color: #fff; border: none; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 900; cursor: pointer; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); transition: 0.2s; height: 26px; display: flex; align-items: center; justify-content: center; outline: none; }
+.action-btn:active { transform: translateY(2px); }
+.status-icon { font-size: 12px; font-weight: 900; margin-left: 4px; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.2)); }
+.status-icon.wait { color: #d69e2e; } .status-icon.tick { color: #38a169; } .status-icon.rej { color: #e53e3e; }
+.leave-cell-wrap { display: flex; align-items: center; justify-content: center; gap: 6px; }
+.leave-text-btn { font-size: 10px; font-weight: 900; color: #1a365d; text-transform: uppercase; }
+.leave-cal-icon { font-size: 14px; cursor: pointer; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1)); transition: 0.2s; }
+.leave-cal-icon:active { transform: scale(0.9); }
 
-/* CM145 - CSS Mobile Tweaks */
-@media(max-width: 400px) { .dash-header { padding: 8px 10px; } .dash-title { font-size: 11px; } .dash-logo { width: 28px; height: 28px; } .header-actions { gap: 6px; } .icon-btn-header { width: 26px; height: 26px; font-size: 12px; } }
+/* CM020 - CSS Instructions Panel */
+.instructions-panel { background: #fff; padding: 14px; border-radius: 12px; border-left: 5px solid #d69e2e; box-shadow: 4px 4px 10px #d1d9e6, -4px -4px 10px #ffffff; margin-top: 10px; }
+.inst-title { font-size: 13px; font-weight: 900; color: #1a365d; margin-bottom: 8px; text-transform: uppercase; }
+.inst-list { margin: 0; padding-left: 14px; font-size: 11px; color: #2d3748; font-weight: 800; line-height: 1.6; }
+.inst-list li span.ico { display: inline-block; width: 20px; text-align: center; }
+
+/* CM021 - CSS Modals & Overlays HD */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26,32,44,0.7); display: none; align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(3px); }
+.modal-box { background: #ffffff; width: 90%; max-width: 280px; padding: 18px; border-radius: 16px; box-shadow: 0px 15px 30px rgba(0,0,0,0.3); position: relative; border-top: 5px solid #3182ce; }
+.modal-close { position: absolute; top: 8px; right: 10px; font-size: 20px; cursor: pointer; color: #a0aec0; border: none; background: none; font-weight: 900; transition: 0.2s; outline: none; }
+.modal-close:hover { color: #e53e3e; }
+.modal-title { font-size: 13px; font-weight: 900; color: #1a365d; margin-bottom: 14px; border-bottom: 2px solid #edf2f7; padding-bottom: 6px; text-transform: uppercase; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
+.modal-field { margin-bottom: 12px; }
+.modal-field label { display: block; font-size: 10px; font-weight: 900; color: #3182ce; margin-bottom: 4px; text-transform: uppercase; }
+.modal-field input, .modal-field textarea, .modal-field select { width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 8px; font-family: 'Roboto Slab', serif; font-size: 11px; outline: none; background: #fff; font-weight: 800; color: #1a365d; box-shadow: inset 0px 1px 2px rgba(0,0,0,0.05); }
+.time-inputs-wrap { display: flex; gap: 8px; }
+.modal-btn { width: 100%; background: linear-gradient(145deg, #4299e1, #3182ce); color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 900; cursor: pointer; margin-top: 10px; font-size: 12px; text-transform: uppercase; box-shadow: 0px 4px 8px rgba(49,130,206,0.3); transition: 0.2s; outline: none; }
+.modal-btn:active { transform: translateY(2px); }
+
+/* CM022 - CSS Requests & Utilities */
+.req-item { font-size: 11px; padding: 8px 0; border-bottom: 1px solid #edf2f7; display: flex; justify-content: space-between; align-items: center; font-weight: 800; color: #2d3748; }
+.req-withdraw { background: linear-gradient(145deg, #f56565, #e53e3e); color: #fff; border: none; padding: 4px 8px; border-radius: 4px; font-size: 9px; cursor: pointer; font-weight: 900; text-transform: uppercase; box-shadow: 0px 2px 4px rgba(0,0,0,0.2); }
+.hidden-date-picker { position: absolute; opacity: 0; width: 0; height: 0; border: none; pointer-events: none; }
+.toast-msg { position: fixed; top: 70px; left: 50%; transform: translateX(-50%); background: #38a169; color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 12px; font-weight: 900; text-transform: uppercase; box-shadow: 0px 6px 15px rgba(0,0,0,0.3); display: none; z-index: 2000; letter-spacing: 0.5px; border: 2px solid #fff; }
+@media print { .header-actions, .punch-section, .instructions-panel, .pencil-btn, .action-btn, .leave-cal-icon { display: none !important; } body { background: #fff; } .table-wrapper { box-shadow: none; border: none; } }
 </style>
 </head>
 <body>
 
-<!-- CM146 - HTML App Container -->
+<!-- CM023 - HTML App Container Start -->
 <div id="appContainer">
 
-<!-- CM147 - HTML Compact Login Card -->
+<!-- CM024 - HTML Login View HD 3D -->
 <div id="loginView" class="wrapper">
-<div class="hospital-logo-container"><img src="https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png" alt="Hospital Logo"></div>
-<div class="hospital-name">Sanjeeva Multispecialty Hospital</div>
-<div class="title-text"><div class="title login">Staff Login</div><div class="title signup">Admin Login</div></div>
+<div class="hospital-logo-container"><img id="hospLogo" src="" alt="Logo"></div>
+<div class="hospital-name">SANJEEVA MULTISPECIALTY HOSPITAL, ALLAGADDA</div>
+<div class="title-text"><div class="title login">STAFF LOGIN</div></div>
 <div class="form-container">
-<div class="slide-controls"><input type="radio" name="slide" id="login" checked><input type="radio" name="slide" id="signup"><label for="login" class="slide login">Staff</label><label for="signup" class="slide signup">Admin</label><div class="slider-tab"></div></div>
 <div class="form-inner">
-<form action="#" id="staffForm" class="login"><div class="field"><input type="text" id="staffUser" placeholder="Username" required></div><div class="field"><input type="password" id="staffPass" placeholder="Password" required></div><div class="field btn"><div class="btn-layer"></div><input type="submit" value="Login"></div></form>
-<form action="#" id="adminForm" class="signup"><div class="field"><input type="text" id="adminUser" placeholder="Admin ID" required></div><div class="field"><input type="password" id="adminPass" placeholder="Password" required></div><div class="field btn"><div class="btn-layer"></div><input type="submit" value="Login"></div></form>
+<form action="#" id="staffForm" class="login">
+<div class="field"><span class="input-icon">👤</span><input type="text" id="staffUser" placeholder="USERNAME" required></div>
+<div class="field"><span class="input-icon">🔒</span><input type="password" id="staffPass" placeholder="PASSWORD" required></div>
+<div class="field btn" onclick="document.getElementById('staffForm').dispatchEvent(new Event('submit'))"><span class="btn-icon">➔</span><input type="submit" value="LOGIN"></div>
+<div class="forgot-pass"><a href="#"><span class="forgot-icon">❓</span> Forgot Password?</a></div>
+</form>
 </div></div></div>
 
-<!-- CM148 - HTML Staff Dashboard View -->
+<!-- CM025 - HTML Staff Dashboard View -->
 <div id="staffDashboardView" class="dashboard-view">
-<div class="dash-header"><div class="dash-title"><img src="https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png" alt="Logo" class="dash-logo">SANJEEVA MULTISPECIALTY HOSPITAL</div><div class="header-actions"><button class="icon-btn-header" onclick="location.reload()" title="Reload">&#8635;</button><button class="icon-btn-header" id="logoutStaffBtn" title="Logout">&#9099;</button><button id="headerRequestsBtn" class="header-requests-btn">Requests <span class="badge" id="pendingReqCount">2</span></button></div></div>
-<div class="dash-content">
-<!-- CM149 - HTML Staff Profile Compact -->
-<div class="profile-card"><div class="profile-grid">
-<div class="info-item"><strong>ID:</strong> <span id="staffIdDisplay">SMH-1024</span></div><div class="info-item"><strong>Name:</strong> <span id="staffNameDisplay">User</span></div><div class="info-item"><strong>Role:</strong> <span id="staffRoleDisplay">Nursing Staff</span></div>
-<div class="info-item"><strong>Shift:</strong><select id="staffShiftSelect"><option value="2-shifts">2 Shifts (Morning & Evening)</option><option value="4-shifts">4 Shifts (Split)</option><option value="night-shift">Night Shift</option></select></div>
-<div class="info-item"><strong>Timings:</strong> <span id="staffTimingDisplay">09:00 AM - 05:00 PM</span></div>
-<div class="info-item"><strong>Month:</strong><select id="staffMonthSelect"></select></div>
-</div></div>
-<!-- CM150 - HTML Staff Stats Compact -->
-<div class="summary-grid"><div class="stat-card total"><div class="stat-num" id="statTotalDays">0</div><div class="stat-label">Days</div></div><div class="stat-card present"><div class="stat-num" id="statWorking">0</div><div class="stat-label">Working</div></div><div class="stat-card absent"><div class="stat-num" id="statAbsent">0</div><div class="stat-label">Absent</div></div><div class="stat-card late"><div class="stat-num" id="statLate">0</div><div class="stat-label">Late</div></div></div>
-<!-- CM151 - HTML Live Punch Compact -->
-<div class="punch-section"><div class="section-headline" id="todayHeadline" style="text-align:left;">Today Attendance</div><div class="punch-buttons-container" id="punchButtonsContainer"></div></div>
-<!-- CM152 - HTML Attendance Table Compact -->
-<div class="table-wrapper"><div class="section-headline" style="margin: 10px;" id="tableHeadline">Monthly Attendance</div><table class="att-table"><thead><tr><th>Date</th><th>Shift Details</th><th>In Time</th><th>Out Time</th><th>Work Hrs</th><th>Status</th><th>Comment & Approval</th><th>Action</th></tr></thead><tbody id="attendanceTableBody"></tbody></table></div>
-</div></div>
-
-<!-- CM153 - HTML Admin Dashboard View -->
-<div id="adminDashboardView" class="dashboard-view">
-<div class="dash-header"><div class="dash-title"><img src="https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png" alt="Logo" class="dash-logo">SANJEEVA HOSPITAL - ADMIN</div><div class="header-actions"><button class="icon-btn-header" onclick="location.reload()" title="Reload">&#8635;</button><button class="icon-btn-header" id="logoutAdminBtn" title="Logout">&#9099;</button></div></div>
-<div class="dash-content"><div class="table-wrapper"><div class="section-headline" style="margin: 10px;">Staff Daily Overview & Actions</div><table class="att-table"><thead><tr><th>ID & Name</th><th>Date</th><th>Shift</th><th>In Time</th><th>Out Time</th><th>Status</th><th>Requests / Comments</th><th>Actions</th></tr></thead><tbody id="adminTableBody"></tbody></table></div></div>
+<!-- CM026 - HTML Staff Header HD Icons -->
+<div class="dash-header">
+<div class="dash-title-wrap"><img id="dashLogo" src="" alt="Logo" class="dash-logo-small"><div class="dash-title-text"><span>SANJEEVA MULTISPECIALTY HOSPITAL</span><span style="font-size:10px; color:#4a5568;">ALLAGADDA</span></div></div>
+<div class="header-actions"><button class="hd-icon-btn down" onclick="window.print()" title="Download Data">📥</button><button class="hd-icon-btn req" id="staffReqBtn" title="Requests">🔔<span class="badge" id="sReqCount">2</span></button><button class="hd-icon-btn reload" onclick="reloadData()" title="Refresh">↻</button><button class="hd-icon-btn out" id="logoutStaffBtn" title="Logout">⏻</button></div>
 </div>
 
-<!-- CM154 - HTML Modals Container -->
-<div class="modal-overlay" id="timeModModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('timeModModal')">&times;</button><div class="modal-title" id="modTitle">Modification Request</div><div class="modal-field"><label>Date:</label><input type="text" id="modDate" readonly style="background:#f0f0f0;"></div><div class="modal-field"><label>Present Time:</label><input type="text" id="modCurrentTime" readonly style="background:#f0f0f0;"></div><div class="modal-field"><label>New Time:</label><input type="text" id="modNewTime" placeholder="e.g., 09:15 AM"></div><div class="modal-field"><label>Reason:</label><textarea id="modReason" placeholder="Enter reason..."></textarea></div><button class="modal-btn" onclick="submitTimeMod()">Submit Request</button></div></div>
-<div class="modal-overlay" id="leaveReqModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('leaveReqModal')">&times;</button><div class="modal-title">Apply Leave Request</div><div class="modal-field"><label>Date(s):</label><input type="text" id="leaveDate" placeholder="e.g., 20 Sept 2026"></div><div class="modal-field"><label>Reason:</label><textarea id="leaveReason" placeholder="Enter leave reason..."></textarea></div><button class="modal-btn" onclick="submitLeaveReq()">Submit Leave</button></div></div>
-<div class="modal-overlay" id="allReqModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('allReqModal')">&times;</button><div class="modal-title">Your Requests</div><div id="reqListContainer"><div class="req-item"><span>Time Mod (10 Sep) - <span style="color:#28a745;">&#10004; Approved</span></span></div><div class="req-item"><span>Leave Req (12 Sep) - <span style="color:#ffc107;">&#8987; Pending</span></span><button class="req-withdraw" onclick="this.parentElement.style.display='none'">Withdraw</button></div><div class="req-item"><span>Time Mod (15 Sep) - <span style="color:#dc3545;">&#10006; Rejected</span></span></div></div></div></div>
+<!-- CM027 - HTML Staff Content Wrapper -->
+<div class="dash-content">
+<!-- CM028 - HTML Staff Profile Icons HD -->
+<div class="profile-clean">
+<div class="prof-item"><span class="prof-icon">🆔</span> ID: <span class="val-bold" id="sId">SMH-1024</span></div>
+<div class="prof-item"><span class="prof-icon">👤</span> NAME: <span class="val-bold" id="sName">User</span></div>
+<div class="prof-item"><span class="prof-icon">💼</span> ROLE: <span class="val-bold" id="sRole">Nursing</span></div>
+<div class="prof-item"><span class="prof-icon">⏱️</span> SHIFT: <select class="select-micro" id="sShift"><option value="2-shifts">2 Shifts</option><option value="4-shifts">4 Shifts</option><option value="night-shift">Night</option></select></div>
+<div class="prof-item"><span class="prof-icon">📅</span> MONTH: <select class="select-micro" id="sMonth"></select></div>
+</div>
+
+<!-- CM029 - HTML Summary Stats Cards Full Words Single Line -->
+<div class="summary-grid">
+<div class="stat-card total"><span class="stat-label">DAYS:</span><span class="stat-num" id="sT">0</span></div>
+<div class="stat-card present"><span class="stat-label">WORKING:</span><span class="stat-num" id="sW">0</span></div>
+<div class="stat-card absent"><span class="stat-label">ABSENT:</span><span class="stat-num" id="sA">0</span></div>
+<div class="stat-card late"><span class="stat-label">LATE:</span><span class="stat-num" id="sL">0</span></div>
+</div>
+
+<!-- CM030 - HTML Live Punch Rectangles With Inside Time -->
+<div class="punch-section">
+<div class="section-headline" id="sHeadline">TODAY ATTENDANCE</div>
+<div class="punch-buttons-container" id="sPunchCont"></div>
+</div>
+
+<!-- CM031 - HTML Dynamic Table 6 Columns & Icons -->
+<div class="section-headline" style="text-align:center; display:block; margin-bottom:8px;">ATTENDANCE MONTH OVERVIEW - <span id="tblMonthName">SEPTEMBER</span></div>
+<div class="table-wrapper"><table class="att-table">
+<thead><tr><th>📅 Date</th><th>⏱️ Shift</th><th>🌅 Mrg In</th><th>🌅 Mrg Out</th><th>🌇 Evn In</th><th>🌇 Evn Out</th><th>🌃 Ngt In</th><th>🌃 Ngt Out</th><th>⏳ Hrs</th><th>📊 Status</th><th>💬 Comment</th><th>⚙️ Action</th></tr></thead>
+<tbody id="sTableBody"></tbody></table></div>
+
+<!-- CM032 - HTML Instructions Section -->
+<div class="instructions-panel">
+<div class="inst-title">📝 IMPORTANT INSTRUCTIONS</div>
+<ul class="inst-list">
+<li><span class="ico">✎</span> Click the Pencil icon next to any time to raise a Time Modification Request.</li>
+<li><span class="ico">📅</span> Click the Calendar icon to Apply Leave in advance. It will be approved only after authority verification.</li>
+<li><span class="ico">✅</span> Tick Mark indicates your request has been Approved/Accepted.</li>
+<li><span class="ico">⏳</span> Hourglass/Loading icon indicates your request is Pending for approval.</li>
+<li><span class="ico">❌</span> Red Cross mark indicates your request has been Rejected.</li>
+</ul>
+</div>
+</div></div>
+
+<!-- CM033 - HTML Shared Modals -->
+<div class="modal-overlay" id="modModal"><div class="modal-box"><button class="modal-close" onclick="clsMod('modModal')">&times;</button><div class="modal-title" id="modTitle">MODIFICATION REQUEST</div>
+<div class="modal-field"><label>Date:</label><input type="text" id="modDate" readonly></div>
+<div class="modal-field"><label>Current Time:</label><input type="text" id="modCurr" readonly></div>
+<div class="modal-field"><label>New Time (HH:MM AM/PM):</label><div class="time-inputs-wrap"><select id="modHr"></select><select id="modMin"></select><select id="modAmPm"><option value="AM">AM</option><option value="PM">PM</option></select></div></div>
+<div class="modal-field"><label>Reason:</label><textarea id="modRea" placeholder="Enter reason..."></textarea></div>
+<button class="modal-btn" id="modSubBtn" onclick="subMod()"><span id="modBtnTxt">Submit Request</span></button></div></div>
+
+<!-- CM034 - HTML Hidden Inputs & Utilities -->
+<input type="date" id="nativeDate" class="hidden-date-picker" onchange="updNativeDate(this)">
+<div class="modal-overlay" id="reqListModal"><div class="modal-box"><button class="modal-close" onclick="clsMod('reqListModal')">&times;</button><div class="modal-title">YOUR REQUESTS</div><div id="reqListCont"></div></div></div>
+<div class="toast-msg" id="toastMsg">DATA REFRESHED ✅</div>
 
 </div>
 <script>
+/* CM035 - JS Configuration and Links */
+const AppLinks = { logo: "https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png" };
+document.getElementById('hospLogo').src = AppLinks.logo; document.getElementById('dashLogo').src = AppLinks.logo;
+const AppConf = { mos: ["January","February","March","April","May","June","July","August","September","October","November","December"] };
+const sDets = { "2-shifts":{n:"2-Shifts",b:[{lbl:"MORNING PUNCH IN",dir:"IN",c:"in"},{lbl:"EVENING PUNCH OUT",dir:"OUT",c:"out"}],cols:{mI:"09:00 AM",mO:"-",eI:"-",eO:"05:00 PM",nI:"-",nO:"-",h:"8h"}}, "4-shifts":{n:"4-Shifts",b:[{lbl:"MORNING PUNCH IN",dir:"IN",c:"in"},{lbl:"MORNING PUNCH OUT",dir:"OUT",c:"out"},{lbl:"EVENING PUNCH IN",dir:"IN",c:"in"},{lbl:"EVENING PUNCH OUT",dir:"OUT",c:"out"}],cols:{mI:"08:00 AM",mO:"12:00 PM",eI:"04:00 PM",eO:"08:00 PM",nI:"-",nO:"-",h:"8h"}}, "night-shift":{n:"Night",b:[{lbl:"NIGHT PUNCH IN",dir:"IN",c:"in"},{lbl:"MORNING PUNCH OUT",dir:"OUT",c:"out"}],cols:{mI:"-",mO:"-",eI:"-",eO:"-",nI:"08:00 PM",nO:"08:00 AM",h:"12h"}} };
+const today = new Date(); const cY = today.getFullYear(); const cM = today.getMonth(); const cD = today.getDate();
+const fDate = (d,m,y) => `${String(d).padStart(2,'0')} ${AppConf.mos[m].substring(0,3)} ${y}`;
+const enfU = (e) => e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+const toTitle = (s) => s.replace(/\w\S*/g, (t) => t.charAt(0).toUpperCase() + t.substr(1).toLowerCase());
+document.getElementById("staffUser").addEventListener('input', enfU);
 
-/* CM155 - JS Config & App Links */
-const AppConfig = { defaultRole: "Nursing Staff", dummyId: "SMH-1024", monthsArr: ["January","February","March","April","May","June","July","August","September","October","November","December"] };
-const shiftDetails = { "2-shifts": { text: "09:00 AM - 05:00 PM", name: "2-Shifts", in:"09:00 AM", out:"05:00 PM", btns: [{l:"Punch In", c:"punch-in", i:"&#8600;"},{l:"Punch Out", c:"punch-out", i:"&#8599;"}] }, "4-shifts": { text: "08:00AM-12:00PM & 04:00PM-08:00PM", name: "4-Shifts", in:"08:00 AM", out:"12:00 PM", btns: [{l:"Morn In", c:"punch-in", i:"&#8600;"},{l:"Morn Out", c:"punch-out", i:"&#8599;"},{l:"Eve In", c:"punch-in", i:"&#8600;"},{l:"Eve Out", c:"punch-out", i:"&#8599;"}] }, "night-shift": { text: "08:00 PM (Today) - 08:00 AM (Next Day)", name: "Night Shift", in:"08:00 PM", out:"08:00 AM", btns: [{l:"Night In", c:"punch-in", i:"&#8600;"},{l:"Morn Out", c:"punch-out", i:"&#8599;"}] } };
+/* CM036 - JS Utilities & Modals */
+const clsMod = (id) => document.getElementById(id).style.display = "none";
+const opnMod = (id) => document.getElementById(id).style.display = "flex";
+const waitIco = '⏳'; const tickIco = '✅'; const rejIco = '❌'; let curCellId = "";
+const reloadData = () => { genSData(); const t = document.getElementById('toastMsg'); t.style.display='block'; setTimeout(()=>t.style.display='none', 2000); };
+const popT = () => { let hr="", mn=""; for(let i=1;i<=12;i++) hr+=`<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`; for(let i=0;i<60;i++) mn+=`<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`; document.getElementById('modHr').innerHTML=hr; document.getElementById('modMin').innerHTML=mn; };
+popT();
 
-/* CM156 - JS Date & Time Logic */
-const todayObj = new Date(2026, 8, 18); const currY = todayObj.getFullYear(); const currM = todayObj.getMonth(); const currD = todayObj.getDate();
-const formatFullDate = (d, m, y) => `${String(d).padStart(2,'0')} ${AppConfig.monthsArr[m]} ${y}`;
-document.getElementById("todayHeadline").innerText = `Today Attendance - ${formatFullDate(currD, currM, currY)}`;
+/* CM037 - JS Month Dropdown Generation */
+const popMos = (elId) => { const s = document.getElementById(elId); let h = "";
+for(let m=cM; m<=11; m++) h+=`<option value="${m}-${cY}">${AppConf.mos[m].substring(0,3)} ${cY}</option>`;
+for(let m=0; m<=5; m++) h+=`<option value="${m}-${cY+1}">${AppConf.mos[m].substring(0,3)} ${cY+1}</option>`;
+s.innerHTML = h; s.value = `${cM}-${cY}`; s.onchange = () => { document.getElementById("tblMonthName").innerText = AppConf.mos[parseInt(s.value.split('-')[0])].toUpperCase(); genSData(); }; };
 
-/* CM157 - JS Utility & Formatters */
-const enforceUppercase = (e) => e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
-document.getElementById("staffUser").addEventListener('input', enforceUppercase); document.getElementById("adminUser").addEventListener('input', enforceUppercase);
-const closeModal = (id) => document.getElementById(id).style.display = "none";
-const openModal = (id) => document.getElementById(id).style.display = "flex";
-document.getElementById("headerRequestsBtn").onclick = () => openModal("allReqModal");
+/* CM038 - JS Live Punch Logic Updating Inside Box */
+const simPunch = (btn, dir) => { const tm = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}); btn.style.background = "linear-gradient(145deg, #e2e8f0, #cbd5e0)"; btn.style.boxShadow = "inset 2px 2px 5px rgba(0,0,0,0.1), inset -2px -2px 5px #ffffff"; const t = btn.querySelector('.neo-text-in'); t.innerHTML = `${tickIco} PUNCHED`; const p = btn.querySelector('.punch-time-disp'); p.style.display='block'; p.innerText=tm; btn.onclick = null; };
+const genBtns = (k) => { const c = document.getElementById("sPunchCont"); c.innerHTML=''; sDets[k].b.forEach(b => { c.innerHTML += `<button class="neo-btn" onclick="simPunch(this, '${b.dir}')"><div class="punch-btn-inner"><span class="neo-text-in ${b.c}">${b.lbl}</span><span class="punch-time-disp"></span></div></button>`; }); };
 
-/* CM158 - JS Month Selection Setup */
-const setupMonthSelect = () => {
-const mSel = document.getElementById("staffMonthSelect"); let html = "";
-for(let m=currM; m<=11; m++) html += `<option value="${m}-${currY}">${AppConfig.monthsArr[m]} ${currY}</option>`;
-for(let m=0; m<=5; m++) html += `<option value="${m}-${currY+1}">${AppConfig.monthsArr[m]} ${currY+1}</option>`;
-mSel.innerHTML = html; mSel.value = `${currM}-${currY}`;
-mSel.onchange = (e) => { const parts = e.target.value.split('-'); generateStaffData(parseInt(parts[0]), parseInt(parts[1])); };
-};
+/* CM039 - JS Staff Data & 6 Column Table Gen Full Days */
+const initStaff = () => { document.getElementById("sHeadline").innerText = `TODAY ATTENDANCE - ${fDate(cD,cM,cY).toUpperCase()}`; document.getElementById("tblMonthName").innerText = AppConf.mos[cM].toUpperCase(); popMos("sMonth"); genSData(); };
+document.getElementById("sShift").onchange = () => genSData();
+const genSData = () => { const vp = document.getElementById("sMonth").value.split('-'); const sM = parseInt(vp[0]), sY = parseInt(vp[1]);
+const tb = document.getElementById("sTableBody"); tb.innerHTML=''; const sK = document.getElementById("sShift").value; genBtns(sK);
+let mD = new Date(sY, sM+1, 0).getDate(); let tW=0, tA=0, tL=0; const cols = sDets[sK].cols;
+for(let d=1; d<=mD; d++) { let isF = (sY>cY || (sY===cY && sM>cM) || (sY===cY && sM===cM && d>cD)); let st="Present", sc="bg-present", hr=cols.h, mI=cols.mI, mO=cols.mO, eI=cols.eI, eO=cols.eO, nI=cols.nI, nO=cols.nO;
+if(isF) { st="Pending"; sc="bg-pending"; hr="-"; mI="-"; mO="-"; eI="-"; eO="-"; nI="-"; nO="-"; }
+else if(d!==cD) { const r=Math.random(); if(r>0.85){st="Absent";sc="bg-absent";hr="-";mI="-";mO="-";eI="-";eO="-";nI="-";nO="-";tA++;}else if(r>0.7){st="Late";sc="bg-late";hr="7h";if(mI!=="-")mI="09:45 AM";tW++;tL++;}else{tW++;} }
+let dtS = fDate(d,sM,sY);
+const mkC = (val, id, tit) => `<td><div class="time-cell" id="${id}-${d}">${val} ${val!=="-"?`<button class="pencil-btn" onclick="prepMod('${tit}','${val}','${dtS}','${id}-${d}')">✎</button>`:''}</div></td>`;
+tb.innerHTML += `<tr><td class="date-col">${dtS}</td><td>${sDets[sK].n}</td>
+${mkC(mI,'mi','Morning In')}${mkC(mO,'mo','Morning Out')}${mkC(eI,'ei','Evening In')}${mkC(eO,'eo','Evening Out')}${mkC(nI,'ni','Night In')}${mkC(nO,'no','Night Out')}
+<td><span class="${hr!=="-"?'hrs-bold':''}">${hr}</span></td><td><span class="status-badge ${sc}" id="st-${d}">${st}</span></td>
+<td><div class="comment-box-container" id="cb-${d}"><input type="text" class="comment-input" placeholder="Type..."><button class="action-btn" onclick="subCom('cb-${d}')">✓</button></div></td>
+<td><div class="leave-cell-wrap" id="lv-${d}"><span class="leave-text-btn">Apply Leave</span><span class="leave-cal-icon" onclick="trigCal('${dtS}','lv-${d}')">📅</span></div></td></tr>`;
+} updS(mD,tW,tA,tL); };
+const updS = (t,w,a,l) => { document.getElementById("sT").innerText=t; document.getElementById("sW").innerText=w; document.getElementById("sA").innerText=a; document.getElementById("sL").innerText=l; };
 
-/* CM159 - JS Generate Staff Data */
-const generateStaffData = (selM, selY) => {
-document.getElementById("tableHeadline").innerHTML = `<b>Monthly Attendance: ${AppConfig.monthsArr[selM]} ${selY}</b>`;
-const tbody = document.getElementById("attendanceTableBody"); tbody.innerHTML = '';
-let workD=0, absD=0, lateD=0, maxDays = new Date(selY, selM+1, 0).getDate();
-const sType = document.getElementById("staffShiftSelect").value; const sInfo = shiftDetails[sType];
-if(selY > currY || (selY === currY && selM > currM)) { tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;font-weight:700;">No records found for this month</td></tr>`; updateStats(maxDays,0,0,0); return; }
-let loopLimit = (selM === currM && selY === currY) ? currD : maxDays;
-for(let d=1; d<=loopLimit; d++) {
-let isT = (d===currD && selM===currM), stat="Present", sCls="bg-present", iT=sInfo.in, oT=sInfo.out, hrs="8 hrs";
-if(!isT) { const r=Math.random(); if(r>0.85){ stat="Absent"; sCls="bg-absent"; iT="-"; oT="-"; hrs="-"; absD++; } else if(r>0.7){ stat="Late"; sCls="bg-late"; iT="09:45 AM"; lateD++; workD++; hrs="7h 15m"; } else { workD++; } }
-else { stat="Pending"; sCls="bg-late"; iT="-"; oT="-"; hrs="-"; }
-let tr = document.createElement("tr");
-tr.innerHTML = `<td class="date-col">${formatFullDate(d,selM,selY)}</td><td>${sInfo.name}</td>
-<td><div class="time-cell">${iT} ${iT!=="-"?`<button class="pencil-btn" onclick="openMod('Morning Punch In', '${iT}', '${formatFullDate(d,selM,selY)}')">&#9998;</button>`:''}</div></td>
-<td><div class="time-cell">${oT} ${oT!=="-"?`<button class="pencil-btn" onclick="openMod('Evening Punch Out', '${oT}', '${formatFullDate(d,selM,selY)}')">&#9998;</button>`:''}</div></td>
-<td>${hrs}</td><td><span class="status-badge ${sCls}">${stat}</span></td>
-<td><div class="comment-box-container" id="cb-${d}"><input type="text" class="comment-input" placeholder="Add comment..."><button class="action-btn submit" onclick="subCom('cb-${d}')">&#10004;</button></div></td>
-<td><button class="action-btn leave" onclick="openModal('leaveReqModal')">Apply Leave</button></td>`;
-tbody.appendChild(tr); } updateStats(maxDays, workD, absD, lateD);
-};
-const updateStats = (t,w,a,l) => { document.getElementById("statTotalDays").innerText=t; document.getElementById("statWorking").innerText=w; document.getElementById("statAbsent").innerText=a; document.getElementById("statLate").innerText=l; };
+/* CM040 - JS Actions & Modals HD */
+const prepMod = (tit, ct, dt, cid) => { curCellId=cid; document.getElementById("modTitle").innerText=`REQ: ${tit}`; document.getElementById("modCurr").value=ct; document.getElementById("modDate").value=dt; 
+if(ct!=="-"){ let p=ct.split(' '); let t=p[0].split(':'); document.getElementById('modHr').value=t[0]; document.getElementById('modMin').value=t[1]; document.getElementById('modAmPm').value=p[1]; }
+document.getElementById("modRea").value=""; opnMod("modModal"); };
+const subMod = () => { document.getElementById("modBtnTxt").innerHTML = waitIco; setTimeout(()=>{clsMod("modModal"); document.getElementById(curCellId).innerHTML+=` <span class="status-icon wait" title="Waiting">${waitIco}</span>`; document.getElementById("modBtnTxt").innerHTML="Submit Request";}, 600); };
+const trigCal = (dt, cid) => { curCellId=cid; const nd = document.getElementById('nativeDate'); nd.showPicker(); };
+const updNativeDate = (el) => { if(el.value){ document.getElementById(curCellId).innerHTML = `<span class="leave-text-btn" style="color:#d69e2e;">Waiting ${waitIco}</span>`; el.value=""; } };
+const subCom = (id) => { const b=document.getElementById(id); const v=b.querySelector('input').value.trim(); if(v==="") return; b.innerHTML=`<span style="font-size:10px; font-weight:900; color:#1a365d;">${v.substring(0,8)}..</span><span class="status-icon wait" title="Waiting">${waitIco}</span>`; };
+document.getElementById("staffReqBtn").onclick = () => { const c=document.getElementById("reqListCont"); c.innerHTML=`<div class="req-item"><span>Leave (${fDate(12,cM,cY)}) - ${waitIco} Pending</span><button class="req-withdraw" onclick="this.parentElement.style.display='none'">Withdraw</button></div><div class="req-item"><span>Time Mod (${fDate(10,cM,cY)}) - ${tickIco} Approved</span></div><div class="req-item"><span>Time Mod (${fDate(8,cM,cY)}) - ${rejIco} Rejected</span></div>`; opnMod("reqListModal"); };
 
-/* CM160 - JS Actions Logic (Pencil, Comments, Live Punch) */
-const openMod = (title, curTime, dateStr) => { document.getElementById("modTitle").innerText = `Modification Request: ${title}`; document.getElementById("modCurrentTime").value = curTime; document.getElementById("modDate").value = dateStr; document.getElementById("modNewTime").value = ""; document.getElementById("modReason").value = ""; openModal("timeModModal"); };
-const submitTimeMod = () => { closeModal("timeModModal"); alert("Time modification request sent for approval!"); };
-const submitLeaveReq = () => { closeModal("leaveReqModal"); alert("Leave request applied successfully!"); };
-const subCom = (id) => { const box = document.getElementById(id); const input = box.querySelector('input').value; if(input.trim()==="") return; box.innerHTML = `<span style="font-size:10px;font-weight:600;">${input.substring(0,10)}..</span> <span class="status-icon" style="color:#ffc107;" title="Waiting">&#8987;</span>`; };
-const updateLivePunch = (sType) => { const con = document.getElementById("punchButtonsContainer"); con.innerHTML = ''; shiftDetails[sType].btns.forEach(b => { const btn = document.createElement("button"); btn.className = `punch-btn ${b.c}`; btn.innerHTML = `<span class="punch-icon">${b.i}</span> ${b.l}`; btn.onclick = () => alert(`${b.l} recorded successfully!`); con.appendChild(btn); }); };
-document.getElementById("staffShiftSelect").addEventListener("change", (e) => { const v = e.target.value; document.getElementById("staffTimingDisplay").innerText = shiftDetails[v].text; updateLivePunch(v); generateStaffData(currM, currY); });
-
-/* CM161 - JS Generate Admin Dummy Data */
-const generateAdminData = () => {
-const tbody = document.getElementById("adminTableBody"); tbody.innerHTML = ''; const names = ["Ramesh K", "Suresh G", "Priya M", "Anitha R", "Karthik V"];
-for(let i=0; i<5; i++) { let tr = document.createElement("tr");
-tr.innerHTML = `<td><b>SMH-10${i+1}</b><br>${names[i]}</td><td>${formatFullDate(currD,currM,currY)}</td><td>2-Shifts</td>
-<td><div class="time-cell">09:15 AM <button class="pencil-btn" onclick="alert('Admin direct edit in time')">&#9998;</button></div></td>
-<td><div class="time-cell">- <button class="pencil-btn" onclick="alert('Admin direct edit out time')">&#9998;</button></div></td>
-<td><span class="status-badge bg-late">Late</span></td><td><span style="font-size:10px;color:#d32f2f;">Req: Mod In-Time</span></td>
-<td><button class="admin-action-btn admin-approve" onclick="this.parentElement.innerHTML='Approved'">Approve</button><button class="admin-action-btn admin-reject" onclick="this.parentElement.innerHTML='Rejected'">Reject</button></td>`;
-tbody.appendChild(tr); }
-};
-
-/* CM162 - JS Login & Navigation Controls */
-document.getElementById("staffForm").addEventListener('submit', (e) => { e.preventDefault(); document.getElementById("loginView").style.display="none"; document.getElementById("staffDashboardView").style.display="flex"; document.getElementById("staffNameDisplay").innerText = document.getElementById("staffUser").value.toLowerCase().replace(/\b\w/g, c=>c.toUpperCase()); setupMonthSelect(); updateLivePunch("2-shifts"); generateStaffData(currM, currY); });
-document.getElementById("adminForm").addEventListener('submit', (e) => { e.preventDefault(); document.getElementById("loginView").style.display="none"; document.getElementById("adminDashboardView").style.display="flex"; generateAdminData(); });
+/* CM041 - JS Login Flow */
+document.getElementById("staffForm").onsubmit = (e) => { e.preventDefault(); document.getElementById("loginView").style.display="none"; document.getElementById("staffDashboardView").style.display="flex"; document.getElementById("sName").innerText = toTitle(document.getElementById("staffUser").value); initStaff(); };
 document.getElementById("logoutStaffBtn").onclick = () => { document.getElementById("staffDashboardView").style.display="none"; document.getElementById("loginView").style.display="block"; document.getElementById("staffForm").reset(); };
-document.getElementById("logoutAdminBtn").onclick = () => { document.getElementById("adminDashboardView").style.display="none"; document.getElementById("loginView").style.display="block"; document.getElementById("adminForm").reset(); };
-
 </script>
 </body>
 </html>
