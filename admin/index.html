@@ -196,6 +196,7 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f8
 <div class="modal-overlay" id="attModal"><div class="modal-box">
 <button class="modal-close" onclick="clsMod('attModal')">&times;</button>
 <div class="modal-title" id="attModTitle">ATTENDANCE DETAILS</div>
+<div id="attModCtx" style="background:#f8fafc; padding:8px; border-radius:6px; margin-bottom:10px; font-size:10px; border:1px solid #e2e8f0; font-weight:900; line-height:1.5;"></div>
 <div class="time-list" id="attModCont"></div>
 </div></div>
 
@@ -210,8 +211,8 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f8
 
 <div class="modal-overlay" id="reqModal"><div class="modal-box">
 <button class="modal-close" onclick="clsMod('reqModal')">&times;</button>
-<div class="modal-title">PENDING REQUESTS</div>
-<div id="reqAdminCont"></div>
+<div class="modal-title">ADMINISTRATOR LOGS & REQUESTS</div>
+<div id="reqAdminCont" style="max-height: 60vh; overflow-y: auto;"></div>
 </div></div>
 
 <!-- CM028 - HTML Utility Toasts -->
@@ -219,7 +220,6 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f8
 
 </div>
 <script>
-
 /* CM029 - JS Configuration and Links */
 const AppLinks = { logo: "https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png" };
 document.getElementById('hospLogo').src = AppLinks.logo; document.getElementById('dashLogo').src = AppLinks.logo;
@@ -229,11 +229,16 @@ const fDate = (d,m,y) => `${String(d).padStart(2,'0')} ${AppConf.mos[m].substrin
 const enfU = (e) => e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
 document.getElementById("adminUser").addEventListener('input', enfU);
 
+let adminLogs = [
+    {id:"SYSTEM", n:"AUTO", type:"Initialization", desc:"Admin dashboard started and monitoring.", time: "Just Now"}
+]; // Array for saving all admin changes/requests
+
 /* CM030 - JS Utilities & Modal Close Actions */
 const clsMod = (id) => document.getElementById(id).style.display = "none";
 const opnMod = (id) => document.getElementById(id).style.display = "flex";
 window.onclick = (e) => { if(e.target.classList.contains('modal-overlay')) e.target.style.display = 'none'; };
 const reloadData = () => { genAdminData(); const t = document.getElementById('toastMsg'); t.style.display='block'; setTimeout(()=>t.style.display='none', 2000); };
+const logAdminAction = (id, name, actionType, desc) => { adminLogs.unshift({id, n:name, type:actionType, desc, time:new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}); document.getElementById("aReqCount").innerText = adminLogs.length; };
 
 /* CM031 - JS Month Dropdown Generation */
 const popMos = (elId) => { const s = document.getElementById(elId); let h = "";
@@ -241,25 +246,25 @@ for(let m=cM; m<=11; m++) h+=`<option value="${m}-${cY}">${AppConf.mos[m].substr
 for(let m=0; m<=5; m++) h+=`<option value="${m}-${cY+1}">${AppConf.mos[m].substring(0,3)} ${cY+1}</option>`;
 s.innerHTML = h; s.value = `${cM}-${cY}`; s.onchange = () => { genAdminData(); }; };
 
-/* CM032 - JS Dummy Staff Data Generator With Daily Shift Tracking */
+/* CM032 - JS Robust Dummy Staff Data Generator */
+const getInitialCell = (d, sM, sY, isCurrentMonth, dailyShiftType) => { 
+    let o={ mi:"-", mo:"-", ei:"-", eo:"-", ni:"-", no:"-", hrs:"-", st:"P", sc:"#166534", bg:"#dcfce7", isLate:false };
+    const isFuture = (sY>cY || (sY===cY && sM>cM) || (isCurrentMonth && d>cD));
+    if(isFuture) { o.st="W"; o.sc="#64748b"; o.bg="#f1f5f9"; return o; }
+    const r=Math.random(); if(r>0.9){o.st="A"; o.sc="#991b1b"; o.bg="#fee2e2"; o.hrs="0h"; return o;}
+    o.hrs="8h"; o.isLate = (r>0.7 && r<=0.9); if(o.isLate){ o.st="L"; o.sc="#854d0e"; o.bg="#fef9c3"; o.hrs="7h"; }
+    if(dailyShiftType===4){ o.mi=o.isLate?"09:18 AM":"09:00 AM"; o.mo="01:00 PM"; o.ei="02:00 PM"; o.eo="06:00 PM"; }
+    else if(dailyShiftType===2){ o.mi=o.isLate?"09:20 AM":"09:00 AM"; o.eo="05:00 PM"; }
+    else if(dailyShiftType===1){ o.ni=o.isLate?"08:15 PM":"08:00 PM"; o.no="08:00 AM"; o.hrs="12h"; }
+    return o; 
+};
 const genDummyStaff = (count) => { let arr=[]; for(let i=1;i<=count;i++){ 
 let sT=4, r="Sister", ts="09:00 AM - 01:00 PM, 02:00 PM - 06:00 PM", sN="4-Shifts", pC=Math.floor(Math.random()*6)+20, lC=Math.floor(Math.random()*4);
 if(i>8 && i<=16){sT=2; r="Compounder"; ts="09:00 AM - 05:00 PM"; sN="2-Shifts";} else if(i>16){sT=1; r="Sister"; ts="08:00 PM - 08:00 AM"; sN="Night";}
-let sTrack = []; for(let d=1; d<=31; d++) sTrack[d] = sT; 
-arr.push({ id:`SMH-10${String(i+20).padStart(2,'0')}`, name:`STAFF ${i}`, role:r, curType:sT, tStr:ts, sName:sN, w:30, p:pC, a:30-pC, l:lC, shiftTrack: sTrack }); } return arr; };
+let sTrack = {}; let attData = {};
+for(let d=1; d<=31; d++) sTrack[d] = sT; 
+arr.push({ id:`SMH-10${String(i+20).padStart(2,'0')}`, name:`STAFF ${i}`, role:r, curType:sT, tStr:ts, sName:sN, w:30, p:pC, a:30-pC, l:lC, shiftTrack: sTrack, attData: attData }); } return arr; };
 let dummyStaff = genDummyStaff(25); let curStfIdx = null;
-
-/* CM033 - JS 12-Hour Format Cell Generator Logic Based On Daily Shift */
-const getCellData = (d, sM, sY, isCurrentMonth, dailyShiftType) => { 
-let o={ mi:"-", mo:"-", ei:"-", eo:"-", ni:"-", no:"-", hrs:"-", st:"P", sc:"#166534", bg:"#dcfce7", isLate:false };
-const isFuture = (sY>cY || (sY===cY && sM>cM) || (isCurrentMonth && d>cD));
-if(isFuture) { o.st="W"; o.sc="#64748b"; o.bg="#f1f5f9"; return o; }
-const r=Math.random(); if(r>0.9){o.st="A"; o.sc="#991b1b"; o.bg="#fee2e2"; o.hrs="0h"; return o;}
-o.hrs="8h"; o.isLate = (r>0.7 && r<=0.9); if(o.isLate){ o.st="L"; o.sc="#854d0e"; o.bg="#fef9c3"; o.hrs="7h"; }
-if(dailyShiftType===4){ o.mi=o.isLate?"09:18 AM":"09:00 AM"; o.mo="01:00 PM"; o.ei="02:00 PM"; o.eo="06:00 PM"; }
-else if(dailyShiftType===2){ o.mi=o.isLate?"09:20 AM":"09:00 AM"; o.eo="05:00 PM"; }
-else if(dailyShiftType===1){ o.ni=o.isLate?"08:15 PM":"08:00 PM"; o.no="08:00 AM"; o.hrs="12h"; }
-return o; };
 
 /* CM034 - JS Generate Grid HTML for Cell */
 const buildGrid = (c) => { 
@@ -274,51 +279,74 @@ const thd = document.getElementById("aTableHead"); let thHTML = `<tr><th class="
 for(let d=1; d<=mD; d++) { const isToday = (isCurMonth && d===cD); thHTML += `<th class="${isToday ? 'today-col' : ''}" ${isToday ? 'id="td-today-th"' : ''}>${d} ${AppConf.mos[sM].substring(0,3)}</th>`; } thd.innerHTML = thHTML + `</tr>`;
 const tb = document.getElementById("aTableBody"); tb.innerHTML = '';
 let totAtt=0, totLate=0, liveStf=0;
+
 dummyStaff.forEach((stf, idx) => { 
 let stats = `<div class="st-row"><span class="sb sb-w">W:${stf.w}</span><span class="sb sb-a">A:${stf.a}</span><span class="sb sb-l">L:${stf.l}</span></div>`;
 let sh = `<div class="s-row"><span>${stf.sName}: ${stf.tStr}</span><button class="shift-icon-btn" onclick="trigShift(${idx})" title="Change Shift">⇄</button></div>`;
 let nc = `<td class="td-name"><div class="name-wrap"><div class="n-row">👤 ${stf.name}</div><div class="r-row">${stf.role}</div>${sh}${stats}</div></td>`;
 let tr = `<tr><td class="sticky-col sno">${idx+1}</td><td class="sticky-col id">${stf.id}</td>${nc}`;
-for(let d=1; d<=mD; d++) { const isToday = (isCurMonth && d===cD); const cd = getCellData(d, sM, sY, isCurMonth, stf.shiftTrack[d]);
-if(isToday && (cd.st==="P" || cd.st==="L")) { totAtt++; if(cd.st==="L") totLate++; if(Math.random()>0.2) liveStf++; }
-tr += `<td class="${isToday ? 'today-col' : ''}" onclick="opnAttMod(${idx}, ${d}, '${JSON.stringify(cd)}')">${buildGrid(cd)}</td>`; } tb.innerHTML += tr + `</tr>`; }); 
+
+for(let d=1; d<=mD; d++) { 
+    const isToday = (isCurMonth && d===cD); let dKey = `${d}-${sM}-${sY}`;
+    if(!stf.attData[dKey]) stf.attData[dKey] = getInitialCell(d, sM, sY, isCurMonth, stf.shiftTrack[d]);
+    let cd = stf.attData[dKey];
+    if(isToday && (cd.st==="P" || cd.st==="L")) { totAtt++; if(cd.st==="L") totLate++; if(Math.random()>0.2) liveStf++; }
+    tr += `<td class="${isToday ? 'today-col' : ''}" onclick="opnAttMod(${idx}, ${d}, ${sM}, ${sY})">${buildGrid(cd)}</td>`; 
+} tb.innerHTML += tr + `</tr>`; }); 
+
 document.getElementById("liveStaffCount").innerHTML = `<span class="blink-dot"></span>LIVE STAFF: ${liveStf}`;
 document.getElementById("aTableFoot").innerHTML = `<tr class="footer-row"><td colspan="${3+mD}"><div class="footer-stats"><span class="fs-lbl">TODAY TOTALS:</span><span class="fs-item">ATTENDED: ${totAtt}</span><span class="fs-item" style="color:#ef4444;">LATE: ${totLate}</span><span class="fs-item" style="color:#10b981;">LIVE IN HOSPITAL: ${liveStf}</span></div></td></tr>`;
+document.getElementById("aReqCount").innerText = adminLogs.length;
 setTimeout(()=>{ const el=document.getElementById('td-today-th'); if(el){ el.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); } }, 300); };
 
-/* CM036 - JS Popups for Full Cell Editing */
-let curCd = {}; let curD = 0;
-const opnAttMod = (idx, d, cdStr) => { curStfIdx=idx; curD=d; curCd = JSON.parse(cdStr); const s = dummyStaff[idx];
-document.getElementById("attModTitle").innerText = `ATTENDANCE - ${s.name} (${fDate(d, cM, cY)})`;
-renderAttTimes(); opnMod("attModal"); };
+/* CM036 - JS Popups for Full Cell Context Editing */
+let curD = 0; let curM = 0; let curY = 0;
+const opnAttMod = (idx, d, m, y) => { 
+    curStfIdx=idx; curD=d; curM=m; curY=y; const s = dummyStaff[idx]; let dKey = `${d}-${m}-${y}`; let cd = s.attData[dKey];
+    document.getElementById("attModTitle").innerText = `ATTENDANCE - ${s.name} (${fDate(d, m, y)})`;
+    document.getElementById("attModCtx").innerHTML = `<div style="color:#3b82f6;">ASSIGNED SHIFT: ${s.sName.toUpperCase()}</div><div style="color:#0f172a;">TOTAL LOGGED HRS: ${cd.hrs}</div>`;
+    renderAttTimes(); opnMod("attModal"); 
+};
 const renderAttTimes = () => { const c = document.getElementById("attModCont"); c.innerHTML="";
+const cd = dummyStaff[curStfIdx].attData[`${curD}-${curM}-${curY}`];
 const p = [ {k:'mi', l:'MRG IN'}, {k:'mo', l:'MRG OUT'}, {k:'ei', l:'EVN IN'}, {k:'eo', l:'EVN OUT'}, {k:'ni', l:'NGT IN'}, {k:'no', l:'NGT OUT'} ];
-p.forEach(x => { c.innerHTML += `<div class="time-row" id="tr-${x.k}"><span class="time-lbl">${x.l}</span><span class="time-val">${curCd[x.k]}</span><button class="time-edit-btn" onclick="edtT('${x.k}')">✎</button></div>`; }); };
+p.forEach(x => { c.innerHTML += `<div class="time-row" id="tr-${x.k}"><span class="time-lbl">${x.l}</span><span class="time-val">${cd[x.k]}</span><button class="time-edit-btn" onclick="edtT('${x.k}')">✎</button></div>`; }); };
 const edtT = (k) => { const el = document.getElementById(`tr-${k}`); let h="", m="", a="";
 for(let i=1;i<=12;i++) h+=`<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`;
 for(let i=0;i<60;i++) m+=`<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`;
 a = `<option value="AM">AM</option><option value="PM">PM</option>`;
 el.innerHTML = `<span class="time-lbl">${k.toUpperCase()}</span><div class="edit-mode-wrap"><select class="t-sel" id="h-${k}">${h}</select>:<select class="t-sel" id="m-${k}">${m}</select><select class="t-sel" id="a-${k}">${a}</select> <button class="save-t-btn" onclick="savT('${k}')">SAVE</button></div>`; };
-const savT = (k) => { curCd[k] = `${document.getElementById(`h-${k}`).value}:${document.getElementById(`m-${k}`).value} ${document.getElementById(`a-${k}`).value}`; renderAttTimes(); reloadData(); };
+const savT = (k) => { 
+    let cd = dummyStaff[curStfIdx].attData[`${curD}-${curM}-${curY}`];
+    let oldT = cd[k];
+    cd[k] = `${document.getElementById(`h-${k}`).value}:${document.getElementById(`m-${k}`).value} ${document.getElementById(`a-${k}`).value}`; 
+    
+    // Save to logs
+    logAdminAction(dummyStaff[curStfIdx].id, dummyStaff[curStfIdx].name, "Time Override", `Changed ${k.toUpperCase()} from ${oldT} to ${cd[k]} on ${fDate(curD,curM,curY)}`);
+    
+    renderAttTimes(); reloadData(); 
+};
 
-/* CM037 - JS Historical Shift Change Logic From Today Only */
+/* CM037 - JS Historical Shift Change Logic */
 const trigShift = (idx) => { curStfIdx=idx; document.getElementById("shiftModTitle").innerText = `CHANGE SHIFT - ${dummyStaff[idx].name} (APPLIES FROM TODAY)`; document.getElementById(`s${dummyStaff[idx].curType}`).checked = true; opnMod("shiftModal"); };
 const saveShift = () => { const v = parseInt(document.querySelector('input[name="shiftSel"]:checked').value); let n="", t="";
 if(v===4){n="4-Shifts"; t="09:00 AM-01:00 PM, 02:00 PM-06:00 PM";} else if(v===2){n="2-Shifts"; t="09:00 AM-05:00 PM";} else if(v===1){n="Night"; t="08:00 PM-08:00 AM";}
-dummyStaff[curStfIdx].sName = n; dummyStaff[curStfIdx].tStr = t; dummyStaff[curStfIdx].curType = v;
-for(let d=cD; d<=31; d++) dummyStaff[curStfIdx].shiftTrack[d] = v;
+let stf = dummyStaff[curStfIdx];
+logAdminAction(stf.id, stf.name, "Shift Change", `Shift updated from ${stf.sName} to ${n} starting today.`);
+
+stf.sName = n; stf.tStr = t; stf.curType = v;
+for(let d=cD; d<=31; d++) stf.shiftTrack[d] = v;
 clsMod("shiftModal"); reloadData(); };
 
 /* CM038 - JS Admin Detailed Requests Logic */
 const popReqs = () => { const c = document.getElementById("reqAdminCont"); c.innerHTML=""; 
-const dr = [ {id:"SMH-1024", n:"STAFF 4", type:"Leave Request", desc:"Family function."}, {id:"SMH-1027", n:"STAFF 7", type:"Time Mod", desc:"Forgot punch in."} ];
-dr.forEach((r, i) => { c.innerHTML += `<div style="padding:8px; border:1px solid #e2e8f0; border-radius:6px; margin-bottom:8px; background:#f8fafc; font-size:10px;"><div style="font-weight:900; color:#0f172a; margin-bottom:4px;">${r.id} - ${r.n}</div><div style="color:#3b82f6; font-weight:900; margin-bottom:4px;">${r.type}</div><div style="color:#475569; margin-bottom:6px;">${r.desc}</div><div style="display:flex; justify-content:flex-end; gap:6px;"><button onclick="this.parentElement.parentElement.innerHTML='<div style=\\'text-align:center;color:#10b981;font-weight:900;\\'>✅ APPROVED</div>'" style="background:#10b981; color:#fff; border:none; padding:4px 10px; border-radius:4px; font-weight:900; cursor:pointer;">✅</button><button onclick="this.parentElement.parentElement.innerHTML='<div style=\\'text-align:center;color:#ef4444;font-weight:900;\\'>❌ REJECTED</div>'" style="background:#ef4444; color:#fff; border:none; padding:4px 10px; border-radius:4px; font-weight:900; cursor:pointer;">❌</button></div></div>`; }); };
+if(adminLogs.length===0){ c.innerHTML = "<div style='padding:10px; font-size:10px; font-weight:900;'>NO LOGS FOUND.</div>"; return; }
+adminLogs.forEach((r, i) => { c.innerHTML += `<div style="padding:8px; border:1px solid #e2e8f0; border-radius:6px; margin-bottom:8px; background:#f8fafc; font-size:10px;"><div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span style="font-weight:900; color:#0f172a;">${r.id} - ${r.n}</span><span style="font-weight:900; color:#64748b; font-size:8px;">${r.time}</span></div><div style="color:#3b82f6; font-weight:900; margin-bottom:4px;">${r.type}</div><div style="color:#475569; line-height:1.4;">${r.desc}</div></div>`; }); };
 document.getElementById("adminReqBtn").onclick = () => { popReqs(); opnMod("reqModal"); };
 
 /* CM039 - JS Login Form Flow */
 document.getElementById("adminForm").onsubmit = (e) => { e.preventDefault(); document.getElementById("loginView").style.display="none"; document.getElementById("adminDashboardView").style.display="flex"; document.body.style.alignItems="flex-start"; popMos("aMonth"); genAdminData(); };
 document.getElementById("logoutAdminBtn").onclick = () => { document.getElementById("adminDashboardView").style.display="none"; document.getElementById("loginView").style.display="flex"; document.body.style.alignItems="center"; document.getElementById("adminForm").reset(); };
-
 </script>
 </body>
 </html>
