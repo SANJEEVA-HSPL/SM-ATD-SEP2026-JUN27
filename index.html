@@ -232,76 +232,158 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 
 <!-- CM033 - HTML Shared Modals -->
 <div class="modal-overlay" id="modModal"><div class="modal-box"><button class="modal-close" onclick="clsMod('modModal')">&times;</button><div class="modal-title" id="modTitle">MODIFICATION REQUEST</div>
-<div class="modal-field"><label>Date:</label><input type="text" id="modDate" readonly></div>
-<div class="modal-field"><label>Current Time:</label><input type="text" id="modCurr" readonly></div>
+<div style="background:#f7fafc; padding:8px; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:12px; font-size:10px;">
+<div style="font-weight:900; color:#3182ce; margin-bottom:4px;" id="modDateDisp">DATE: </div>
+<div style="font-weight:800; color:#2d3748; margin-bottom:4px;" id="modShiftDisp">SHIFT: </div>
+<div style="font-weight:800; color:#2d3748; margin-bottom:4px;" id="modHrsDisp">TOTAL HRS: </div>
+<div style="font-weight:800; color:#4a5568; line-height:1.4;" id="modPunchesDisp">CURRENT PUNCHES: </div>
+</div>
+<div class="modal-field"><label>Select Punch to Modify:</label><select id="modPunchSel"></select></div>
 <div class="modal-field"><label>New Time (HH:MM AM/PM):</label><div class="time-inputs-wrap"><select id="modHr"></select><select id="modMin"></select><select id="modAmPm"><option value="AM">AM</option><option value="PM">PM</option></select></div></div>
 <div class="modal-field"><label>Reason:</label><textarea id="modRea" placeholder="Enter reason..."></textarea></div>
 <button class="modal-btn" id="modSubBtn" onclick="subMod()"><span id="modBtnTxt">Submit Request</span></button></div></div>
 
 <!-- CM034 - HTML Hidden Inputs & Utilities -->
 <input type="date" id="nativeDate" class="hidden-date-picker" onchange="updNativeDate(this)">
-<div class="modal-overlay" id="reqListModal"><div class="modal-box"><button class="modal-close" onclick="clsMod('reqListModal')">&times;</button><div class="modal-title">YOUR REQUESTS</div><div id="reqListCont"></div></div></div>
+<div class="modal-overlay" id="reqListModal"><div class="modal-box"><button class="modal-close" onclick="clsMod('reqListModal')">&times;</button><div class="modal-title">YOUR REQUESTS</div><div id="reqListCont" style="max-height:60vh; overflow-y:auto;"></div></div></div>
 <div class="toast-msg" id="toastMsg">DATA REFRESHED ✅</div>
 
 </div>
 <script>
-/* CM035 - JS Configuration and Links */
+/* CM035 - JS Configuration and Central State */
 const AppLinks = { logo: "https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png" };
 document.getElementById('hospLogo').src = AppLinks.logo; document.getElementById('dashLogo').src = AppLinks.logo;
 const AppConf = { mos: ["January","February","March","April","May","June","July","August","September","October","November","December"] };
-const sDets = { "2-shifts":{n:"2-Shifts",b:[{lbl:"MORNING PUNCH IN",dir:"IN",c:"in"},{lbl:"EVENING PUNCH OUT",dir:"OUT",c:"out"}],cols:{mI:"09:00 AM",mO:"-",eI:"-",eO:"05:00 PM",nI:"-",nO:"-",h:"8h"}}, "4-shifts":{n:"4-Shifts",b:[{lbl:"MORNING PUNCH IN",dir:"IN",c:"in"},{lbl:"MORNING PUNCH OUT",dir:"OUT",c:"out"},{lbl:"EVENING PUNCH IN",dir:"IN",c:"in"},{lbl:"EVENING PUNCH OUT",dir:"OUT",c:"out"}],cols:{mI:"08:00 AM",mO:"12:00 PM",eI:"04:00 PM",eO:"08:00 PM",nI:"-",nO:"-",h:"8h"}}, "night-shift":{n:"Night",b:[{lbl:"NIGHT PUNCH IN",dir:"IN",c:"in"},{lbl:"MORNING PUNCH OUT",dir:"OUT",c:"out"}],cols:{mI:"-",mO:"-",eI:"-",eO:"-",nI:"08:00 PM",nO:"08:00 AM",h:"12h"}} };
+const sDets = { "2-shifts":{n:"2-Shifts",b:[{lbl:"MORNING PUNCH IN",dir:"IN",c:"in",k:"mi"},{lbl:"EVENING PUNCH OUT",dir:"OUT",c:"out",k:"eo"}],cols:{mi:"09:00 AM",mo:"-",ei:"-",eo:"05:00 PM",ni:"-",no:"-",h:"8h"}}, "4-shifts":{n:"4-Shifts",b:[{lbl:"MORNING PUNCH IN",dir:"IN",c:"in",k:"mi"},{lbl:"MORNING PUNCH OUT",dir:"OUT",c:"out",k:"mo"},{lbl:"EVENING PUNCH IN",dir:"IN",c:"in",k:"ei"},{lbl:"EVENING PUNCH OUT",dir:"OUT",c:"out",k:"eo"}],cols:{mi:"08:00 AM",mo:"12:00 PM",ei:"04:00 PM",eo:"08:00 PM",ni:"-",no:"-",h:"8h"}}, "night-shift":{n:"Night",b:[{lbl:"NIGHT PUNCH IN",dir:"IN",c:"in",k:"ni"},{lbl:"MORNING PUNCH OUT",dir:"OUT",c:"out",k:"no"}],cols:{mi:"-",mo:"-",ei:"-",eo:"-",ni:"08:00 PM",no:"08:00 AM",h:"12h"}} };
 const today = new Date(); const cY = today.getFullYear(); const cM = today.getMonth(); const cD = today.getDate();
 const fDate = (d,m,y) => `${String(d).padStart(2,'0')} ${AppConf.mos[m].substring(0,3)} ${y}`;
 const enfU = (e) => e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
 const toTitle = (s) => s.replace(/\w\S*/g, (t) => t.charAt(0).toUpperCase() + t.substr(1).toLowerCase());
 document.getElementById("staffUser").addEventListener('input', enfU);
 
+// Robust In-Memory DB for Staff
+let staffDb = { att: {}, reqs: [] };
+
 /* CM036 - JS Utilities & Modals */
 const clsMod = (id) => document.getElementById(id).style.display = "none";
 const opnMod = (id) => document.getElementById(id).style.display = "flex";
-const waitIco = '⏳'; const tickIco = '✅'; const rejIco = '❌'; let curCellId = "";
+const waitIco = '⏳'; const tickIco = '✅'; const rejIco = '❌'; 
+let curModDate = 0; let curModM = 0; let curModY = 0;
 const reloadData = () => { genSData(); const t = document.getElementById('toastMsg'); t.style.display='block'; setTimeout(()=>t.style.display='none', 2000); };
 const popT = () => { let hr="", mn=""; for(let i=1;i<=12;i++) hr+=`<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`; for(let i=0;i<60;i++) mn+=`<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`; document.getElementById('modHr').innerHTML=hr; document.getElementById('modMin').innerHTML=mn; };
 popT();
 
-/* CM037 - JS Month Dropdown Generation */
+/* CM037 - JS Init and Data Seeding */
 const popMos = (elId) => { const s = document.getElementById(elId); let h = "";
 for(let m=cM; m<=11; m++) h+=`<option value="${m}-${cY}">${AppConf.mos[m].substring(0,3)} ${cY}</option>`;
 for(let m=0; m<=5; m++) h+=`<option value="${m}-${cY+1}">${AppConf.mos[m].substring(0,3)} ${cY+1}</option>`;
 s.innerHTML = h; s.value = `${cM}-${cY}`; s.onchange = () => { document.getElementById("tblMonthName").innerText = AppConf.mos[parseInt(s.value.split('-')[0])].toUpperCase(); genSData(); }; };
 
-/* CM038 - JS Live Punch Logic Updating Inside Box */
-const simPunch = (btn, dir) => { const tm = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}); btn.style.background = "linear-gradient(145deg, #e2e8f0, #cbd5e0)"; btn.style.boxShadow = "inset 2px 2px 5px rgba(0,0,0,0.1), inset -2px -2px 5px #ffffff"; const t = btn.querySelector('.neo-text-in'); t.innerHTML = `${tickIco} PUNCHED`; const p = btn.querySelector('.punch-time-disp'); p.style.display='block'; p.innerText=tm; btn.onclick = null; };
-const genBtns = (k) => { const c = document.getElementById("sPunchCont"); c.innerHTML=''; sDets[k].b.forEach(b => { c.innerHTML += `<button class="neo-btn" onclick="simPunch(this, '${b.dir}')"><div class="punch-btn-inner"><span class="neo-text-in ${b.c}">${b.lbl}</span><span class="punch-time-disp"></span></div></button>`; }); };
+const seedMonthData = (sM, sY, sK) => {
+    let mD = new Date(sY, sM+1, 0).getDate(); const cols = sDets[sK].cols;
+    for(let d=1; d<=mD; d++) {
+        let key = `${d}-${sM}-${sY}`;
+        if(!staffDb.att[key]) {
+            let isF = (sY>cY || (sY===cY && sM>cM) || (sY===cY && sM===cM && d>cD));
+            if(isF) { staffDb.att[key] = { mi:"-", mo:"-", ei:"-", eo:"-", ni:"-", no:"-", h:"-", st:"Pending", sc:"bg-pending", c:"" }; }
+            else if(d!==cD) {
+                const r=Math.random(); 
+                if(r>0.85) staffDb.att[key] = { mi:"-", mo:"-", ei:"-", eo:"-", ni:"-", no:"-", h:"-", st:"Absent", sc:"bg-absent", c:"" };
+                else if(r>0.7) staffDb.att[key] = { mi:cols.mi!=="-"?"09:45 AM":"-", mo:cols.mo, ei:cols.ei, eo:cols.eo, ni:cols.ni, no:cols.no, h:"7h", st:"Late", sc:"bg-late", c:"" };
+                else staffDb.att[key] = { mi:cols.mi, mo:cols.mo, ei:cols.ei, eo:cols.eo, ni:cols.ni, no:cols.no, h:cols.h, st:"Present", sc:"bg-present", c:"" };
+            } else {
+                staffDb.att[key] = { mi:"-", mo:"-", ei:"-", eo:"-", ni:"-", no:"-", h:"-", st:"Pending", sc:"bg-pending", c:"" };
+            }
+        }
+    }
+};
 
-/* CM039 - JS Staff Data & 6 Column Table Gen Full Days */
+/* CM038 - JS Live Punch Context & Night Shift Logic */
+const simPunch = (btn, dir, k, lbl) => { 
+    const now = new Date(); const tm = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}); 
+    const sK = document.getElementById("sShift").value;
+    
+    let tD = cD, tM = cM, tY = cY;
+    if(sK === "night-shift" && dir === "OUT" && now.getHours() < 12) {
+        let y = new Date(now); y.setDate(y.getDate() - 1);
+        tD = y.getDate(); tM = y.getMonth(); tY = y.getFullYear();
+    }
+    
+    let key = `${tD}-${tM}-${tY}`;
+    if(!staffDb.att[key]) seedMonthData(tM, tY, sK);
+    staffDb.att[key][k] = tm;
+    staffDb.att[key].st = "Present"; staffDb.att[key].sc = "bg-present"; staffDb.att[key].h = "8h"; // simplified eval
+    
+    staffDb.reqs.unshift({ type: "LIVE PUNCH", date: fDate(tD, tM, tY), desc: `${lbl} at ${tm}`, stat: tickIco });
+    
+    btn.style.background = "linear-gradient(145deg, #e2e8f0, #cbd5e0)"; btn.style.boxShadow = "inset 2px 2px 5px rgba(0,0,0,0.1), inset -2px -2px 5px #ffffff"; 
+    const t = btn.querySelector('.neo-text-in'); t.innerHTML = `${tickIco} PUNCHED`; 
+    const p = btn.querySelector('.punch-time-disp'); p.style.display='block'; p.innerText=tm; btn.onclick = null; 
+    genSData();
+};
+const genBtns = (sK) => { const c = document.getElementById("sPunchCont"); c.innerHTML=''; sDets[sK].b.forEach(b => { c.innerHTML += `<button class="neo-btn" onclick="simPunch(this, '${b.dir}', '${b.k}', '${b.lbl}')"><div class="punch-btn-inner"><span class="neo-text-in ${b.c}">${b.lbl}</span><span class="punch-time-disp"></span></div></button>`; }); };
+
+/* CM039 - JS Staff Data Rendering */
 const initStaff = () => { document.getElementById("sHeadline").innerText = `TODAY ATTENDANCE - ${fDate(cD,cM,cY).toUpperCase()}`; document.getElementById("tblMonthName").innerText = AppConf.mos[cM].toUpperCase(); popMos("sMonth"); genSData(); };
 document.getElementById("sShift").onchange = () => genSData();
 const genSData = () => { const vp = document.getElementById("sMonth").value.split('-'); const sM = parseInt(vp[0]), sY = parseInt(vp[1]);
 const tb = document.getElementById("sTableBody"); tb.innerHTML=''; const sK = document.getElementById("sShift").value; genBtns(sK);
-let mD = new Date(sY, sM+1, 0).getDate(); let tW=0, tA=0, tL=0; const cols = sDets[sK].cols;
-for(let d=1; d<=mD; d++) { let isF = (sY>cY || (sY===cY && sM>cM) || (sY===cY && sM===cM && d>cD)); let st="Present", sc="bg-present", hr=cols.h, mI=cols.mI, mO=cols.mO, eI=cols.eI, eO=cols.eO, nI=cols.nI, nO=cols.nO;
-if(isF) { st="Pending"; sc="bg-pending"; hr="-"; mI="-"; mO="-"; eI="-"; eO="-"; nI="-"; nO="-"; }
-else if(d!==cD) { const r=Math.random(); if(r>0.85){st="Absent";sc="bg-absent";hr="-";mI="-";mO="-";eI="-";eO="-";nI="-";nO="-";tA++;}else if(r>0.7){st="Late";sc="bg-late";hr="7h";if(mI!=="-")mI="09:45 AM";tW++;tL++;}else{tW++;} }
-let dtS = fDate(d,sM,sY);
-const mkC = (val, id, tit) => `<td><div class="time-cell" id="${id}-${d}">${val} ${val!=="-"?`<button class="pencil-btn" onclick="prepMod('${tit}','${val}','${dtS}','${id}-${d}')">✎</button>`:''}</div></td>`;
-tb.innerHTML += `<tr><td class="date-col">${dtS}</td><td>${sDets[sK].n}</td>
-${mkC(mI,'mi','Morning In')}${mkC(mO,'mo','Morning Out')}${mkC(eI,'ei','Evening In')}${mkC(eO,'eo','Evening Out')}${mkC(nI,'ni','Night In')}${mkC(nO,'no','Night Out')}
-<td><span class="${hr!=="-"?'hrs-bold':''}">${hr}</span></td><td><span class="status-badge ${sc}" id="st-${d}">${st}</span></td>
-<td><div class="comment-box-container" id="cb-${d}"><input type="text" class="comment-input" placeholder="Type..."><button class="action-btn" onclick="subCom('cb-${d}')">✓</button></div></td>
-<td><div class="leave-cell-wrap" id="lv-${d}"><span class="leave-text-btn">Apply Leave</span><span class="leave-cal-icon" onclick="trigCal('${dtS}','lv-${d}')">📅</span></div></td></tr>`;
-} updS(mD,tW,tA,tL); };
+seedMonthData(sM, sY, sK); let mD = new Date(sY, sM+1, 0).getDate(); let tW=0, tA=0, tL=0; 
+
+for(let d=1; d<=mD; d++) { 
+    let dtS = fDate(d,sM,sY); let key = `${d}-${sM}-${sY}`; let cDat = staffDb.att[key];
+    if(cDat.st==="Present"||cDat.st==="Late") tW++; if(cDat.st==="Absent") tA++; if(cDat.st==="Late") tL++;
+    
+    const mkC = (val, id) => `<td><div class="time-cell">${val} ${val!=="-"?`<button class="pencil-btn" onclick="prepMod(${d},${sM},${sY})">✎</button>`:''}</div></td>`;
+    let comUI = cDat.c ? `<span style="font-size:10px; font-weight:900; color:#1a365d;">${cDat.c}</span>` : `<div class="comment-box-container" id="cb-${d}"><input type="text" class="comment-input" placeholder="Type..."><button class="action-btn" onclick="subCom(${d},${sM},${sY},'cb-${d}')">✓</button></div>`;
+    
+    tb.innerHTML += `<tr><td class="date-col">${dtS}</td><td>${sDets[sK].n}</td>
+    ${mkC(cDat.mi,'mi')}${mkC(cDat.mo,'mo')}${mkC(cDat.ei,'ei')}${mkC(cDat.eo,'eo')}${mkC(cDat.ni,'ni')}${mkC(cDat.no,'no')}
+    <td><span class="${cDat.h!=="-"?'hrs-bold':''}">${cDat.h}</span></td><td><span class="status-badge ${cDat.sc}">${cDat.st}</span></td>
+    <td>${comUI}</td>
+    <td><div class="leave-cell-wrap"><span class="leave-text-btn">Apply Leave</span><span class="leave-cal-icon" onclick="trigCal(${d},${sM},${sY})">📅</span></div></td></tr>`;
+} updS(mD,tW,tA,tL); document.getElementById("sReqCount").innerText = staffDb.reqs.length; };
 const updS = (t,w,a,l) => { document.getElementById("sT").innerText=t; document.getElementById("sW").innerText=w; document.getElementById("sA").innerText=a; document.getElementById("sL").innerText=l; };
 
-/* CM040 - JS Actions & Modals HD */
-const prepMod = (tit, ct, dt, cid) => { curCellId=cid; document.getElementById("modTitle").innerText=`REQ: ${tit}`; document.getElementById("modCurr").value=ct; document.getElementById("modDate").value=dt; 
-if(ct!=="-"){ let p=ct.split(' '); let t=p[0].split(':'); document.getElementById('modHr').value=t[0]; document.getElementById('modMin').value=t[1]; document.getElementById('modAmPm').value=p[1]; }
-document.getElementById("modRea").value=""; opnMod("modModal"); };
-const subMod = () => { document.getElementById("modBtnTxt").innerHTML = waitIco; setTimeout(()=>{clsMod("modModal"); document.getElementById(curCellId).innerHTML+=` <span class="status-icon wait" title="Waiting">${waitIco}</span>`; document.getElementById("modBtnTxt").innerHTML="Submit Request";}, 600); };
-const trigCal = (dt, cid) => { curCellId=cid; const nd = document.getElementById('nativeDate'); nd.showPicker(); };
-const updNativeDate = (el) => { if(el.value){ document.getElementById(curCellId).innerHTML = `<span class="leave-text-btn" style="color:#d69e2e;">Waiting ${waitIco}</span>`; el.value=""; } };
-const subCom = (id) => { const b=document.getElementById(id); const v=b.querySelector('input').value.trim(); if(v==="") return; b.innerHTML=`<span style="font-size:10px; font-weight:900; color:#1a365d;">${v.substring(0,8)}..</span><span class="status-icon wait" title="Waiting">${waitIco}</span>`; };
-document.getElementById("staffReqBtn").onclick = () => { const c=document.getElementById("reqListCont"); c.innerHTML=`<div class="req-item"><span>Leave (${fDate(12,cM,cY)}) - ${waitIco} Pending</span><button class="req-withdraw" onclick="this.parentElement.style.display='none'">Withdraw</button></div><div class="req-item"><span>Time Mod (${fDate(10,cM,cY)}) - ${tickIco} Approved</span></div><div class="req-item"><span>Time Mod (${fDate(8,cM,cY)}) - ${rejIco} Rejected</span></div>`; opnMod("reqListModal"); };
+/* CM040 - JS Actions, Contextual Modals & Auto Insert */
+const prepMod = (d, m, y) => { 
+    curModDate = d; curModM = m; curModY = y; let key = `${d}-${m}-${y}`; let cd = staffDb.att[key];
+    let sK = document.getElementById("sShift").value; let shN = sDets[sK].n;
+    document.getElementById("modDateDisp").innerText = `DATE: ${fDate(d,m,y).toUpperCase()}`;
+    document.getElementById("modShiftDisp").innerText = `SHIFT: ${shN.toUpperCase()}`;
+    document.getElementById("modHrsDisp").innerText = `TOTAL HRS: ${cd.h}`;
+    document.getElementById("modPunchesDisp").innerHTML = `CURRENT PUNCHES:<br>MI: ${cd.mi} | MO: ${cd.mo} | EI: ${cd.ei} | EO: ${cd.eo} | NI: ${cd.ni} | NO: ${cd.no}`;
+    
+    let sOpt = "";
+    const pNames = {mi:'Morning In', mo:'Morning Out', ei:'Evening In', eo:'Evening Out', ni:'Night In', no:'Night Out'};
+    for(let k in pNames) { if(cd[k] !== "-") sOpt += `<option value="${k}">${pNames[k]} (${cd[k]})</option>`; }
+    document.getElementById("modPunchSel").innerHTML = sOpt;
+    document.getElementById("modRea").value=""; opnMod("modModal"); 
+};
+const subMod = () => { 
+    let pK = document.getElementById("modPunchSel").value; 
+    if(!pK) { alert("No valid punch to modify."); return; }
+    let nT = `${document.getElementById("modHr").value}:${document.getElementById("modMin").value} ${document.getElementById("modAmPm").value}`;
+    document.getElementById("modBtnTxt").innerHTML = waitIco; 
+    
+    setTimeout(() => {
+        let key = `${curModDate}-${curModM}-${curModY}`;
+        let oldT = staffDb.att[key][pK];
+        staffDb.att[key][pK] = nT; // Auto insert directly
+        staffDb.reqs.unshift({ type: "Time Modification", date: fDate(curModDate, curModM, curModY), desc: `Changed ${pK.toUpperCase()} from ${oldT} to ${nT}`, stat: tickIco });
+        clsMod("modModal"); document.getElementById("modBtnTxt").innerHTML="Submit Request";
+        reloadData();
+    }, 600); 
+};
+const trigCal = (d, m, y) => { curModDate=d; curModM=m; curModY=y; document.getElementById('nativeDate').showPicker(); };
+const updNativeDate = (el) => { if(el.value){ staffDb.reqs.unshift({ type: "Leave Application", date: fDate(curModDate, curModM, curModY), desc: `Applied for Leave`, stat: waitIco }); reloadData(); el.value=""; } };
+const subCom = (d, m, y, id) => { const b=document.getElementById(id); const v=b.querySelector('input').value.trim(); if(v==="") return; staffDb.att[`${d}-${m}-${y}`].c = v; staffDb.reqs.unshift({ type: "Comment", date: fDate(d,m,y), desc: `Added Note: ${v}`, stat: tickIco }); reloadData(); };
+
+document.getElementById("staffReqBtn").onclick = () => { const c=document.getElementById("reqListCont"); c.innerHTML=""; 
+    if(staffDb.reqs.length===0) c.innerHTML = "<div class='req-item'>No requests found.</div>";
+    staffDb.reqs.forEach(r => { c.innerHTML += `<div class="req-item"><div style="display:flex; flex-direction:column; gap:2px;"><span style="color:#1a365d; font-weight:900;">${r.type} (${r.date})</span><span style="font-size:9px; color:#718096; line-height:1.2;">${r.desc}</span></div><span class="status-icon">${r.stat}</span></div>`; });
+    opnMod("reqListModal"); 
+};
 
 /* CM041 - JS Login Flow */
 document.getElementById("staffForm").onsubmit = (e) => { e.preventDefault(); document.getElementById("loginView").style.display="none"; document.getElementById("staffDashboardView").style.display="flex"; document.getElementById("sName").innerText = toTitle(document.getElementById("staffUser").value); initStaff(); };
