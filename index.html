@@ -1,89 +1,67 @@
-<!-- CM001 - HTML Setup and Head with Favicon -->
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sanjeeva Hospital - ATD</title>
-<link rel="icon" type="image/png" sizes="32x32" href="https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png">
-<link rel="apple-touch-icon" href="https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png">
+<title>SM-STAFF-ATD</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = { theme: { extend: {} } }
-</script>
+<script>tailwind.config={theme:{extend:{}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
 
-/* CM002 - CSS Reset and Scrollbar Hide */
+/* CM028 - CSS Global Reset and Body */
 * { scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; box-sizing: border-box; }
 ::-webkit-scrollbar { display: none; }
-body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0f4f8; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow-x: hidden; font-size: 11px; color: #1a202c; -webkit-font-smoothing: antialiased; }
+body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0f4f8; min-height: 100vh; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #1a202c; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-/* CM003 - CSS App Main Container */
+/* CM029 - CSS Layout and Loaders */
 #appContainer { width: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+.loading-spinner { border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; border-top: 2px solid #fff; width: 14px; height: 14px; animation: spin 1s linear infinite; display: inline-block; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.loader-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.8); z-index: 9999; display: none; align-items: center; justify-content: center; flex-direction: column; }
+.main-loader { border: 4px solid #e2e8f0; border-top: 4px solid #3182ce; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
 
-/* CM004 - CSS 3D Login Card Decreased Size */
+/* CM030 - CSS Login Card Styles */
 .wrapper { overflow: hidden; width: 240px; background: #ffffff; padding: 14px 12px; border-radius: 16px; box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff; border-top: 5px solid #3182ce; }
-
-/* CM005 - CSS Hospital Logo Styling */
 .hospital-logo-container { display: flex; justify-content: center; margin-bottom: 6px; width: 100%; }
 .hospital-logo-container img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #3182ce; padding: 2px; object-fit: contain; background: #fff; box-shadow: 0px 4px 10px rgba(49,130,206,0.2); }
-
-/* CM006 - CSS Hospital Name HD Text */
 .hospital-name { font-size: 10px; font-weight: 900; text-align: center; margin-bottom: 10px; color: #2b6cb0; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.3; text-shadow: 0px 1px 1px rgba(0,0,0,0.1); }
-
-/* CM007 - CSS Login Title Text */
 .wrapper .title-text { display: flex; width: 100%; margin-bottom: 10px; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; justify-content: center; }
 .wrapper .title { font-size: 11px; font-weight: 900; color: #1a365d; text-transform: uppercase; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
 
-/* CM008 - CSS Form Fields HD with 3D Icons */
+/* CM031 - CSS Forms and Inputs */
 .form-inner form .field { height: 36px; width: 100%; margin-top: 10px; position: relative; }
 .input-icon { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); font-size: 12px; color: #3182ce; z-index: 10; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1)); }
 .form-inner form .field input { height: 100%; width: 100%; outline: none; padding-left: 28px; border-radius: 8px; border: 1px solid #cbd5e0; font-family: 'Roboto Slab', serif; font-size: 10px; transition: all 0.3s ease; background: inset 2px 2px 5px rgba(0,0,0,0.03); color: #2d3748; font-weight: 800; box-shadow: inset 0px 2px 4px rgba(0,0,0,0.04); }
 .form-inner form .field input:focus { border-color: #3182ce; background: #fff; box-shadow: 0px 0px 0px 2px rgba(49,130,206,0.2); }
-
-/* CM009 - CSS Submit Button & Forgot Link */
-.form-inner form .btn { height: 38px; border-radius: 8px; overflow: hidden; margin-top: 14px; background: linear-gradient(145deg, #4299e1, #2b6cb0); box-shadow: 0px 4px 10px rgba(43,108,176,0.3); display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; transition: 0.2s; }
+.form-inner form .btn { height: 38px; border-radius: 8px; overflow: hidden; margin-top: 14px; background: linear-gradient(145deg, #4299e1, #2b6cb0); box-shadow: 0px 4px 10px rgba(43,108,176,0.3); display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; transition: 0.2s; border: none; outline: none; width: 100%; font-family: 'Roboto Slab', serif; }
 .form-inner form .btn:active { transform: translateY(2px); box-shadow: 0px 2px 5px rgba(43,108,176,0.4); }
-.form-inner form .btn input[type="submit"] { background: none; border: none; color: #fff; font-size: 11px; font-weight: 900; font-family: 'Roboto Slab', serif; cursor: pointer; text-transform: uppercase; text-shadow: 0px 1px 2px rgba(0,0,0,0.4); outline: none; padding: 0; }
-.btn-icon { font-size: 12px; color: #fff; text-shadow: 0px 1px 2px rgba(0,0,0,0.4); }
-.forgot-pass { text-align: center; margin-top: 10px; font-size: 9px; display: flex; justify-content: center; align-items: center; gap: 4px; }
-.forgot-pass a { color: #4a5568; text-decoration: none; font-weight: 800; transition: 0.2s; text-transform: uppercase; }
-.forgot-pass a:hover { text-decoration: underline; color: #3182ce; }
-.forgot-icon { font-size: 10px; color: #e53e3e; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.2)); }
+.form-inner form .btn span { color: #fff; font-size: 11px; font-weight: 900; text-transform: uppercase; text-shadow: 0px 1px 2px rgba(0,0,0,0.4); }
+.error-text { color: #e53e3e; font-size: 9px; font-weight: 900; text-align: center; margin-top: 8px; min-height: 12px; }
 
-/* CM010 - CSS Dashboard Views Shared */
+/* CM032 - CSS Dashboard Header Elements */
 .dashboard-view { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f0f4f8; }
-
-/* CM011 - CSS Header Modern HD Increased Size */
 .dash-header { background: #ffffff; padding: 12px 16px; box-shadow: 0px 4px 15px rgba(0,0,0,0.06); display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #3182ce; position: sticky; top: 0; z-index: 100; }
 .dash-title-wrap { display: flex; align-items: center; gap: 10px; }
 .dash-logo-small { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #3182ce; object-fit: contain; background: #fff; box-shadow: 0px 2px 6px rgba(0,0,0,0.1); }
 .dash-title-text { font-size: 14px; font-weight: 900; color: #1a365d; line-height: 1.2; display: flex; flex-direction: column; text-transform: uppercase; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
-
-/* CM012 - CSS Header 3D HD Icons */
 .header-actions { display: flex; align-items: center; gap: 8px; }
-.hd-icon-btn { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 15px; transition: 0.2s; box-shadow: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff; text-decoration: none; padding:0; outline: none; }
+.hd-icon-btn { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 15px; transition: 0.2s; box-shadow: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff; text-decoration: none; padding: 0; outline: none; }
 .hd-icon-btn:active { box-shadow: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff; transform: translateY(1px); }
-.hd-icon-btn.down { color: #3182ce; }
 .hd-icon-btn.req { color: #d69e2e; position: relative; }
 .hd-icon-btn.req .badge { position: absolute; top: -5px; right: -5px; background: #e53e3e; color: #fff; font-size: 8px; font-weight: 900; border-radius: 50%; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid #fff; box-shadow: 0px 2px 4px rgba(0,0,0,0.3); }
 .hd-icon-btn.reload { color: #38a169; font-weight: 900; }
 .hd-icon-btn.out { color: #e53e3e; font-weight: 900; }
 
-/* CM013 - CSS Dashboard Content Wrap */
+/* CM033 - CSS Profile and Metrics Overview */
 .dash-content { padding: 12px; max-width: 1400px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 12px; }
-
-/* CM014 - CSS Staff Profile HD Text with Icons */
 .profile-clean { padding: 6px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #2d3748; text-transform: uppercase; background: transparent; }
 .prof-item { display: flex; align-items: center; gap: 4px; padding: 2px 6px; background: #fff; border-radius: 6px; box-shadow: 2px 2px 5px #d1d9e6, -2px -2px 5px #ffffff; }
 .prof-icon { font-size: 13px; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1)); }
 .val-bold { font-weight: 900; color: #1a365d; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
 .select-micro { padding: 2px 4px; border: 1px solid #cbd5e0; border-radius: 4px; font-family: 'Roboto Slab', serif; font-size: 10px; outline: none; background: #fff; font-weight: 900; color: #3182ce; cursor: pointer; box-shadow: inset 0px 1px 2px rgba(0,0,0,0.05); }
-
-/* CM015 - CSS Summary Stats Cards Single Line Format */
 .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .stat-card { background: #ffffff; padding: 10px 4px; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 4px; flex-direction: row; box-shadow: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff; border: 1px solid #e2e8f0; }
 .stat-card.total { border-left: 3px solid #3182ce; } .stat-card.present { border-left: 3px solid #38a169; }
@@ -91,303 +69,192 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 .stat-label { font-size: 10px; color: #4a5568; text-transform: uppercase; font-weight: 900; letter-spacing: 0.5px; }
 .stat-num { font-size: 12px; font-weight: 900; color: #1a365d; line-height: 1; text-shadow: 0px 1px 1px rgba(0,0,0,0.1); }
 
-/* CM016 - CSS Live Punch Rectangles HD with Inside Time */
-.punch-section { background: #fff; padding: 12px; border-radius: 12px; text-align: center; box-shadow: 4px 4px 10px #d1d9e6, -4px -4px 10px #ffffff; border: 1px solid #e2e8f0; }
-.section-headline { font-size: 13px; font-weight: 900; color: #1a365d; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px dashed #cbd5e0; padding-bottom: 4px; display: inline-block; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
-.punch-buttons-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; align-items: center; }
-.neo-btn { height: 40px; padding: 0 16px; border-radius: 8px; background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; outline: none; min-width: 120px; }
-.neo-btn:active { box-shadow: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff; transform: translateY(1px); }
-.punch-btn-inner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
-.neo-text-in { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; }
-.neo-text-in.in { color: #3182ce; } .neo-text-in.out { color: #e53e3e; }
-.punch-time-disp { font-size: 9px; font-weight: 900; color: #1a365d; background: #e2e8f0; padding: 2px 6px; border-radius: 4px; display: none; box-shadow: inset 0px 1px 2px rgba(0,0,0,0.05); letter-spacing: 0.5px; }
-
-/* CM017 - CSS Dynamic Table Container & Icons */
+/* CM034 - CSS Impressive Title and Tables */
+.overview-title-box { background: linear-gradient(145deg, #1a365d, #3182ce); color: #fff; padding: 6px 16px; border-radius: 8px; display: inline-block; box-shadow: 0px 4px 10px rgba(0,0,0,0.2); font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; margin: 10px auto; text-align: center; border: 2px solid #fff; }
 .table-wrapper { background: #fff; border-radius: 12px; box-shadow: 4px 4px 12px #d1d9e6, -4px -4px 12px #ffffff; overflow-x: auto; padding: 6px; border: 1px solid #e2e8f0; }
 .att-table { width: 100%; border-collapse: collapse; min-width: 1000px; }
 .att-table th, .att-table td { padding: 8px 6px; border-bottom: 1px solid #edf2f7; text-align: center; font-size: 10px; vertical-align: middle; white-space: nowrap; font-weight: 800; color: #2d3748; }
 .att-table th { background: linear-gradient(to bottom, #ffffff, #f7fafc); color: #1a365d; font-weight: 900; position: sticky; top: 0; font-size: 10px; text-transform: uppercase; z-index: 10; border-bottom: 3px solid #3182ce; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
 .att-table tr:hover { background: #f0f4f8; }
-.date-col { font-weight: 900; color: #3182ce; text-align: left; }
+.date-col { font-weight: 900; color: #3182ce; text-align: left; position: relative; }
+.shift-chg-ind { font-size: 8px; color: #d69e2e; display: block; margin-top: 2px; text-transform: uppercase; font-weight: 900; }
+.time-cell { display: inline-flex; align-items: center; justify-content: center; gap: 4px; background: #f7fafc; padding: 4px 6px; border-radius: 4px; border: 1px solid #cbd5e0; font-family: 'Roboto Slab', serif; font-size: 10px; font-weight: 900; color: #1a365d; box-shadow: inset 0px 1px 2px rgba(0,0,0,0.05); min-width: 50px; }
 .hrs-bold { color: #000000; font-weight: 900; font-size: 12px; text-shadow: 0px 1px 2px rgba(0,0,0,0.3); background: #f7fafc; padding: 4px 6px; border-radius: 4px; border: 1px solid #cbd5e0; display: inline-block; min-width: 40px; }
 
-/* CM018 - CSS Table Cells & Pencil Actions */
-.time-cell { display: inline-flex; align-items: center; justify-content: center; gap: 4px; background: #f7fafc; padding: 4px 6px; border-radius: 4px; border: 1px solid #cbd5e0; font-family: 'Roboto Slab', monospace; font-size: 10px; font-weight: 900; color: #1a365d; box-shadow: inset 0px 1px 2px rgba(0,0,0,0.05); }
+/* CM035 - CSS Table Actions Status Comments */
 .pencil-btn { background: none; border: none; font-size: 13px; cursor: pointer; color: #718096; padding: 0; font-weight: 900; transition: 0.2s; outline: none; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1)); }
 .pencil-btn:hover { color: #3182ce; transform: scale(1.2); }
 .status-badge { padding: 4px 6px; border-radius: 4px; font-size: 9px; font-weight: 900; color: #fff; text-transform: uppercase; box-shadow: 2px 2px 4px rgba(0,0,0,0.15); display: inline-block; min-width: 50px; letter-spacing: 0.5px; }
 .bg-present { background: linear-gradient(145deg, #48bb78, #38a169); } .bg-absent { background: linear-gradient(145deg, #f56565, #e53e3e); } .bg-late { background: linear-gradient(145deg, #ecc94b, #d69e2e); color: #1a202c; } .bg-pending { background: #a0aec0; }
-
-/* CM019 - CSS Bigger Comments & Leave Action */
-.comment-box-container { display: flex; align-items: center; justify-content: center; gap: 4px; }
-.comment-input { height: 26px; width: 110px; padding: 0 8px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 10px; font-family: 'Roboto Slab'; outline: none; font-weight: 800; background: #fff; color: #1a365d; box-shadow: inset 0px 1px 3px rgba(0,0,0,0.1); }
+.comment-box-container { display: flex; align-items: center; justify-content: center; gap: 4px; position: relative; }
+.comment-input { height: 26px; width: 110px; padding: 0 8px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 10px; font-family: 'Roboto Slab', serif; outline: none; font-weight: 800; background: #fff; color: #1a365d; box-shadow: inset 0px 1px 3px rgba(0,0,0,0.1); }
 .comment-input:focus { border-color: #3182ce; box-shadow: 0px 0px 0px 2px rgba(49,130,206,0.2); }
-.action-btn { background: linear-gradient(145deg, #4299e1, #3182ce); color: #fff; border: none; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 900; cursor: pointer; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); transition: 0.2s; height: 26px; display: flex; align-items: center; justify-content: center; outline: none; }
+.action-btn { background: linear-gradient(145deg, #4299e1, #3182ce); color: #fff; border: none; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 900; cursor: pointer; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); transition: 0.2s; height: 26px; display: flex; align-items: center; justify-content: center; outline: none; font-family: 'Roboto Slab', serif; }
 .action-btn:active { transform: translateY(2px); }
-.status-icon { font-size: 12px; font-weight: 900; margin-left: 4px; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.2)); }
-.status-icon.wait { color: #d69e2e; } .status-icon.tick { color: #38a169; } .status-icon.rej { color: #e53e3e; }
+.action-btn.success { background: linear-gradient(145deg, #48bb78, #38a169); }
 .leave-cell-wrap { display: flex; align-items: center; justify-content: center; gap: 6px; }
-.leave-text-btn { font-size: 10px; font-weight: 900; color: #1a365d; text-transform: uppercase; }
+.leave-text-btn { font-size: 10px; font-weight: 900; color: #1a365d; text-transform: uppercase; cursor: pointer; }
 .leave-cal-icon { font-size: 14px; cursor: pointer; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1)); transition: 0.2s; }
 .leave-cal-icon:active { transform: scale(0.9); }
 
-/* CM020 - CSS Instructions Panel */
+/* CM036 - CSS Panels and Instructions */
 .instructions-panel { background: #fff; padding: 14px; border-radius: 12px; border-left: 5px solid #d69e2e; box-shadow: 4px 4px 10px #d1d9e6, -4px -4px 10px #ffffff; margin-top: 10px; }
 .inst-title { font-size: 13px; font-weight: 900; color: #1a365d; margin-bottom: 8px; text-transform: uppercase; }
 .inst-list { margin: 0; padding-left: 14px; font-size: 11px; color: #2d3748; font-weight: 800; line-height: 1.6; }
-.inst-list li span.ico { display: inline-block; width: 20px; text-align: center; }
 
-/* CM021 - CSS Modals & Overlays HD */
+/* CM037 - CSS Modals Overlays */
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26,32,44,0.7); display: none; align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(3px); }
-.modal-box { background: #ffffff; width: 90%; max-width: 280px; padding: 18px; border-radius: 16px; box-shadow: 0px 15px 30px rgba(0,0,0,0.3); position: relative; border-top: 5px solid #3182ce; }
+.modal-box { background: #ffffff; width: 90%; max-width: 320px; padding: 18px; border-radius: 16px; box-shadow: 0px 15px 30px rgba(0,0,0,0.3); position: relative; border-top: 5px solid #3182ce; }
 .modal-close { position: absolute; top: 8px; right: 10px; font-size: 20px; cursor: pointer; color: #a0aec0; border: none; background: none; font-weight: 900; transition: 0.2s; outline: none; }
 .modal-close:hover { color: #e53e3e; }
-.modal-title { font-size: 13px; font-weight: 900; color: #1a365d; margin-bottom: 14px; border-bottom: 2px solid #edf2f7; padding-bottom: 6px; text-transform: uppercase; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
+.modal-title { font-size: 13px; font-weight: 900; color: #1a365d; margin-bottom: 14px; border-bottom: 2px solid #edf2f7; padding-bottom: 6px; text-transform: uppercase; }
 .modal-field { margin-bottom: 12px; }
 .modal-field label { display: block; font-size: 10px; font-weight: 900; color: #3182ce; margin-bottom: 4px; text-transform: uppercase; }
-.modal-field input, .modal-field textarea, .modal-field select { width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 8px; font-family: 'Roboto Slab', serif; font-size: 11px; outline: none; background: #fff; font-weight: 800; color: #1a365d; box-shadow: inset 0px 1px 2px rgba(0,0,0,0.05); }
+.modal-field input, .modal-field textarea, .modal-field select { width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 8px; font-family: 'Roboto Slab', serif; font-size: 11px; outline: none; background: #fff; font-weight: 800; color: #1a365d; }
 .time-inputs-wrap { display: flex; gap: 8px; }
-.modal-btn { width: 100%; background: linear-gradient(145deg, #4299e1, #3182ce); color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 900; cursor: pointer; margin-top: 10px; font-size: 12px; text-transform: uppercase; box-shadow: 0px 4px 8px rgba(49,130,206,0.3); transition: 0.2s; outline: none; }
-.modal-btn:active { transform: translateY(2px); }
+.modal-btn { width: 100%; background: linear-gradient(145deg, #4299e1, #3182ce); color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 900; cursor: pointer; margin-top: 10px; font-size: 12px; text-transform: uppercase; font-family: 'Roboto Slab', serif; }
 
-/* CM022 - CSS Requests & Utilities */
-.req-item { font-size: 11px; padding: 8px 0; border-bottom: 1px solid #edf2f7; display: flex; justify-content: space-between; align-items: center; font-weight: 800; color: #2d3748; }
-.req-withdraw { background: linear-gradient(145deg, #f56565, #e53e3e); color: #fff; border: none; padding: 4px 8px; border-radius: 4px; font-size: 9px; cursor: pointer; font-weight: 900; text-transform: uppercase; box-shadow: 0px 2px 4px rgba(0,0,0,0.2); }
+/* CM038 - CSS Request Items Notifications */
+.req-item { font-size: 11px; padding: 10px; border-bottom: 1px solid #edf2f7; display: flex; justify-content: space-between; align-items: center; font-weight: 800; color: #2d3748; background: #f7fafc; margin-bottom: 6px; border-radius: 8px; border-left: 3px solid #cbd5e0; }
+.req-item.approved { border-left-color: #38a169; } .req-item.pending { border-left-color: #d69e2e; } .req-item.rejected { border-left-color: #e53e3e; }
 .hidden-date-picker { position: absolute; opacity: 0; width: 0; height: 0; border: none; pointer-events: none; }
-.toast-msg { position: fixed; top: 70px; left: 50%; transform: translateX(-50%); background: #38a169; color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 12px; font-weight: 900; text-transform: uppercase; box-shadow: 0px 6px 15px rgba(0,0,0,0.3); display: none; z-index: 2000; letter-spacing: 0.5px; border: 2px solid #fff; }
-@media print { .header-actions, .punch-section, .instructions-panel, .pencil-btn, .action-btn, .leave-cal-icon { display: none !important; } body { background: #fff; } .table-wrapper { box-shadow: none; border: none; } }
+.toast-msg { position: fixed; top: 70px; left: 50%; transform: translateX(-50%); background: #38a169; color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 12px; font-weight: 900; text-transform: uppercase; box-shadow: 0px 6px 15px rgba(0,0,0,0.3); display: none; z-index: 2000; border: 2px solid #fff; transition: opacity 0.3s; opacity: 0; letter-spacing: 0.5px; }
+.toast-msg.error { background: #e53e3e; }
 </style>
 </head>
 <body>
 
-<!-- CM023 - HTML App Container Start -->
+<!-- CM039 - HTML Setup and Loaders -->
 <div id="appContainer">
+<div class="loader-overlay" id="pageLoader"><div class="main-loader"></div><div style="margin-top:10px; font-weight:900; color:#3182ce;">LOADING DATA...</div></div>
 
-<!-- CM024 - HTML Login View HD 3D -->
+<!-- CM040 - HTML Login View Area -->
 <div id="loginView" class="wrapper">
 <div class="hospital-logo-container"><img id="hospLogo" src="" alt="Logo"></div>
 <div class="hospital-name">SANJEEVA MULTISPECIALTY HOSPITAL, ALLAGADDA</div>
 <div class="title-text"><div class="title login">STAFF LOGIN</div></div>
 <div class="form-container">
 <div class="form-inner">
-<form action="#" id="staffForm" class="login">
+<form id="staffForm" onsubmit="handleLogin(event)">
 <div class="field"><span class="input-icon">👤</span><input type="text" id="staffUser" placeholder="USERNAME" required></div>
 <div class="field"><span class="input-icon">🔒</span><input type="password" id="staffPass" placeholder="PASSWORD" required></div>
-<div class="field btn" onclick="document.getElementById('staffForm').dispatchEvent(new Event('submit'))"><span class="btn-icon">➔</span><input type="submit" value="LOGIN"></div>
-<div class="forgot-pass"><a href="#"><span class="forgot-icon">❓</span> Forgot Password?</a></div>
+<div id="loginError" class="error-text"></div>
+<button type="submit" class="btn" id="loginBtn"><span>➔ LOGIN</span></button>
 </form>
 </div></div></div>
 
-<!-- CM025 - HTML Staff Dashboard View -->
+<!-- CM041 - HTML Dashboard Wrapper -->
 <div id="staffDashboardView" class="dashboard-view">
-<!-- CM026 - HTML Staff Header HD Icons -->
 <div class="dash-header">
 <div class="dash-title-wrap"><img id="dashLogo" src="" alt="Logo" class="dash-logo-small"><div class="dash-title-text"><span>SANJEEVA MULTISPECIALTY HOSPITAL</span><span style="font-size:10px; color:#4a5568;">ALLAGADDA</span></div></div>
-<div class="header-actions"><button class="hd-icon-btn down" onclick="window.print()" title="Download Data">📥</button><button class="hd-icon-btn req" id="staffReqBtn" title="Requests">🔔<span class="badge" id="sReqCount">2</span></button><button class="hd-icon-btn reload" onclick="reloadData()" title="Refresh">↻</button><button class="hd-icon-btn out" id="logoutStaffBtn" title="Logout">⏻</button></div>
+<div class="header-actions">
+<button class="hd-icon-btn req" onclick="openRequestsModal()" title="Requests">🔔<span class="badge" id="sReqCount">0</span></button>
+<button class="hd-icon-btn reload" onclick="fetchDashboardData()" title="Refresh">↻</button>
+<button class="hd-icon-btn out" onclick="handleLogout()" title="Logout">⏻</button></div>
 </div>
 
-<!-- CM027 - HTML Staff Content Wrapper -->
+<!-- CM042 - HTML Profile Status Area -->
 <div class="dash-content">
-<!-- CM028 - HTML Staff Profile Icons HD -->
 <div class="profile-clean">
-<div class="prof-item"><span class="prof-icon">🆔</span> ID: <span class="val-bold" id="sId">SMH-1024</span></div>
-<div class="prof-item"><span class="prof-icon">👤</span> NAME: <span class="val-bold" id="sName">User</span></div>
-<div class="prof-item"><span class="prof-icon">💼</span> ROLE: <span class="val-bold" id="sRole">Nursing</span></div>
-<div class="prof-item"><span class="prof-icon">⏱️</span> SHIFT: <select class="select-micro" id="sShift"><option value="2-shifts">2 Shifts</option><option value="4-shifts">4 Shifts</option><option value="night-shift">Night</option></select></div>
+<div class="prof-item"><span class="prof-icon">🆔</span> ID: <span class="val-bold" id="sId">-</span></div>
+<div class="prof-item"><span class="prof-icon">👤</span> NAME: <span class="val-bold" id="sName">-</span></div>
+<div class="prof-item"><span class="prof-icon">💼</span> ROLE: <span class="val-bold" id="sRole">-</span></div>
+<div class="prof-item"><span class="prof-icon">⏱️</span> SHIFT: <select class="select-micro" id="sShift"><option value="4">4 Shifts</option><option value="2">2 Shifts</option><option value="night">Night</option></select></div>
 <div class="prof-item"><span class="prof-icon">📅</span> MONTH: <select class="select-micro" id="sMonth"></select></div>
 </div>
-
-<!-- CM029 - HTML Summary Stats Cards Full Words Single Line -->
 <div class="summary-grid">
 <div class="stat-card total"><span class="stat-label">DAYS:</span><span class="stat-num" id="sT">0</span></div>
-<div class="stat-card present"><span class="stat-label">WORKING:</span><span class="stat-num" id="sW">0</span></div>
+<div class="stat-card present"><span class="stat-label">PRESENT:</span><span class="stat-num" id="sW">0</span></div>
 <div class="stat-card absent"><span class="stat-label">ABSENT:</span><span class="stat-num" id="sA">0</span></div>
-<div class="stat-card late"><span class="stat-label">LATE:</span><span class="stat-num" id="sL">0</span></div>
+<div class="stat-card late"><span class="stat-label">PENDING:</span><span class="stat-num" id="sL">0</span></div>
 </div>
 
-<!-- CM030 - HTML Live Punch Rectangles With Inside Time -->
-<div class="punch-section">
-<div class="section-headline" id="sHeadline">TODAY ATTENDANCE</div>
-<div class="punch-buttons-container" id="sPunchCont"></div>
-</div>
-
-<!-- CM031 - HTML Dynamic Table 6 Columns & Icons -->
-<div class="section-headline" style="text-align:center; display:block; margin-bottom:8px;">ATTENDANCE MONTH OVERVIEW - <span id="tblMonthName">SEPTEMBER</span></div>
+<!-- CM043 - HTML Interactive Data Table -->
+<div style="text-align:center; width:100%;"><div class="overview-title-box">ATTENDANCE OVERVIEW - <span id="tblMonthName"></span></div></div>
 <div class="table-wrapper"><table class="att-table">
-<thead><tr><th>📅 Date</th><th>⏱️ Shift</th><th>🌅 Mrg In</th><th>🌅 Mrg Out</th><th>🌇 Evn In</th><th>🌇 Evn Out</th><th>🌃 Ngt In</th><th>🌃 Ngt Out</th><th>⏳ Hrs</th><th>📊 Status</th><th>💬 Comment</th><th>⚙️ Action</th></tr></thead>
-<tbody id="sTableBody"></tbody></table></div>
-
-<!-- CM032 - HTML Instructions Section -->
+<thead id="tblHead"></thead><tbody id="sTableBody"></tbody></table></div>
 <div class="instructions-panel">
 <div class="inst-title">📝 IMPORTANT INSTRUCTIONS</div>
 <ul class="inst-list">
 <li><span class="ico">✎</span> Click the Pencil icon next to any time to raise a Time Modification Request.</li>
-<li><span class="ico">📅</span> Click the Calendar icon to Apply Leave in advance. It will be approved only after authority verification.</li>
-<li><span class="ico">✅</span> Tick Mark indicates your request has been Approved/Accepted.</li>
-<li><span class="ico">⏳</span> Hourglass/Loading icon indicates your request is Pending for approval.</li>
-<li><span class="ico">❌</span> Red Cross mark indicates your request has been Rejected.</li>
+<li><span class="ico">📅</span> Click the Calendar icon to Apply Leave in advance.</li>
+<li><span class="ico">⏳</span> Hourglass icon indicates your request/late time is Pending for approval.</li>
 </ul>
 </div>
 </div></div>
 
-<!-- CM033 - HTML Shared Modals -->
+<!-- CM044 - HTML Interactive Modals Overlay -->
 <div class="modal-overlay" id="modModal"><div class="modal-box"><button class="modal-close" onclick="clsMod('modModal')">&times;</button><div class="modal-title" id="modTitle">MODIFICATION REQUEST</div>
-<div style="background:#f7fafc; padding:8px; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:12px; font-size:10px;">
-<div style="font-weight:900; color:#3182ce; margin-bottom:4px;" id="modDateDisp">DATE: </div>
-<div style="font-weight:800; color:#2d3748; margin-bottom:4px;" id="modShiftDisp">SHIFT: </div>
-<div style="font-weight:800; color:#2d3748; margin-bottom:4px;" id="modHrsDisp">TOTAL HRS: </div>
-<div style="font-weight:800; color:#4a5568; line-height:1.4;" id="modPunchesDisp">CURRENT PUNCHES: </div>
-</div>
+<div style="background:#f7fafc; padding:8px; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:12px; font-size:10px;"><div style="font-weight:900; color:#3182ce; margin-bottom:4px;" id="modDateDisp">DATE: </div></div>
 <div class="modal-field"><label>Select Punch to Modify:</label><select id="modPunchSel"></select></div>
-<div class="modal-field"><label>New Time (HH:MM AM/PM):</label><div class="time-inputs-wrap"><select id="modHr"></select><select id="modMin"></select><select id="modAmPm"><option value="AM">AM</option><option value="PM">PM</option></select></div></div>
-<div class="modal-field"><label>Reason:</label><textarea id="modRea" placeholder="Enter reason..."></textarea></div>
-<button class="modal-btn" id="modSubBtn" onclick="subMod()"><span id="modBtnTxt">Submit Request</span></button></div></div>
-
-<!-- CM034 - HTML Hidden Inputs & Utilities -->
-<input type="date" id="nativeDate" class="hidden-date-picker" onchange="updNativeDate(this)">
-<div class="modal-overlay" id="reqListModal"><div class="modal-box"><button class="modal-close" onclick="clsMod('reqListModal')">&times;</button><div class="modal-title">YOUR REQUESTS</div><div id="reqListCont" style="max-height:60vh; overflow-y:auto;"></div></div></div>
-<div class="toast-msg" id="toastMsg">DATA REFRESHED ✅</div>
-
+<div class="modal-field"><label>Requested Time (HH:MM AM/PM):</label><div class="time-inputs-wrap"><select id="modHr"></select><select id="modMin"></select><select id="modAmPm"><option value="AM">AM</option><option value="PM">PM</option></select></div></div>
+<div class="modal-field"><label>Reason / Note:</label><textarea id="modRea" placeholder="Enter reason..."></textarea></div>
+<button class="modal-btn" id="modSubBtn" onclick="submitModification()"><span id="modBtnTxt">Submit Request</span></button></div></div>
+<input type="date" id="nativeDate" class="hidden-date-picker" onchange="submitLeaveRequest(this)">
+<div class="modal-overlay" id="reqListModal"><div class="modal-box" style="max-width:400px;"><button class="modal-close" onclick="clsMod('reqListModal')">&times;</button><div class="modal-title">YOUR REQUESTS</div><div id="reqListCont" style="max-height:60vh; overflow-y:auto; padding-right:4px;"></div></div></div>
+<div class="toast-msg" id="toastMsg"></div>
 </div>
+
 <script>
-/* CM035 - JS Configuration and Central State */
-const AppLinks = { logo: "https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png" };
+/* CM045 - JS Globals and Configs */
+const AppLinks = { logo: "https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png", workerUrl: "https://to-web-staff.contact-sanjeevahospital.workers.dev" };
 document.getElementById('hospLogo').src = AppLinks.logo; document.getElementById('dashLogo').src = AppLinks.logo;
 const AppConf = { mos: ["January","February","March","April","May","June","July","August","September","October","November","December"] };
-const sDets = { "2-shifts":{n:"2-Shifts",b:[{lbl:"MORNING PUNCH IN",dir:"IN",c:"in",k:"mi"},{lbl:"EVENING PUNCH OUT",dir:"OUT",c:"out",k:"eo"}],cols:{mi:"09:00 AM",mo:"-",ei:"-",eo:"05:00 PM",ni:"-",no:"-",h:"8h"}}, "4-shifts":{n:"4-Shifts",b:[{lbl:"MORNING PUNCH IN",dir:"IN",c:"in",k:"mi"},{lbl:"MORNING PUNCH OUT",dir:"OUT",c:"out",k:"mo"},{lbl:"EVENING PUNCH IN",dir:"IN",c:"in",k:"ei"},{lbl:"EVENING PUNCH OUT",dir:"OUT",c:"out",k:"eo"}],cols:{mi:"08:00 AM",mo:"12:00 PM",ei:"04:00 PM",eo:"08:00 PM",ni:"-",no:"-",h:"8h"}}, "night-shift":{n:"Night",b:[{lbl:"NIGHT PUNCH IN",dir:"IN",c:"in",k:"ni"},{lbl:"MORNING PUNCH OUT",dir:"OUT",c:"out",k:"no"}],cols:{mi:"-",mo:"-",ei:"-",eo:"-",ni:"08:00 PM",no:"08:00 AM",h:"12h"}} };
 const today = new Date(); const cY = today.getFullYear(); const cM = today.getMonth(); const cD = today.getDate();
-const fDate = (d,m,y) => `${String(d).padStart(2,'0')} ${AppConf.mos[m].substring(0,3)} ${y}`;
+let currentUser = null; let currentMonthData = []; let currentRequests = []; let curModDateStr = "";
+
+/* CM046 - JS Util Helpers Input Validations */
 const enfU = (e) => e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
-const toTitle = (s) => s.replace(/\w\S*/g, (t) => t.charAt(0).toUpperCase() + t.substr(1).toLowerCase());
 document.getElementById("staffUser").addEventListener('input', enfU);
-
-// Robust In-Memory DB for Staff
-let staffDb = { att: {}, reqs: [] };
-
-/* CM036 - JS Utilities & Modals */
 const clsMod = (id) => document.getElementById(id).style.display = "none";
 const opnMod = (id) => document.getElementById(id).style.display = "flex";
-const waitIco = '⏳'; const tickIco = '✅'; const rejIco = '❌'; 
-let curModDate = 0; let curModM = 0; let curModY = 0;
-const reloadData = () => { genSData(); const t = document.getElementById('toastMsg'); t.style.display='block'; setTimeout(()=>t.style.display='none', 2000); };
+const showLoader = () => document.getElementById('pageLoader').style.display = "flex";
+const hideLoader = () => document.getElementById('pageLoader').style.display = "none";
+const showToast = (msg, isError = false) => { const t = document.getElementById('toastMsg'); t.innerText = msg; t.className = `toast-msg ${isError ? 'error' : ''}`; t.style.display = 'block'; t.style.opacity = '1'; setTimeout(() => { t.style.opacity = '0'; setTimeout(()=>t.style.display='none', 300); }, 3000); };
 const popT = () => { let hr="", mn=""; for(let i=1;i<=12;i++) hr+=`<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`; for(let i=0;i<60;i++) mn+=`<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`; document.getElementById('modHr').innerHTML=hr; document.getElementById('modMin').innerHTML=mn; };
 popT();
 
-/* CM037 - JS Init and Data Seeding */
-const popMos = (elId) => { const s = document.getElementById(elId); let h = "";
-for(let m=cM; m<=11; m++) h+=`<option value="${m}-${cY}">${AppConf.mos[m].substring(0,3)} ${cY}</option>`;
-for(let m=0; m<=5; m++) h+=`<option value="${m}-${cY+1}">${AppConf.mos[m].substring(0,3)} ${cY+1}</option>`;
-s.innerHTML = h; s.value = `${cM}-${cY}`; s.onchange = () => { document.getElementById("tblMonthName").innerText = AppConf.mos[parseInt(s.value.split('-')[0])].toUpperCase(); genSData(); }; };
+/* CM047 - JS Time Calculation Helpers */
+const pTm = (tStr) => { if(!tStr || tStr === "-") return null; const [t, m] = tStr.split(' '); let [h, min] = t.split(':'); h = parseInt(h, 10); if (h === 12) h = 0; if (m === 'PM') h += 12; return h * 60 + parseInt(min, 10); };
+const fH = (m) => { if(m<=0) return "-"; const h = Math.floor(m/60); const mn = m%60; return `${h}h ${mn}m`; };
 
-const seedMonthData = (sM, sY, sK) => {
-    let mD = new Date(sY, sM+1, 0).getDate(); const cols = sDets[sK].cols;
-    for(let d=1; d<=mD; d++) {
-        let key = `${d}-${sM}-${sY}`;
-        if(!staffDb.att[key]) {
-            let isF = (sY>cY || (sY===cY && sM>cM) || (sY===cY && sM===cM && d>cD));
-            if(isF) { staffDb.att[key] = { mi:"-", mo:"-", ei:"-", eo:"-", ni:"-", no:"-", h:"-", st:"Pending", sc:"bg-pending", c:"" }; }
-            else if(d!==cD) {
-                const r=Math.random(); 
-                if(r>0.85) staffDb.att[key] = { mi:"-", mo:"-", ei:"-", eo:"-", ni:"-", no:"-", h:"-", st:"Absent", sc:"bg-absent", c:"" };
-                else if(r>0.7) staffDb.att[key] = { mi:cols.mi!=="-"?"09:45 AM":"-", mo:cols.mo, ei:cols.ei, eo:cols.eo, ni:cols.ni, no:cols.no, h:"7h", st:"Late", sc:"bg-late", c:"" };
-                else staffDb.att[key] = { mi:cols.mi, mo:cols.mo, ei:cols.ei, eo:cols.eo, ni:cols.ni, no:cols.no, h:cols.h, st:"Present", sc:"bg-present", c:"" };
-            } else {
-                staffDb.att[key] = { mi:"-", mo:"-", ei:"-", eo:"-", ni:"-", no:"-", h:"-", st:"Pending", sc:"bg-pending", c:"" };
-            }
-        }
-    }
-};
+/* CM048 - JS Authentication Networking */
+window.onload = () => { const saved = localStorage.getItem('smh_user_session'); if (saved) { currentUser = JSON.parse(saved); showDashboard(); } };
+async function handleLogin(e) { e.preventDefault(); const username = document.getElementById('staffUser').value.trim(); const password = document.getElementById('staffPass').value.trim(); const btn = document.getElementById('loginBtn'); const err = document.getElementById('loginError'); btn.innerHTML = `<span class="loading-spinner"></span>`; err.innerText = ""; try { const res = await fetch(`${AppLinks.workerUrl}/api/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password }) }); const data = await res.json(); if (data.success && data.user) { currentUser = data.user; localStorage.setItem('smh_user_session', JSON.stringify(currentUser)); showDashboard(); } else { err.innerText = data.message || "Login Failed. Try again."; } } catch (error) { err.innerText = "Network Error."; } finally { btn.innerHTML = `<span>➔ LOGIN</span>`; } }
+function handleLogout() { localStorage.removeItem('smh_user_session'); currentUser = null; document.getElementById("staffDashboardView").style.display="none"; document.getElementById("loginView").style.display="block"; document.getElementById("staffForm").reset(); }
 
-/* CM038 - JS Live Punch Context & Night Shift Logic */
-const simPunch = (btn, dir, k, lbl) => { 
-    const now = new Date(); const tm = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}); 
-    const sK = document.getElementById("sShift").value;
-    
-    let tD = cD, tM = cM, tY = cY;
-    if(sK === "night-shift" && dir === "OUT" && now.getHours() < 12) {
-        let y = new Date(now); y.setDate(y.getDate() - 1);
-        tD = y.getDate(); tM = y.getMonth(); tY = y.getFullYear();
-    }
-    
-    let key = `${tD}-${tM}-${tY}`;
-    if(!staffDb.att[key]) seedMonthData(tM, tY, sK);
-    staffDb.att[key][k] = tm;
-    staffDb.att[key].st = "Present"; staffDb.att[key].sc = "bg-present"; staffDb.att[key].h = "8h"; // simplified eval
-    
-    staffDb.reqs.unshift({ type: "LIVE PUNCH", date: fDate(tD, tM, tY), desc: `${lbl} at ${tm}`, stat: tickIco });
-    
-    btn.style.background = "linear-gradient(145deg, #e2e8f0, #cbd5e0)"; btn.style.boxShadow = "inset 2px 2px 5px rgba(0,0,0,0.1), inset -2px -2px 5px #ffffff"; 
-    const t = btn.querySelector('.neo-text-in'); t.innerHTML = `${tickIco} PUNCHED`; 
-    const p = btn.querySelector('.punch-time-disp'); p.style.display='block'; p.innerText=tm; btn.onclick = null; 
-    genSData();
-};
-const genBtns = (sK) => { const c = document.getElementById("sPunchCont"); c.innerHTML=''; sDets[sK].b.forEach(b => { c.innerHTML += `<button class="neo-btn" onclick="simPunch(this, '${b.dir}', '${b.k}', '${b.lbl}')"><div class="punch-btn-inner"><span class="neo-text-in ${b.c}">${b.lbl}</span><span class="punch-time-disp"></span></div></button>`; }); };
+/* CM049 - JS Initial Dashboard Setup */
+function showDashboard() { document.getElementById("loginView").style.display="none"; document.getElementById("staffDashboardView").style.display="flex"; document.getElementById("sId").innerText = currentUser.user_id; document.getElementById("sName").innerText = currentUser.full_name; document.getElementById("sRole").innerText = currentUser.role || 'Staff'; document.getElementById("sShift").value = currentUser.shift_type; document.getElementById("sShift").onchange = (e) => { if(!confirm("Are you sure you want to change your shift type?")) { e.target.value = currentUser.shift_type; return; } currentUser.shift_type = e.target.value; renderTable(); }; popMos(); fetchDashboardData(); }
+const popMos = () => { const s = document.getElementById("sMonth"); let h = ""; for(let m=cM-2; m<=11; m++) { if(m>=0 && m<12) h+=`<option value="${m}-${cY}">${AppConf.mos[m].substring(0,3)} ${cY}</option>`; } s.innerHTML = h; s.value = `${cM}-${cY}`; s.onchange = () => { fetchDashboardData(); }; };
 
-/* CM039 - JS Staff Data Rendering */
-const initStaff = () => { document.getElementById("sHeadline").innerText = `TODAY ATTENDANCE - ${fDate(cD,cM,cY).toUpperCase()}`; document.getElementById("tblMonthName").innerText = AppConf.mos[cM].toUpperCase(); popMos("sMonth"); genSData(); };
-document.getElementById("sShift").onchange = () => genSData();
-const genSData = () => { const vp = document.getElementById("sMonth").value.split('-'); const sM = parseInt(vp[0]), sY = parseInt(vp[1]);
-const tb = document.getElementById("sTableBody"); tb.innerHTML=''; const sK = document.getElementById("sShift").value; genBtns(sK);
-seedMonthData(sM, sY, sK); let mD = new Date(sY, sM+1, 0).getDate(); let tW=0, tA=0, tL=0; 
+/* CM050 - JS Fetch Central Data */
+async function fetchDashboardData() { if(!currentUser) return; showLoader(); try { const resAtt = await fetch(`${AppLinks.workerUrl}/api/attendance`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, access: currentUser.access }) }); const dataAtt = await resAtt.json(); if(dataAtt.success) currentMonthData = dataAtt.logs; const resReq = await fetch(`${AppLinks.workerUrl}/api/requests/get`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, access: currentUser.access }) }); const dataReq = await resReq.json(); if(dataReq.success) currentRequests = dataReq.data; renderTable(); document.getElementById("sReqCount").innerText = currentRequests.length; } catch(e) { showToast("Error loading data", true); } finally { hideLoader(); } }
 
-for(let d=1; d<=mD; d++) { 
-    let dtS = fDate(d,sM,sY); let key = `${d}-${sM}-${sY}`; let cDat = staffDb.att[key];
-    if(cDat.st==="Present"||cDat.st==="Late") tW++; if(cDat.st==="Absent") tA++; if(cDat.st==="Late") tL++;
-    
-    const mkC = (val, id) => `<td><div class="time-cell">${val} ${val!=="-"?`<button class="pencil-btn" onclick="prepMod(${d},${sM},${sY})">✎</button>`:''}</div></td>`;
-    let comUI = cDat.c ? `<span style="font-size:10px; font-weight:900; color:#1a365d;">${cDat.c}</span>` : `<div class="comment-box-container" id="cb-${d}"><input type="text" class="comment-input" placeholder="Type..."><button class="action-btn" onclick="subCom(${d},${sM},${sY},'cb-${d}')">✓</button></div>`;
-    
-    tb.innerHTML += `<tr><td class="date-col">${dtS}</td><td>${sDets[sK].n}</td>
-    ${mkC(cDat.mi,'mi')}${mkC(cDat.mo,'mo')}${mkC(cDat.ei,'ei')}${mkC(cDat.eo,'eo')}${mkC(cDat.ni,'ni')}${mkC(cDat.no,'no')}
-    <td><span class="${cDat.h!=="-"?'hrs-bold':''}">${cDat.h}</span></td><td><span class="status-badge ${cDat.sc}">${cDat.st}</span></td>
-    <td>${comUI}</td>
-    <td><div class="leave-cell-wrap"><span class="leave-text-btn">Apply Leave</span><span class="leave-cal-icon" onclick="trigCal(${d},${sM},${sY})">📅</span></div></td></tr>`;
-} updS(mD,tW,tA,tL); document.getElementById("sReqCount").innerText = staffDb.reqs.length; };
-const updS = (t,w,a,l) => { document.getElementById("sT").innerText=t; document.getElementById("sW").innerText=w; document.getElementById("sA").innerText=a; document.getElementById("sL").innerText=l; };
+/* CM051 - JS Check Late Logic and Auto Trigger */
+const chkLate = (actT, expT, dS, pK) => { if(!actT || actT==="-") return {val:"-", late:false}; if(!expT) return {val:actT, late:false}; let a = pTm(actT); let e = pTm(expT); if(a > e+15) { let req = currentRequests.find(r => r.request_date === dS && r.mod_type === `Late Approval - ${pK}` && r.user_id === currentUser.user_id); if(req && req.status.toLowerCase()==='approved') return {val:actT, late:false}; if(!req) { reqLateDB(dS, pK, actT); } return {val:"⏳", late:true}; } return {val:actT, late:false}; };
+const reqLateDB = async (dS, pK, aT) => { try { await fetch(`${AppLinks.workerUrl}/api/requests/add`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, date: dS, type: `Late Approval - ${pK}`, time: aT, desc: `Auto Late Request`, status: 'Pending' }) }); } catch(e) { console.error(e); } };
 
-/* CM040 - JS Actions, Contextual Modals & Auto Insert */
-const prepMod = (d, m, y) => { 
-    curModDate = d; curModM = m; curModY = y; let key = `${d}-${m}-${y}`; let cd = staffDb.att[key];
-    let sK = document.getElementById("sShift").value; let shN = sDets[sK].n;
-    document.getElementById("modDateDisp").innerText = `DATE: ${fDate(d,m,y).toUpperCase()}`;
-    document.getElementById("modShiftDisp").innerText = `SHIFT: ${shN.toUpperCase()}`;
-    document.getElementById("modHrsDisp").innerText = `TOTAL HRS: ${cd.h}`;
-    document.getElementById("modPunchesDisp").innerHTML = `CURRENT PUNCHES:<br>MI: ${cd.mi} | MO: ${cd.mo} | EI: ${cd.ei} | EO: ${cd.eo} | NI: ${cd.ni} | NO: ${cd.no}`;
-    
-    let sOpt = "";
-    const pNames = {mi:'Morning In', mo:'Morning Out', ei:'Evening In', eo:'Evening Out', ni:'Night In', no:'Night Out'};
-    for(let k in pNames) { if(cd[k] !== "-") sOpt += `<option value="${k}">${pNames[k]} (${cd[k]})</option>`; }
-    document.getElementById("modPunchSel").innerHTML = sOpt;
-    document.getElementById("modRea").value=""; opnMod("modModal"); 
-};
-const subMod = () => { 
-    let pK = document.getElementById("modPunchSel").value; 
-    if(!pK) { alert("No valid punch to modify."); return; }
-    let nT = `${document.getElementById("modHr").value}:${document.getElementById("modMin").value} ${document.getElementById("modAmPm").value}`;
-    document.getElementById("modBtnTxt").innerHTML = waitIco; 
-    
-    setTimeout(() => {
-        let key = `${curModDate}-${curModM}-${curModY}`;
-        let oldT = staffDb.att[key][pK];
-        staffDb.att[key][pK] = nT; // Auto insert directly
-        staffDb.reqs.unshift({ type: "Time Modification", date: fDate(curModDate, curModM, curModY), desc: `Changed ${pK.toUpperCase()} from ${oldT} to ${nT}`, stat: tickIco });
-        clsMod("modModal"); document.getElementById("modBtnTxt").innerHTML="Submit Request";
-        reloadData();
-    }, 600); 
-};
-const trigCal = (d, m, y) => { curModDate=d; curModM=m; curModY=y; document.getElementById('nativeDate').showPicker(); };
-const updNativeDate = (el) => { if(el.value){ staffDb.reqs.unshift({ type: "Leave Application", date: fDate(curModDate, curModM, curModY), desc: `Applied for Leave`, stat: waitIco }); reloadData(); el.value=""; } };
-const subCom = (d, m, y, id) => { const b=document.getElementById(id); const v=b.querySelector('input').value.trim(); if(v==="") return; staffDb.att[`${d}-${m}-${y}`].c = v; staffDb.reqs.unshift({ type: "Comment", date: fDate(d,m,y), desc: `Added Note: ${v}`, stat: tickIco }); reloadData(); };
+/* CM052 - JS Render Admin and Staff Table Switcher */
+function renderTable() { const vp = document.getElementById("sMonth").value.split('-'); const sM = parseInt(vp[0]), sY = parseInt(vp[1]); document.getElementById("tblMonthName").innerText = AppConf.mos[sM].toUpperCase(); const tb = document.getElementById("sTableBody"); const thd = document.getElementById("tblHead"); tb.innerHTML=''; if(currentUser.access === 'admin') { thd.innerHTML = `<tr><th>👤 User</th><th>📅 Date</th><th>⏱️ Shift</th><th>🌅 Mrg In</th><th>🌅 Mrg Out</th><th>🌇 Evn In</th><th>🌇 Evn Out</th><th>🌃 Ngt In</th><th>🌃 Ngt Out</th><th>⏳ Hrs</th><th>💬 Comment</th><th>⚙️ Action</th></tr>`; renderAdmin(sY, sM, tb); } else { thd.innerHTML = `<tr><th>📅 Date</th><th>⏱️ Shift</th><th>🌅 Mrg In</th><th>🌅 Mrg Out</th><th>🌇 Evn In</th><th>🌇 Evn Out</th><th>🌃 Ngt In</th><th>🌃 Ngt Out</th><th>⏳ Hrs</th><th>📊 Status</th><th>💬 Comment</th><th>⚙️ Action</th></tr>`; renderStaff(sY, sM, tb); } }
 
-document.getElementById("staffReqBtn").onclick = () => { const c=document.getElementById("reqListCont"); c.innerHTML=""; 
-    if(staffDb.reqs.length===0) c.innerHTML = "<div class='req-item'>No requests found.</div>";
-    staffDb.reqs.forEach(r => { c.innerHTML += `<div class="req-item"><div style="display:flex; flex-direction:column; gap:2px;"><span style="color:#1a365d; font-weight:900;">${r.type} (${r.date})</span><span style="font-size:9px; color:#718096; line-height:1.2;">${r.desc}</span></div><span class="status-icon">${r.stat}</span></div>`; });
-    opnMod("reqListModal"); 
-};
+/* CM053 - JS Admin Table Logic */
+const renderAdmin = (sY, sM, tb) => { let g = {}; currentMonthData.forEach(l => { let k = `${l.attendance_date}_${l.user_id}`; if(!g[k]) g[k] = { d: l.attendance_date, u: l.user_id, n: l.full_name, st: l.shift_type, s1: l.shift_1_time, s2: l.shift_2_time, s3: l.shift_3_time, s4: l.shift_4_time, ni: l.night_in_time, no: l.night_out_time, ls: [] }; g[k].ls.push(l); }); Object.values(g).forEach(x => { x.ls.sort((a,b) => pTm(a.taken_current_time) - pTm(b.taken_current_time)); let rD = { mi:"-", mo:"-", ei:"-", eo:"-", ni:"-", no:"-" }; let ep = x.st=='2'?['mi','eo']:(x.st=='4'?['mi','mo','ei','eo']:['ni','no']); for(let i=0; i<Math.min(x.ls.length, ep.length); i++) rD[ep[i]] = x.ls[i].taken_current_time; let h = calcHrs(rD, x.st); const mkC = (v) => `<td><div class="time-cell">${v}</div></td>`; tb.innerHTML += `<tr><td><span style="color:#e53e3e;font-weight:900;">${x.u}</span><br><span style="font-size:9px;">${x.n}</span></td><td class="date-col">${x.d}</td><td>${x.st}</td>${mkC(rD.mi)}${mkC(rD.mo)}${mkC(rD.ei)}${mkC(rD.eo)}${mkC(rD.ni)}${mkC(rD.no)}<td><span class="hrs-bold">${h}</span></td><td>-</td><td>-</td></tr>`; }); document.getElementById("sT").innerText=Object.keys(g).length; };
 
-/* CM041 - JS Login Flow */
-document.getElementById("staffForm").onsubmit = (e) => { e.preventDefault(); document.getElementById("loginView").style.display="none"; document.getElementById("staffDashboardView").style.display="flex"; document.getElementById("sName").innerText = toTitle(document.getElementById("staffUser").value); initStaff(); };
-document.getElementById("logoutStaffBtn").onclick = () => { document.getElementById("staffDashboardView").style.display="none"; document.getElementById("loginView").style.display="block"; document.getElementById("staffForm").reset(); };
+/* CM054 - JS Staff Table Logic and Hours Calculation */
+const calcHrs = (r, st) => { let tm=0; if(st=='4') { if(r.mi!=="-"&&r.mo!=="-") tm+=(pTm(r.mo)-pTm(r.mi)); if(r.ei!=="-"&&r.eo!=="-") tm+=(pTm(r.eo)-pTm(r.ei)); } else if(st=='2') { if(r.mi!=="-"&&r.eo!=="-") tm+=(pTm(r.eo)-pTm(r.mi)); } else { if(r.ni!=="-"&&r.no!=="-") tm+=((24*60-pTm(r.ni))+pTm(r.no)); } return fH(tm); };
+const renderStaff = (sY, sM, tb) => { let mD = new Date(sY, sM+1, 0).getDate(); let tW=0, tA=0, tP=0; for(let d=1; d<=mD; d++) { let dtS = `${String(d).padStart(2,'0')} ${AppConf.mos[sM].substring(0,3)} ${sY}`; let ls = currentMonthData.filter(l => l.attendance_date === dtS); ls.sort((a,b) => pTm(a.taken_current_time) - pTm(b.taken_current_time)); let effS = (sY<cY || (sY===cY && sM<cM) || (sY===cY && sM===cM && d<cD)) ? currentUser.shift_type : document.getElementById("sShift").value; let shI = effS !== currentUser.shift_type ? `<span class="shift-chg-ind">Shift Changed</span>` : ''; let rD = { mi: "-", mo: "-", ei: "-", eo: "-", ni: "-", no: "-" }; let ep = effS=='2'?['mi','eo']:(effS=='4'?['mi','mo','ei','eo']:['ni','no']); for(let i=0; i<Math.min(ls.length, ep.length); i++) rD[ep[i]] = ls[i].taken_current_time; let sc = { mi: currentUser.shift_1_time, mo: currentUser.shift_2_time, ei: currentUser.shift_3_time, eo: currentUser.shift_4_time, ni: currentUser.night_in_time, no: currentUser.night_out_time }; let vD = { mi: chkLate(rD.mi, sc.mi, dtS, 'mi'), mo: chkLate(rD.mo, sc.mo, dtS, 'mo'), ei: chkLate(rD.ei, sc.ei, dtS, 'ei'), eo: chkLate(rD.eo, sc.eo, dtS, 'eo'), ni: chkLate(rD.ni, sc.ni, dtS, 'ni'), no: chkLate(rD.no, sc.no, dtS, 'no') }; let h = calcHrs({mi:vD.mi.val, mo:vD.mo.val, ei:vD.ei.val, eo:vD.eo.val, ni:vD.ni.val, no:vD.no.val}, effS); let isF = (sY>cY || (sY===cY && sM>cM) || (sY===cY && sM===cM && d>cD)); let st="Pending", scl="bg-pending"; if(isF || (d===cD && ls.length===0)) { st="Pending"; scl="bg-pending"; tP++; } else if (ls.length===0) { st="Absent"; scl="bg-absent"; tA++; } else { st="Present"; scl="bg-present"; tW++; } const mkC = (obj, k) => `<td><div class="time-cell">${obj.val} ${!obj.late?`<button class="pencil-btn" onclick="prepMod('${dtS}', '${k}', '${obj.val}')">✎</button>`:''}</div></td>`; let comUI = `<div class="comment-box-container" id="cb-${d}"><input type="text" class="comment-input" placeholder="Note..."><button class="action-btn" onclick="subCom('${dtS}','cb-${d}', this)">✓</button></div>`; tb.innerHTML += `<tr><td class="date-col">${dtS}${shI}</td><td>${effS}</td>${mkC(vD.mi,'mi')}${mkC(vD.mo,'mo')}${mkC(vD.ei,'ei')}${mkC(vD.eo,'eo')}${mkC(vD.ni,'ni')}${mkC(vD.no,'no')}<td><span class="hrs-bold">${h}</span></td><td><span class="status-badge ${scl}">${st}</span></td><td>${comUI}</td><td><div class="leave-cell-wrap"><span class="leave-text-btn" onclick="trigCal('${dtS}')">APPLY LEAVE 📅</span></div></td></tr>`; } document.getElementById("sT").innerText=mD; document.getElementById("sW").innerText=tW; document.getElementById("sA").innerText=tA; document.getElementById("sL").innerText=tP; };
+
+/* CM055 - JS Interaction Modals Submission */
+const prepMod = (d, p, c) => { curModDateStr = d; document.getElementById("modDateDisp").innerText = `DATE: ${d.toUpperCase()}`; document.getElementById("modPunchSel").innerHTML = `<option value="${p}">${p.toUpperCase()} (Curr: ${c})</option>`; document.getElementById("modRea").value=""; opnMod("modModal"); };
+async function submitModification() { let pType = document.getElementById("modPunchSel").value; let nT = `${document.getElementById("modHr").value}:${document.getElementById("modMin").value} ${document.getElementById("modAmPm").value}`; let desc = document.getElementById("modRea").value.trim(); if(!desc) { alert("Please provide a reason."); return; } const btn = document.getElementById("modSubBtn"); btn.innerHTML = `<span class="loading-spinner"></span>`; try { await fetch(`${AppLinks.workerUrl}/api/requests/add`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, date: curModDateStr, type: `Modify ${pType}`, time: nT, desc: desc, status: 'Pending' }) }); clsMod("modModal"); showToast("Submitted ✅"); fetchDashboardData(); } catch(e) { showToast("Error", true); } finally { btn.innerHTML = `Submit Request`; } }
+const subCom = async (dS, id, btn) => { const b=document.getElementById(id); const inp=b.querySelector('input'); const v=inp.value.trim(); if(v==="") return; btn.innerHTML = `<span class="loading-spinner" style="width:10px;height:10px;border-width:2px;"></span>`; try { await fetch(`${AppLinks.workerUrl}/api/requests/add`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, date: dS, type: `Comment`, time: '-', desc: v, status: 'Pending' }) }); btn.classList.add('success'); btn.innerHTML = `SAVED ✓`; setTimeout(() => { btn.classList.remove('success'); btn.innerHTML = `✓`; inp.value = ""; }, 2000); fetchDashboardData(); } catch(e) { showToast("Error", true); btn.innerHTML = `✓`; } };
+
+/* CM056 - JS Leave Handling */
+const trigCal = (dS) => { curModDateStr = dS; document.getElementById('nativeDate').showPicker(); };
+async function submitLeaveRequest(el) { if(!el.value) return; if(!confirm(`Do you want to apply leave for ${el.value}?`)) { el.value=""; return; } showLoader(); try { await fetch(`${AppLinks.workerUrl}/api/requests/add`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, date: curModDateStr, type: `Leave Request`, time: '-', desc: `Applied Leave for ${el.value}`, status: 'Pending' }) }); showToast("Leave Request Submitted ✅"); fetchDashboardData(); } catch(e) { showToast("Error", true); } finally { el.value=""; hideLoader(); } }
+
+/* CM057 - JS Request History Viewer */
+function openRequestsModal() { const c=document.getElementById("reqListCont"); c.innerHTML=""; if(currentRequests.length === 0) { c.innerHTML = "<div class='req-item'>No requests found.</div>"; } else { currentRequests.forEach(r => { let statCls = r.status.toLowerCase()==='approved' ? 'approved' : (r.status.toLowerCase()==='rejected' ? 'rejected' : 'pending'); let statIco = r.status.toLowerCase()==='approved' ? '✅' : (r.status.toLowerCase()==='rejected' ? '❌' : '⏳'); c.innerHTML += `<div class="req-item ${statCls}"><div style="display:flex; flex-direction:column; gap:4px;">${currentUser.access==='admin'?`<span style="color:#e53e3e; font-size:10px; font-weight:900;">User: ${r.user_id}</span>`:''}<span style="color:#1a365d; font-weight:900;">${r.mod_type} (${r.request_date})</span><span style="font-size:10px; color:#718096; line-height:1.4;">${r.description}</span></div><span class="status-icon" style="font-size:14px; text-transform:uppercase;">${statIco} ${r.status}</span></div>`; }); } opnMod("reqListModal"); }
 </script>
 </body>
 </html>
