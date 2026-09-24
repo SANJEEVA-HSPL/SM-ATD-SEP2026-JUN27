@@ -12,197 +12,188 @@
 <style>
 
 /* CM200 - CSS Reset Global Styles and Scrollbar Hide */
-* { scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; box-sizing: border-box; }
-::-webkit-scrollbar { display: none; }
-body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f8fafc; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow-x: hidden; font-size: 10px; color: #0f172a; -webkit-font-smoothing: antialiased; font-weight: 600; }
+*{scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;box-sizing:border-box;}
+::-webkit-scrollbar{display:none;}
+body{margin:0;padding:0;font-family:'Roboto Slab',serif;background:#f8fafc;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow-x:hidden;font-size:10px;color:#0f172a;-webkit-font-smoothing:antialiased;font-weight:600;}
 
 /* CM201 - CSS App Main Container and Loaders */
-#appContainer { width: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; }
-.loading-spinner { border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; border-top: 2px solid #fff; width: 14px; height: 14px; animation: spin 1s linear infinite; display: inline-block; }
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-.loader-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.8); z-index: 9999; display: none; align-items: center; justify-content: center; flex-direction: column; }
-.main-loader { border: 4px solid #3b82f6; border-top: 4px solid #0f172a; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+#appContainer{width:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;}
+.loading-spinner{border:2px solid rgba(255,255,255,0.3);border-radius:50%;border-top:2px solid #fff;width:14px;height:14px;animation:spin 1s linear infinite;display:inline-block;}
+@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+.loader-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.8);z-index:9999;display:none;align-items:center;justify-content:center;flex-direction:column;}
+.main-loader{border:4px solid #3b82f6;border-top:4px solid #0f172a;border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite;}
 
 /* CM202 - CSS Compact Login Card */
-.wrapper { overflow: hidden; width: 240px; background: #ffffff; padding: 16px 14px; border-radius: 12px; margin: auto; display: flex; flex-direction: column; align-items: center; box-shadow: 0px 10px 25px rgba(0,0,0,0.1); border-top: 5px solid #0f172a; }
-.admin-badge-wrap { display: flex; justify-content: center; width: 100%; margin-top: 4px; margin-bottom: 12px; }
-.admin-badge-text { background: #0f172a; color: #fff; padding: 4px 16px; border-radius: 20px; font-size: 9px; font-weight: 900; letter-spacing: 1px; box-shadow: inset 0px -2px 4px rgba(0,0,0,0.3); text-transform: uppercase; }
+.wrapper{overflow:hidden;width:240px;background:#ffffff;padding:16px 14px;border-radius:12px;margin:auto;display:flex;flex-direction:column;align-items:center;box-shadow:0px 10px 25px rgba(0,0,0,0.1);border-top:5px solid #0f172a;}
+.admin-badge-wrap{display:flex;justify-content:center;width:100%;margin-top:4px;margin-bottom:12px;}
+.admin-badge-text{background:#0f172a;color:#fff;padding:4px 16px;border-radius:20px;font-size:9px;font-weight:900;letter-spacing:1px;box-shadow:inset 0px -2px 4px rgba(0,0,0,0.3);text-transform:uppercase;}
 
 /* CM203 - CSS Login Logo & HD Name */
-.hospital-logo-container { display: flex; justify-content: center; margin-bottom: 8px; width: 100%; }
-.hospital-logo-container img { width: 50px; height: 50px; border-radius: 50%; padding: 2px; object-fit: contain; background: #fff; filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1)); border: 2px solid #0f172a; }
-.hospital-name { font-size: 11px; font-weight: 900; text-align: center; margin-bottom: 4px; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.3; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
+.hospital-logo-container{display:flex;justify-content:center;margin-bottom:8px;width:100%;}
+.hospital-logo-container img{width:50px;height:50px;border-radius:50%;padding:2px;object-fit:contain;background:#fff;filter:drop-shadow(0px 4px 6px rgba(0,0,0,0.1));border:2px solid #0f172a;}
+.hospital-name{font-size:11px;font-weight:900;text-align:center;margin-bottom:4px;color:#0f172a;text-transform:uppercase;letter-spacing:0.5px;line-height:1.3;text-shadow:0px 1px 1px rgba(255,255,255,1);}
 
 /* CM204 - CSS Login Form Fields & Eye Icon */
-.form-inner { width: 100%; }
-.form-inner form .field { height: 34px; width: 100%; margin-top: 10px; position: relative; display: flex; align-items: center; gap: 6px; }
-.input-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; color: #3b82f6; z-index: 10; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1)); }
-.eye-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 12px; z-index: 10; user-select: none; }
-.form-inner form .field input { height: 100%; width: 100%; outline: none; padding-left: 30px; padding-right: 30px; border-radius: 8px; border: 1px solid #cbd5e1; font-family: 'Roboto Slab', serif; font-size: 10px; transition: all 0.3s ease; background: #f1f5f9; color: #0f172a; font-weight: 900; box-shadow: inset 1px 1px 3px rgba(0,0,0,0.05); text-transform: uppercase; }
-.form-inner form .field input:focus { border-color: #3b82f6; background: #fff; box-shadow: 0px 0px 0px 2px rgba(59,130,246,0.2); }
-.error-text { color: #ef4444; font-size: 9px; font-weight: 900; text-align: center; margin-top: 8px; min-height: 12px; }
+.form-inner{width:100%;}
+.form-inner form .field{height:34px;width:100%;margin-top:10px;position:relative;display:flex;align-items:center;gap:6px;}
+.input-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;color:#3b82f6;z-index:10;filter:drop-shadow(0px 1px 1px rgba(0,0,0,0.1));}
+.eye-icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:12px;z-index:10;user-select:none;}
+.form-inner form .field input{height:100%;width:100%;outline:none;padding-left:30px;padding-right:30px;border-radius:8px;border:1px solid #cbd5e1;font-family:'Roboto Slab',serif;font-size:10px;transition:all 0.3s ease;background:#f1f5f9;color:#0f172a;font-weight:900;box-shadow:inset 1px 1px 3px rgba(0,0,0,0.05);text-transform:uppercase;}
+.form-inner form .field input:focus{border-color:#3b82f6;background:#fff;box-shadow:0px 0px 0px 2px rgba(59,130,246,0.2);}
+.error-text{color:#ef4444;font-size:9px;font-weight:900;text-align:center;margin-top:8px;min-height:12px;}
 
 /* CM205 - CSS Login Button & Forgot Password Link */
-.form-inner form .btn { height: 36px; border-radius: 8px; overflow: hidden; margin-top: 14px; background: linear-gradient(145deg, #0f172a, #1e293b); box-shadow: 2px 2px 5px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; transition: 0.2s; border: none; padding: 0; outline: none; width: 100%; }
-.form-inner form .btn:active { transform: translateY(2px); box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2); }
-.form-inner form .btn span { color: #fff; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; }
-.forgot-pass { text-align: center; margin-top: 12px; font-size: 9px; display: flex; justify-content: center; align-items: center; gap: 4px; }
-.forgot-pass a { color: #475569; text-decoration: none; font-weight: 900; transition: 0.2s; text-transform: uppercase; }
+.form-inner form .btn{height:36px;border-radius:8px;overflow:hidden;margin-top:14px;background:linear-gradient(145deg,#0f172a,#1e293b);box-shadow:2px 2px 5px rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:0.2s;border:none;padding:0;outline:none;width:100%;}
+.form-inner form .btn:active{transform:translateY(2px);box-shadow:inset 2px 2px 5px rgba(0,0,0,0.2);}
+.form-inner form .btn span{color:#fff;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:0.5px;}
+.forgot-pass{text-align:center;margin-top:12px;font-size:9px;display:flex;justify-content:center;align-items:center;gap:4px;}
+.forgot-pass a{color:#475569;text-decoration:none;font-weight:900;transition:0.2s;text-transform:uppercase;}
 
 /* CM206 - CSS Admin Dashboard View */
-.dashboard-view { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f8fafc; align-items: flex-start; justify-content: flex-start; }
+.dashboard-view{display:none;width:100%;min-height:100vh;flex-direction:column;background:#f8fafc;align-items:flex-start;justify-content:flex-start;}
 
 /* CM207 - CSS Header Increased Size & HD Scrollable */
-.dash-header { background: #ffffff; padding: 10px 14px; box-shadow: 0px 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #0f172a; width: 100%; height: auto; min-height: 54px; position: sticky; top: 0; z-index: 100; }
-.dash-title-wrap { display: flex; align-items: center; gap: 10px; }
-.dash-logo-small { width: 34px; height: 34px; border-radius: 50%; object-fit: contain; background: #fff; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.1)); border: 1px solid #0f172a; }
-.dash-title-text { font-size: 14px; font-weight: 900; color: #0f172a; line-height: 1.2; display: flex; flex-direction: column; text-transform: uppercase; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
-.dash-title-sub { font-size: 9px; color: #475569; font-weight: 900; letter-spacing: 0.5px; }
+.dash-header{background:#ffffff;padding:10px 14px;box-shadow:0px 2px 10px rgba(0,0,0,0.05);display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #0f172a;width:100%;height:auto;min-height:54px;position:sticky;top:0;z-index:100;}
+.dash-title-wrap{display:flex;align-items:center;gap:10px;}
+.dash-logo-small{width:34px;height:34px;border-radius:50%;object-fit:contain;background:#fff;filter:drop-shadow(0px 2px 4px rgba(0,0,0,0.1));border:1px solid #0f172a;}
+.dash-title-text{font-size:14px;font-weight:900;color:#0f172a;line-height:1.2;display:flex;flex-direction:column;text-transform:uppercase;text-shadow:0px 1px 1px rgba(255,255,255,1);}
+.dash-title-sub{font-size:9px;color:#475569;font-weight:900;letter-spacing:0.5px;}
 
 /* CM208 - CSS Header Actions & Blinking Dot */
-.header-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
-@keyframes pulseBlink { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.3); } 100% { opacity: 1; transform: scale(1); } }
-.blink-dot { display: inline-block; width: 6px; height: 6px; background-color: #a7f3d0; border-radius: 50%; margin-right: 4px; animation: pulseBlink 1s infinite; vertical-align: middle; box-shadow: 0 0 4px #a7f3d0; }
-.live-staff-badge { font-size: 9px; font-weight: 900; color: #fff; background: linear-gradient(145deg, #10b981, #059669); padding: 4px 10px; border-radius: 20px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); text-transform: uppercase; border: 1px solid #047857; letter-spacing: 0.5px; display: flex; align-items: center; }
-.admin-month-select { border: 1px solid #cbd5e1; border-radius: 6px; padding: 2px 8px; font-size: 10px; font-family: 'Roboto Slab', serif; font-weight: 900; color: #0f172a; outline: none; background: #f8fafc; cursor: pointer; height: 30px; box-shadow: inset 1px 1px 2px rgba(0,0,0,0.05); text-transform: uppercase; }
-.hd-icon-btn { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; width: 30px; height: 30px; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; transition: 0.2s; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); outline: none; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1)); }
-.hd-icon-btn:active { box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1); transform: translateY(1px); }
-.hd-icon-btn.req { position: relative; }
-.hd-icon-btn.req .badge { position: absolute; top: -5px; right: -5px; background: #ef4444; color: #fff; font-size: 8px; font-weight: 900; border-radius: 50%; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid #fff; box-shadow: 0px 2px 4px rgba(0,0,0,0.3); }
+.header-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+@keyframes pulseBlink{0%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(1.3);}100%{opacity:1;transform:scale(1);}}
+.blink-dot{display:inline-block;width:6px;height:6px;background-color:#a7f3d0;border-radius:50%;margin-right:4px;animation:pulseBlink 1s infinite;vertical-align:middle;box-shadow:0 0 4px #a7f3d0;}
+.live-staff-badge{font-size:9px;font-weight:900;color:#fff;background:linear-gradient(145deg,#10b981,#059669);padding:4px 10px;border-radius:20px;box-shadow:2px 2px 5px rgba(0,0,0,0.1);text-transform:uppercase;border:1px solid #047857;letter-spacing:0.5px;display:flex;align-items:center;}
+.admin-month-select{border:1px solid #cbd5e1;border-radius:6px;padding:2px 8px;font-size:10px;font-family:'Roboto Slab',serif;font-weight:900;color:#0f172a;outline:none;background:#f8fafc;cursor:pointer;height:30px;box-shadow:inset 1px 1px 2px rgba(0,0,0,0.05);text-transform:uppercase;}
+.hd-icon-btn{background:#ffffff;border:1px solid #e2e8f0;border-radius:6px;width:30px;height:30px;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:0.2s;box-shadow:2px 2px 5px rgba(0,0,0,0.05);outline:none;filter:drop-shadow(0px 1px 1px rgba(0,0,0,0.1));}
+.hd-icon-btn.add{color:#3b82f6;font-weight:900;font-size:18px;}
+.hd-icon-btn:active{box-shadow:inset 2px 2px 4px rgba(0,0,0,0.1);transform:translateY(1px);}
+.hd-icon-btn.req{position:relative;width:auto;padding:0 8px;font-size:10px;font-weight:900;gap:4px;}
+.hd-icon-btn.req .badge{position:absolute;top:-5px;right:-5px;background:#ef4444;color:#fff;font-size:8px;font-weight:900;border-radius:50%;width:14px;height:14px;display:flex;align-items:center;justify-content:center;border:1px solid #fff;box-shadow:0px 2px 4px rgba(0,0,0,0.3);}
 
 /* CM209 - CSS Table Wrapper & Full Width */
-.dash-content { padding: 0; width: 100%; display: flex; flex-direction: column; flex-grow: 1; overflow: hidden; align-items: flex-start; justify-content: flex-start; }
-.table-wrapper { background: #fff; width: 100%; overflow-x: auto; flex-grow: 1; border-top: 1px solid #e2e8f0; }
-.att-table { width: 100%; border-collapse: collapse; min-width: max-content; }
-.att-table th, .att-table td { padding: 2px 4px; border: 1px solid #e2e8f0; text-align: center; vertical-align: middle; white-space: nowrap; font-size: 10px; }
-.att-table th { background: #f1f5f9; color: #0f172a; font-weight: 900; font-size: 9px; text-transform: uppercase; border-bottom: 2px solid #cbd5e1; height: 32px; position: sticky; top: 0; z-index: 10; }
+.dash-content{padding:0;width:100%;display:flex;flex-direction:column;flex-grow:1;overflow:hidden;align-items:flex-start;justify-content:flex-start;}
+.table-wrapper{background:#fff;width:100%;overflow-x:auto;flex-grow:1;border-top:1px solid #e2e8f0;}
+.att-table{width:100%;border-collapse:collapse;min-width:max-content;}
+.att-table th,.att-table td{padding:2px 4px;border:1px solid #e2e8f0;text-align:center;vertical-align:middle;white-space:nowrap;font-size:10px;}
+.att-table th{background:#f1f5f9;color:#0f172a;font-weight:900;font-size:9px;text-transform:uppercase;border-bottom:2px solid #cbd5e1;height:32px;position:sticky;top:0;z-index:10;}
 
 /* CM210 - CSS Sticky Columns ID Only Left Scroll Name */
-.att-table th.sticky-col, .att-table td.sticky-col { position: sticky; z-index: 15; background: #ffffff; border-right: 2px solid #cbd5e1; }
-.att-table th.sticky-col { background: #e2e8f0; z-index: 20; }
-.att-table tr:nth-child(even) td.sticky-col { background: #f8fafc; }
-.sticky-col.sno { left: 0; min-width: 30px; font-weight: 900; color: #475569; }
-.sticky-col.id { left: 30px; min-width: 60px; font-weight: 900; color: #3b82f6; }
+.att-table th.sticky-col,.att-table td.sticky-col{position:sticky;z-index:15;background:#ffffff;border-right:2px solid #cbd5e1;}
+.att-table th.sticky-col{background:#e2e8f0;z-index:20;}
+.att-table tr:nth-child(even) td.sticky-col{background:#f8fafc;}
+.sticky-col.sno{left:0;min-width:30px;font-weight:900;color:#475569;}
+.sticky-col.id{left:30px;min-width:60px;font-weight:900;color:#3b82f6;}
 
-/* CM211 - CSS Name, Role & Shift Column Decreased Size */
-.td-name { min-width: 220px; text-align: left; padding: 4px 6px !important; }
-.name-wrap { display: flex; flex-direction: column; gap: 2px; }
-.n-row { display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 900; color: #0f172a; text-transform: uppercase; }
-.r-row { font-size: 8px; color: #64748b; font-weight: 900; text-transform: uppercase; padding-left: 16px; }
-.s-row { display: flex; align-items: center; gap: 4px; font-size: 8px; color: #0f172a; font-weight: 900; background: #f1f5f9; padding: 2px 4px; border-radius: 4px; border: 1px solid #e2e8f0; margin-left: 16px; }
-.shift-icon-btn { cursor: pointer; color: #3b82f6; font-size: 11px; border: none; background: none; padding: 0; outline: none; font-weight: 900; transition: 0.2s; }
-.shift-icon-btn:hover { color: #2563eb; transform: scale(1.2); }
-.st-row { display: flex; gap: 4px; margin-left: 16px; margin-top: 2px; }
-.sb { padding: 1px 4px; border-radius: 3px; border: 1px solid; font-size: 8px; font-weight: 900; text-transform: uppercase; }
-.sb-w { background: #e0f2fe; color: #0284c7; border-color: #bae6fd; }
-.sb-p { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
-.sb-a { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
-.sb-l { background: #fef9c3; color: #854d0e; border-color: #fef08a; }
+/* CM211 - CSS Name, Role & Shift Column Alignment */
+.td-name{min-width:240px;text-align:left;padding:4px 6px !important;}
+.name-wrap{display:flex;flex-direction:column;gap:2px;}
+.n-row{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:900;color:#0f172a;text-transform:uppercase;}
+.r-row{font-size:9px;color:#475569;font-weight:900;text-transform:uppercase;padding-left:18px;margin-bottom:2px;}
+.st-row{display:flex;align-items:center;gap:6px;padding-left:18px;}
+.s-row{display:flex;align-items:center;gap:4px;font-size:9px;color:#0f172a;font-weight:900;background:#f1f5f9;padding:2px 6px;border-radius:4px;border:1px solid #e2e8f0;}
+.shift-icon-btn{cursor:pointer;color:#8b5cf6;font-size:12px;border:none;background:none;padding:0;outline:none;font-weight:900;transition:0.2s;}
+.shift-icon-btn:hover{color:#7c3aed;transform:scale(1.2);}
+.sb{padding:2px 6px;border-radius:4px;border:1px solid;font-size:9px;font-weight:900;text-transform:uppercase;}
+.sb-w{background:#e0f2fe;color:#0284c7;border-color:#bae6fd;}
+.gear-icon-btn{cursor:pointer;color:#475569;font-size:12px;border:none;background:none;padding:0;outline:none;transition:0.2s;margin-left:auto;margin-right:4px;}
+.gear-icon-btn:hover{color:#0f172a;transform:rotate(45deg);}
 
 /* CM212 - CSS 6-Punch Thin Grid Inside Cell */
-.punch-grid { display: flex; flex-direction: column; width: 110px; margin: 0 auto; background: #fff; cursor: pointer; transition: 0.2s; border: 1px solid transparent; border-radius: 4px; }
-.punch-grid:hover { border-color: #3b82f6; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); }
-.p-r { display: grid; grid-template-columns: 1fr 1fr; font-size: 8px; font-weight: 900; color: #334155; padding: 1px; text-align: center; border-bottom: 1px solid #f1f5f9; }
-.p-r span { display: inline-flex; justify-content: center; align-items: center; }
-.p-r span:first-child { border-right: 1px solid #f1f5f9; }
-.p-f { display: flex; justify-content: space-between; align-items: center; font-size: 9px; font-weight: 900; padding: 2px 4px; background: linear-gradient(145deg, #f1f5f9, #e2e8f0); border-radius: 0 0 4px 4px; color: #0f172a; }
-.hrs-bold { font-weight: 900; color: #000; }
-.late-txt { color: #ef4444; display: inline-flex; align-items: center; gap: 2px; }
-.st-b { padding: 1px 4px; border-radius: 2px; color: #fff; font-size: 8px; text-transform: uppercase; display: inline-block; min-width: 12px; text-align: center; }
+.punch-grid{display:flex;flex-direction:column;width:110px;margin:0 auto;background:#fff;cursor:pointer;transition:0.2s;border:1px solid transparent;border-radius:4px;}
+.punch-grid:hover{border-color:#3b82f6;box-shadow:0px 2px 5px rgba(0,0,0,0.1);}
+.p-r{display:grid;grid-template-columns:1fr 1fr;font-size:8px;font-weight:900;color:#334155;padding:1px;text-align:center;border-bottom:1px solid #f1f5f9;}
+.p-r span{display:inline-flex;justify-content:center;align-items:center;cursor:pointer;}
+.p-r span:hover{background:#e0f2fe;color:#0284c7;}
+.p-r span:first-child{border-right:1px solid #f1f5f9;}
+.p-f{display:flex;justify-content:space-between;align-items:center;font-size:9px;font-weight:900;padding:2px 4px;background:linear-gradient(145deg,#f1f5f9,#e2e8f0);border-radius:0 0 4px 4px;color:#0f172a;cursor:default;}
+.hrs-bold{font-weight:900;color:#000;}
+.st-b{padding:1px 4px;border-radius:2px;color:#fff;font-size:8px;text-transform:uppercase;display:inline-block;min-width:12px;text-align:center;}
+.wait-ico{font-size:12px;}
 
 /* CM213 - CSS Today Highlight & Zebra Rows */
-.today-col { background-color: #e0f2fe !important; border-left: 2px solid #3b82f6 !important; border-right: 2px solid #3b82f6 !important; }
-.att-table th.today-col { background-color: #bae6fd !important; color: #0284c7; border-bottom: 2px solid #3b82f6; }
-.att-table tr:nth-child(even) td:not(.sticky-col) { background: #f8fafc; }
-.att-table tr:nth-child(odd) td:not(.sticky-col) { background: #ffffff; }
-.att-table tr:nth-child(even) td.today-col { background: #dbeafe !important; }
+.today-col{background-color:#e0f2fe !important;border-left:2px solid #3b82f6 !important;border-right:2px solid #3b82f6 !important;}
+.att-table th.today-col{background-color:#bae6fd !important;color:#0284c7;border-bottom:2px solid #3b82f6;}
+.att-table tr:nth-child(even) td:not(.sticky-col){background:#f8fafc;}
+.att-table tr:nth-child(odd) td:not(.sticky-col){background:#ffffff;}
+.att-table tr:nth-child(even) td.today-col{background:#dbeafe !important;}
 
 /* CM214 - CSS Footer Row Totals */
-.footer-row td { background: #0f172a !important; color: #fff; font-weight: 900; text-transform: uppercase; padding: 8px 10px; border: 1px solid #334155; font-size: 10px; letter-spacing: 0.5px; text-align: left !important; position: sticky; bottom: 0; z-index: 10; }
-.footer-stats { display: flex; justify-content: flex-start; gap: 15px; align-items: center; flex-wrap: wrap; }
-.fs-item { background: #1e293b; padding: 4px 10px; border-radius: 6px; border: 1px solid #475569; display: inline-flex; align-items: center; gap: 4px; }
-.fs-lbl { color: #94a3b8; font-weight: 900; }
+.footer-row td{background:#0f172a !important;color:#fff;font-weight:900;text-transform:uppercase;padding:8px 10px;border:1px solid #334155;font-size:10px;letter-spacing:0.5px;text-align:left !important;position:sticky;bottom:0;z-index:10;}
+.footer-stats{display:flex;justify-content:flex-start;gap:15px;align-items:center;flex-wrap:wrap;}
+.fs-item{background:#1e293b;padding:4px 10px;border-radius:6px;border:1px solid #475569;display:inline-flex;align-items:center;gap:4px;}
+.fs-lbl{color:#94a3b8;font-weight:900;}
 
 /* CM215 - CSS Modals Generic Overlay */
-.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.8); display: none; align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(3px); }
-.modal-box { background: #ffffff; width: 95%; max-width: 320px; padding: 18px; border-radius: 12px; box-shadow: 0px 15px 30px rgba(0,0,0,0.4); position: relative; max-height: 85vh; overflow-y: auto; border-top: 5px solid #0f172a; }
-.modal-close { position: absolute; top: 8px; right: 10px; font-size: 18px; cursor: pointer; color: #94a3b8; border: none; background: none; font-weight: 900; outline: none; transition: 0.2s; }
-.modal-close:hover { color: #ef4444; }
-.modal-title { font-size: 12px; font-weight: 900; color: #0f172a; margin-bottom: 12px; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; text-transform: uppercase; }
-.modal-field { margin-bottom: 12px; position: relative; display: flex; flex-direction: column; }
-.modal-field label { display: block; font-size: 10px; font-weight: 900; color: #3b82f6; margin-bottom: 4px; text-transform: uppercase; }
-.modal-field input, .modal-field textarea, .modal-field select { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: 'Roboto Slab', serif; font-size: 11px; outline: none; background: #fff; font-weight: 800; color: #0f172a; text-transform: uppercase; }
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,23,42,0.8);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(3px);}
+.modal-box{background:#ffffff;width:95%;max-width:360px;padding:18px;border-radius:12px;box-shadow:0px 15px 30px rgba(0,0,0,0.4);position:relative;max-height:85vh;overflow-y:auto;border-top:5px solid #0f172a;}
+.modal-close{position:absolute;top:8px;right:10px;font-size:18px;cursor:pointer;color:#94a3b8;border:none;background:none;font-weight:900;outline:none;transition:0.2s;}
+.modal-close:hover{color:#ef4444;}
+.modal-title{font-size:12px;font-weight:900;color:#0f172a;margin-bottom:12px;border-bottom:2px solid #e2e8f0;padding-bottom:6px;text-transform:uppercase;}
+.modal-field{margin-bottom:10px;position:relative;display:flex;flex-direction:column;}
+.modal-field label{display:block;font-size:9px;font-weight:900;color:#3b82f6;margin-bottom:2px;text-transform:uppercase;}
+.modal-field input,.modal-field textarea,.modal-field select{width:100%;padding:6px 8px;border:1px solid #cbd5e1;border-radius:6px;font-family:'Roboto Slab',serif;font-size:10px;outline:none;background:#fff;font-weight:800;color:#0f172a;text-transform:uppercase;}
+.modal-btn{width:100%;background:linear-gradient(145deg,#0f172a,#1e293b);color:#fff;border:none;padding:10px;border-radius:8px;font-weight:900;cursor:pointer;margin-top:10px;font-size:11px;text-transform:uppercase;font-family:'Roboto Slab',serif;}
+.modal-btn.del{background:linear-gradient(145deg,#ef4444,#b91c1c);margin-top:15px;}
 
-/* CM216 - CSS Time Edit Modal & General Buttons */
-.time-list { display: flex; flex-direction: column; gap: 6px; }
-.time-row { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 6px 8px; border-radius: 6px; border: 1px solid #e2e8f0; font-size: 10px; font-weight: 900; color: #334155; }
-.time-lbl { width: 50px; font-weight: 900; color: #0f172a; }
-.time-val { font-size: 11px; flex-grow: 1; text-align: center; }
-.time-edit-btn { background: none; border: none; font-size: 14px; cursor: pointer; color: #3b82f6; outline: none; font-weight: 900; }
-.edit-mode-wrap { display: flex; gap: 4px; align-items: center; justify-content: flex-end; flex-grow: 1; }
-.t-sel { padding: 2px; border: 1px solid #cbd5e1; border-radius: 4px; font-family: 'Roboto Slab', serif; font-size: 10px; font-weight: 900; outline: none; }
-.save-t-btn { background: #10b981; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; font-size: 9px; font-weight: 900; cursor: pointer; }
-.modal-btn { width: 100%; background: linear-gradient(145deg, #0f172a, #1e293b); color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 900; cursor: pointer; margin-top: 10px; font-size: 11px; text-transform: uppercase; font-family: 'Roboto Slab', serif; }
+/* CM216 - CSS Time Edit Inline Selectors */
+.t-sel-grp{display:flex;gap:4px;align-items:center;width:100%;}
+.t-sel-grp select{flex:1;padding:4px;font-size:10px;}
+.shift-rad-wrap{display:flex;align-items:center;gap:8px;margin-bottom:8px;background:#f1f5f9;padding:8px;border-radius:6px;border:1px solid #cbd5e1;cursor:pointer;}
+.shift-rad-wrap input{cursor:pointer;}
+.shift-rad-wrap label{font-size:10px;font-weight:900;color:#0f172a;cursor:pointer;flex-grow:1;text-transform:uppercase;}
 
-/* CM217 - CSS Shift Change Modal */
-.shift-rad-wrap { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; background: #f1f5f9; padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1; cursor: pointer; }
-.shift-rad-wrap input { cursor: pointer; }
-.shift-rad-wrap label { font-size: 10px; font-weight: 900; color: #0f172a; cursor: pointer; flex-grow: 1; text-transform: uppercase; }
+/* CM217 - CSS Request Admin Actions Modal */
+.req-table{width:100%;border-collapse:collapse;min-width:500px;}
+.req-table th,.req-table td{padding:6px;border-bottom:1px solid #edf2f7;text-align:center;font-size:9px;font-weight:800;color:#2d3748;white-space:nowrap;}
+.req-table th{background:#f7fafc;color:#1a365d;font-weight:900;position:sticky;top:0;text-transform:uppercase;z-index:10;border-bottom:2px solid #cbd5e0;}
+.req-table tr:hover{background:#f0f4f8;}
+.req-chk{width:14px;height:14px;cursor:pointer;}
 
-/* CM218 - CSS Request Admin Actions Modal */
-.admin-req-item { padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 8px; background: #f8fafc; font-size: 10px; }
-.admin-req-header { display: flex; justify-content: space-between; margin-bottom: 6px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 4px; }
-.req-uid { font-weight: 900; color: #0f172a; font-size: 11px; }
-.req-date { font-weight: 900; color: #64748b; }
-.req-type { color: #3b82f6; font-weight: 900; margin-bottom: 4px; }
-.req-desc { color: #475569; font-weight: 600; margin-bottom: 8px; line-height: 1.4; }
-.req-act-wrap { display: flex; gap: 8px; justify-content: flex-end; }
-.req-btn { padding: 4px 12px; border: none; border-radius: 4px; font-size: 9px; font-weight: 900; cursor: pointer; color: #fff; text-transform: uppercase; }
-.btn-app { background: #10b981; } .btn-rej { background: #ef4444; }
-
-/* CM219 - CSS Utility Toasts & Print */
-.toast-msg { position: fixed; top: 70px; left: 50%; transform: translateX(-50%); background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 11px; font-weight: 900; text-transform: uppercase; box-shadow: 0px 6px 15px rgba(0,0,0,0.4); display: none; z-index: 2000; border: 1px solid #334155; }
-.toast-msg.error { background: #ef4444; border-color: #b91c1c; }
-@media print { @page { size: A3 landscape; margin: 5mm; } body { background: #fff; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .dash-header, .header-actions, .footer-row { display: none !important; } .table-wrapper { height: auto; overflow: visible; box-shadow: none; border: none; } .att-table { zoom: 0.65; } .att-table th, .att-table td { border: 1px solid #000; } }
+/* CM218 - CSS Utility Toasts Bottom No Box */
+.toast-msg{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:transparent;color:#10b981;font-size:11px;font-weight:900;text-transform:uppercase;box-shadow:none;display:none;z-index:2000;border:none;text-shadow:0px 1px 3px rgba(255,255,255,0.9);opacity:0;transition:opacity 0.3s ease;pointer-events:none;}
+.toast-msg.error{color:#ef4444;}
+@media print{@page{size:A3 landscape;margin:5mm;}body{background:#fff;}*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}.dash-header,.header-actions,.footer-row{display:none !important;}.table-wrapper{height:auto;overflow:visible;box-shadow:none;border:none;}.att-table{zoom:0.65;}.att-table th,.att-table td{border:1px solid #000;}}
 </style>
 </head>
 <body>
 
-<!-- CM220 - HTML App Container Start -->
+<!-- CM219 - HTML App Container Start -->
 <div id="appContainer">
-<div class="loader-overlay" id="pageLoader"><div class="main-loader"></div><div style="margin-top:10px; font-weight:900; color:#0f172a;">LOADING ADMIN DATA...</div></div>
+<div class="loader-overlay" id="pageLoader"><div class="main-loader"></div><div style="margin-top:10px;font-weight:900;color:#0f172a;">PROCESSING...</div></div>
 
-<!-- CM221 - HTML Login View Compact -->
+<!-- CM220 - HTML Login View -->
 <div id="loginView" class="wrapper">
 <div class="hospital-logo-container"><img id="hospLogo" src="" alt="Logo"></div>
-<div class="hospital-name">SANJEEVA MULTISPECIALTY HOSPITAL, ALLAGADDA</div>
-<div class="admin-badge-wrap"><span class="admin-badge-text">ADMIN SECURE LOGIN</span></div>
+<div class="hospital-name">SANJEEVA MULTISPECIALTY HOSPITAL</div>
+<div class="hospital-sub" style="font-size:9px;font-weight:900;color:#475569;margin-bottom:8px;">ADMIN ACCESS</div>
 <div class="form-inner">
 <form id="adminForm" onsubmit="handleAdminLogin(event)">
 <div class="field"><span class="input-icon">👤</span><input type="text" id="adminUser" placeholder="ADMIN USERNAME" oninput="enfU(event)" required></div>
-<div class="field"><span class="input-icon">🔒</span><input type="password" id="adminPass" placeholder="PASSWORD" required><span class="eye-icon" onclick="togglePass('adminPass', this)">👁️</span></div>
+<div class="field"><span class="input-icon">🔒</span><input type="password" id="adminPass" placeholder="PASSWORD" required><span class="eye-icon" onclick="togglePass('adminPass',this)">👁️</span></div>
 <div id="loginError" class="error-text"></div>
-<button type="submit" class="btn" id="loginBtn"><span>➔ SECURE LOGIN</span></button>
+<button type="submit" class="btn" id="loginBtn"><span>➔ ADMIN LOGIN</span></button>
 <div class="forgot-pass"><a href="#" onclick="opnMod('forgotModal')">❓ Forgot Password?</a></div>
 </form>
 </div></div>
 
-<!-- CM222 - HTML Admin Dashboard View -->
+<!-- CM221 - HTML Admin Dashboard View -->
 <div id="adminDashboardView" class="dashboard-view">
 
-<!-- CM223 - HTML Header -->
+<!-- CM222 - HTML Header -->
 <div class="dash-header">
-<div class="dash-title-wrap"><img id="dashLogo" src="" alt="Logo" class="dash-logo-small"><div class="dash-title-text"><span>SANJEEVA MULTISPECIALTY HOSPITAL, ALLAGADDA</span><span class="dash-title-sub">ADMINISTRATOR PORTAL</span></div></div>
+<div class="dash-title-wrap"><img id="dashLogo" src="" alt="Logo" class="dash-logo-small"><div class="dash-title-text"><span>SANJEEVA MULTISPECIALTY HOSPITAL</span><span class="dash-title-sub">ADMINISTRATOR PORTAL</span></div></div>
 <div class="header-actions">
 <span class="live-staff-badge" id="liveStaffCount"><span class="blink-dot"></span>LIVE STAFF: 0</span>
 <select class="admin-month-select" id="aMonth"></select>
+<button class="hd-icon-btn add" onclick="opnUserModal('add')" title="Add New User">+</button>
 <button class="hd-icon-btn" onclick="window.print()" title="Download Full Data">📥</button>
-<button class="hd-icon-btn req" onclick="openAdminReqModal()" title="Manage Requests">🔔<span class="badge" id="aReqCount">0</span></button>
+<button class="hd-icon-btn req" onclick="openAdminReqModal()" title="Manage Requests">🔔 REQUESTS<span class="badge" id="aReqCount">0</span></button>
 <button class="hd-icon-btn reload" onclick="fetchAdminData()" title="Refresh">↻</button>
 <button class="hd-icon-btn out" onclick="handleAdminLogout()" title="Logout" style="color:#ef4444;">⏻</button>
 </div></div>
 
-<!-- CM224 - HTML Content & Horizontal Scroll Table -->
+<!-- CM223 - HTML Content & Table -->
 <div class="dash-content"><div class="table-wrapper">
 <table class="att-table">
 <thead id="aTableHead"></thead>
@@ -212,24 +203,26 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f8
 </div></div>
 </div>
 
-<!-- CM225 - HTML Forgot Password Modal -->
-<div class="modal-overlay" id="forgotModal"><div class="modal-box">
+<!-- CM224 - HTML Modals (Forgot Password) -->
+<div class="modal-overlay" id="forgotModal"><div class="modal-box" style="max-width:280px;">
 <button class="modal-close" onclick="clsMod('forgotModal')">&times;</button>
 <div class="modal-title">FORGOT PASSWORD</div>
 <div class="modal-field"><label>USERNAME:</label><input type="text" id="fgUser" placeholder="Enter Username" oninput="enfU(event)"></div>
-<div class="modal-field"><label>NEW PASSWORD:</label><div style="position:relative;"><input type="password" id="fgPass" placeholder="Enter New Password" style="padding-right:30px;"><span class="eye-icon" onclick="togglePass('fgPass', this)">👁️</span></div></div>
+<div class="modal-field"><label>NEW PASSWORD:</label><div style="position:relative;"><input type="password" id="fgPass" placeholder="Enter New Password" style="padding-right:30px;"><span class="eye-icon" style="top:50%;" onclick="togglePass('fgPass',this)">👁️</span></div></div>
 <button class="modal-btn" id="fgBtn" onclick="handleForgotPass()">UPDATE PASSWORD</button>
 </div></div>
 
-<!-- CM226 - HTML Modals (Attendance Detail, Shift Change, Requests) -->
-<div class="modal-overlay" id="attModal"><div class="modal-box">
-<button class="modal-close" onclick="clsMod('attModal')">&times;</button>
-<div class="modal-title" id="attModTitle">ATTENDANCE DETAILS</div>
-<div id="attModCtx" style="background:#f8fafc; padding:8px; border-radius:6px; margin-bottom:10px; font-size:10px; border:1px solid #e2e8f0; font-weight:900; line-height:1.5;"></div>
-<div class="time-list" id="attModCont"></div>
+<!-- CM225 - HTML Modals (Time Edit specific Punch) -->
+<div class="modal-overlay" id="timeModModal"><div class="modal-box" style="max-width:260px;">
+<button class="modal-close" onclick="clsMod('timeModModal')">&times;</button>
+<div class="modal-title" id="tmTitle">EDIT TIME</div>
+<div id="tmCtx" style="background:#f8fafc;padding:8px;border-radius:6px;margin-bottom:12px;font-size:10px;border:1px solid #e2e8f0;font-weight:900;line-height:1.5;color:#0f172a;text-align:center;"></div>
+<div class="t-sel-grp"><select id="tmh"></select><select id="tmm"></select><select id="tma"><option value="AM">AM</option><option value="PM">PM</option></select></div>
+<button class="modal-btn" onclick="saveInlineTime()">SAVE TIME</button>
 </div></div>
 
-<div class="modal-overlay" id="shiftModal"><div class="modal-box">
+<!-- CM226 - HTML Modals (Shift Edit) -->
+<div class="modal-overlay" id="shiftModal"><div class="modal-box" style="max-width:300px;">
 <button class="modal-close" onclick="clsMod('shiftModal')">&times;</button>
 <div class="modal-title" id="shiftModTitle">CHANGE SHIFT (FROM TODAY)</div>
 <div class="shift-rad-wrap"><input type="radio" name="shiftSel" id="s4" value="4"><label for="s4">▶ 4-SHIFTS (Morning & Evening Splits)</label></div>
@@ -238,77 +231,117 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f8
 <button class="modal-btn" onclick="saveShift()" id="shiftSaveBtn">CONFIRM SHIFT</button>
 </div></div>
 
-<div class="modal-overlay" id="reqModal"><div class="modal-box" style="max-width: 400px;">
+<!-- CM227 - HTML Modals (Requests Bulk) -->
+<div class="modal-overlay" id="reqModal"><div class="modal-box" style="max-width:550px;">
 <button class="modal-close" onclick="clsMod('reqModal')">&times;</button>
-<div class="modal-title">ADMINISTRATOR LOGS & REQUESTS</div>
-<div id="reqAdminCont" style="max-height: 60vh; overflow-y: auto; padding-right: 4px;"></div>
+<div class="modal-title">PENDING REQUESTS</div>
+<div style="max-height:60vh;overflow-y:auto;overflow-x:auto;border-radius:6px;border:1px solid #e2e8f0;">
+<table class="req-table">
+<thead><tr><th>Icon</th><th>Select</th><th>Date</th><th>Type</th><th>Mod Time</th><th>Comment</th></tr></thead>
+<tbody id="reqAdminCont"></tbody>
+</table>
+</div>
+<button class="modal-btn" onclick="approveSelectedRequests()" id="bulkApproveBtn" style="background:linear-gradient(145deg,#10b981,#059669);margin-top:14px;">APPROVE SELECTED ✅</button>
 </div></div>
 
-<!-- CM227 - HTML Utility Toasts -->
-<div class="toast-msg" id="toastMsg"></div>
-
+<!-- CM228 - HTML Modals (User Management Add/Edit) Dynamic Fields -->
+<div class="modal-overlay" id="userModal"><div class="modal-box" style="max-width:400px;">
+<button class="modal-close" onclick="clsMod('userModal')">&times;</button>
+<div class="modal-title" id="userModalTitle">USER MANAGEMENT</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+<div class="modal-field"><label>USER ID:</label><input type="text" id="uId" oninput="enfU(event)"></div>
+<div class="modal-field"><label>USERNAME:</label><input type="text" id="uName" oninput="enfU(event)"></div>
+<div class="modal-field" style="grid-column:span 2;"><label>FULL NAME:</label><input type="text" id="uFullName"></div>
+<div class="modal-field"><label>PASSWORD:</label><input type="text" id="uPass"></div>
+<div class="modal-field"><label>ROLE:</label><input type="text" id="uRole"></div>
+<div class="modal-field"><label>SHIFT TYPE:</label><select id="uShiftType" onchange="togShtF()"><option value="4">4-SHIFTS</option><option value="2">2-SHIFTS</option><option value="night">NIGHT SHIFT</option></select></div>
+<div class="modal-field"><label>ACCESS:</label><select id="uAccess"><option value="staff">STAFF</option><option value="admin">ADMIN</option></select></div>
+<div class="modal-field" id="f-s1"><label>SHIFT 1 (M-IN):</label><div class="t-sel-grp"><select id="uS1h"></select><select id="uS1m"></select><select id="uS1a"><option value="AM">AM</option><option value="PM">PM</option></select></div></div>
+<div class="modal-field" id="f-s2"><label>SHIFT 2 (M-OUT):</label><div class="t-sel-grp"><select id="uS2h"></select><select id="uS2m"></select><select id="uS2a"><option value="AM">AM</option><option value="PM">PM</option></select></div></div>
+<div class="modal-field" id="f-s3"><label>SHIFT 3 (E-IN):</label><div class="t-sel-grp"><select id="uS3h"></select><select id="uS3m"></select><select id="uS3a"><option value="AM">AM</option><option value="PM">PM</option></select></div></div>
+<div class="modal-field" id="f-s4"><label>SHIFT 4 (E-OUT):</label><div class="t-sel-grp"><select id="uS4h"></select><select id="uS4m"></select><select id="uS4a"><option value="AM">AM</option><option value="PM">PM</option></select></div></div>
+<div class="modal-field" id="f-ni" style="display:none;"><label>NIGHT IN:</label><div class="t-sel-grp"><select id="uNIh"></select><select id="uNIm"></select><select id="uNIa"><option value="AM">AM</option><option value="PM">PM</option></select></div></div>
+<div class="modal-field" id="f-no" style="display:none;"><label>NIGHT OUT:</label><div class="t-sel-grp"><select id="uNOh"></select><select id="uNOm"></select><select id="uNOa"><option value="AM">AM</option><option value="PM">PM</option></select></div></div>
 </div>
+<button class="modal-btn" onclick="saveUser()" id="userSaveBtn">SAVE USER</button>
+<button class="modal-btn del" id="userDelBtn" onclick="opnDelConfirm()" style="display:none;">DELETE USER</button>
+</div></div>
+
+<!-- CM229 - HTML Modals (Delete Confirm with Password) -->
+<div class="modal-overlay" id="delConfirmModal"><div class="modal-box" style="max-width:280px;border-top-color:#ef4444;">
+<button class="modal-close" onclick="clsMod('delConfirmModal')">&times;</button>
+<div class="modal-title" style="color:#ef4444;">CONFIRM DELETION</div>
+<div style="font-size:10px;font-weight:900;color:#0f172a;margin-bottom:10px;text-align:center;">To delete <span id="delUidSpan" style="color:#ef4444;"></span>, enter THEIR current password below:</div>
+<div class="modal-field"><label>TARGET USER PASSWORD:</label><input type="text" id="delUserPass" placeholder="Enter password..."></div>
+<button class="modal-btn del" onclick="executeDeleteUser()" style="margin-top:0;">CONFIRM DELETE</button>
+</div></div>
+
+<!-- CM230 - HTML Utility Toasts Transparent Bottom -->
+<div class="toast-msg" id="toastMsg"></div>
+</div>
+
 <script>
-/* CM228 - JS Configuration and Global Variables */
-const ADMIN_WORKER_URL = "https://admin-login.contact-sanjeevahospital.workers.dev"; 
-const AppLinks = { logo: "https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png" };
-document.getElementById('hospLogo').src = AppLinks.logo; document.getElementById('dashLogo').src = AppLinks.logo;
-const AppConf = { mos: ["January","February","March","April","May","June","July","August","September","October","November","December"] };
-const today = new Date(); const cY = today.getFullYear(); const cM = today.getMonth(); const cD = today.getDate();
-const fDate = (d,m,y) => `${String(d).padStart(2,'0')} ${AppConf.mos[m].substring(0,3)} ${y}`;
+/* CM231 - JS Configuration and Globals */
+const ADMIN_WORKER_URL="https://admin-login.contact-sanjeevahospital.workers.dev";
+const AppLinks={logo:"https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png"};
+document.getElementById('hospLogo').src=AppLinks.logo;document.getElementById('dashLogo').src=AppLinks.logo;
+const AppConf={mos:["January","February","March","April","May","June","July","August","September","October","November","December"]};
+const today=new Date();const cY=today.getFullYear();const cM=today.getMonth();const cD=today.getDate();
+let adminUserObj=null,allUsersList=[],allAttendanceData=[],allRequestsData=[];
+let curEditUser="",curEditDate="",curPunchKey="",userModType="add",oldTimeVal="";
 
-let adminUserObj = null;
-let allUsersList = [];
-let allAttendanceData = [];
-let allRequestsData = [];
+/* CM232 - JS Utility Helpers & Shift Toggle */
+const enfU=(e)=>{e.target.value=e.target.value.replace(/[^a-zA-Z0-9]/g,'').toUpperCase();};
+const togglePass=(id,el)=>{const i=document.getElementById(id);if(i.type==='password'){i.type='text';el.innerText='🙈';}else{i.type='password';el.innerText='👁️';}};
+const clsMod=(id)=>document.getElementById(id).style.display="none";
+const opnMod=(id)=>document.getElementById(id).style.display="flex";
+const showLoader=()=>document.getElementById('pageLoader').style.display="flex";
+const hideLoader=()=>document.getElementById('pageLoader').style.display="none";
+const showToast=(msg,err=false)=>{const t=document.getElementById('toastMsg');t.innerText=msg;t.className=`toast-msg ${err?'error':'success'}`;t.style.display='block';setTimeout(()=>t.style.opacity='1',10);setTimeout(()=>{t.style.opacity='0';setTimeout(()=>t.style.display='none',300);},3000);};
+const popSel=(id,m)=>{let h="";for(let i=(m?0:1);i<=(m?59:12);i++)h+=`<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`;if(document.getElementById(id))document.getElementById(id).innerHTML=h;};
+const setTVal=(k,v)=>{if(!v||v==="-")return;let cln=v.replace('P(','').replace(')','').trim();let [t,m]=cln.split(' ');if(!t||!m)return;let [h,mn]=t.split(':');if(document.getElementById(`${k}h`))document.getElementById(`${k}h`).value=h;if(document.getElementById(`${k}m`))document.getElementById(`${k}m`).value=mn;if(document.getElementById(`${k}a`))document.getElementById(`${k}a`).value=m;};
+const getTVal=(k)=>`${document.getElementById(`${k}h`).value}:${document.getElementById(`${k}m`).value} ${document.getElementById(`${k}a`).value}`;
+['tmh','uS1h','uS2h','uS3h','uS4h','uNIh','uNOh'].forEach(id=>popSel(id,false));
+['tmm','uS1m','uS2m','uS3m','uS4m','uNIm','uNOm'].forEach(id=>popSel(id,true));
+const togShtF=()=>{const v=document.getElementById('uShiftType').value;['f-s1','f-s2','f-s3','f-s4','f-ni','f-no'].forEach(i=>document.getElementById(i).style.display='none');if(v==='4'){['f-s1','f-s2','f-s3','f-s4'].forEach(i=>document.getElementById(i).style.display='flex');}else if(v==='2'){['f-s1','f-s4'].forEach(i=>document.getElementById(i).style.display='flex');}else{['f-ni','f-no'].forEach(i=>document.getElementById(i).style.display='flex');}};
 
-/* CM229 - JS Utility Functions (Toggle Eye & Format) */
-const enfU = (e) => { e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase(); };
-const togglePass = (id, el) => { const inp = document.getElementById(id); if(inp.type === 'password'){ inp.type = 'text'; el.innerText = '🙈'; } else { inp.type = 'password'; el.innerText = '👁️'; } };
-const clsMod = (id) => document.getElementById(id).style.display = "none";
-const opnMod = (id) => document.getElementById(id).style.display = "flex";
-const showLoader = () => document.getElementById('pageLoader').style.display = "flex";
-const hideLoader = () => document.getElementById('pageLoader').style.display = "none";
-const showToast = (msg, isError = false) => { const t = document.getElementById('toastMsg'); t.innerText = msg; t.className = `toast-msg ${isError ? 'error' : ''}`; t.style.display = 'block'; t.style.opacity = '1'; setTimeout(() => { t.style.opacity = '0'; setTimeout(()=>t.style.display='none', 300); }, 3000); };
-const pTm = (tStr) => { if(!tStr || tStr === "-") return null; const [t, m] = tStr.split(' '); let [h, min] = t.split(':'); h = parseInt(h, 10); if (h === 12) h = 0; if (m === 'PM') h += 12; return h * 60 + parseInt(min, 10); };
-const fH = (m) => { if(m<=0) return "-"; const h = Math.floor(m/60); const mn = m%60; return `${h}h ${mn}m`; };
+/* CM233 - JS Time Calculation Helpers (Strict 12hr AM/PM) */
+const pTm=(v)=>{if(!v||v==="-")return null;let c=v.replace('P(','').replace(')','').trim();if(!c||c==="-")return null;let [t,m]=c.split(' ');if(!t||!m)return null;let [h,mn]=t.split(':');h=parseInt(h,10);if(h===12)h=0;if(m==='PM')h+=12;return h*60+parseInt(mn,10);};
+const calcHrs=(r,st)=>{let tm=0;const g=(v)=>pTm(v);if(st=='4'){let mi=g(r.mi),mo=g(r.mo),ei=g(r.ei),eo=g(r.eo);if(mi!==null&&mo!==null&&mo>=mi)tm+=(mo-mi);if(ei!==null&&eo!==null&&eo>=ei)tm+=(eo-ei);}else if(st=='2'){let mi=g(r.mi),eo=g(r.eo);if(mi!==null&&eo!==null&&eo>=mi)tm+=(eo-mi);}else{let ni=g(r.ni),no=g(r.no);if(ni!==null&&no!==null){if(no>=ni)tm+=(no-ni);else tm+=((24*60-ni)+no);}}if(tm<=0||tm>1440)return "-";const h=Math.floor(tm/60),mn=tm%60;return `${h}h ${mn}m`;};
 
-/* CM230 - JS Admin Authentication & Forgot Password */
-window.onload = () => { const saved = localStorage.getItem('smh_admin_session'); if (saved) { adminUserObj = JSON.parse(saved); showDashboard(); } };
-async function handleAdminLogin(e) { e.preventDefault(); const username = document.getElementById('adminUser').value.trim(); const password = document.getElementById('adminPass').value.trim(); const btn = document.getElementById('loginBtn'); const err = document.getElementById('loginError'); if(!ADMIN_WORKER_URL) { err.innerText = "Worker URL Missing!"; return; } btn.innerHTML = `<span class="loading-spinner"></span>`; err.innerText = ""; try { const res = await fetch(`${ADMIN_WORKER_URL}/api/admin-login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password }) }); const text = await res.text(); try { const data = JSON.parse(text); if (data.success && data.user) { adminUserObj = data.user; localStorage.setItem('smh_admin_session', JSON.stringify(adminUserObj)); showDashboard(); } else { err.innerText = data.message || "Admin Login Failed."; } } catch(jsonErr) { err.innerText = "API Error: " + text.substring(0, 50); } } catch (error) { err.innerText = "Network Error."; } finally { btn.innerHTML = `<span>➔ SECURE LOGIN</span>`; } }
-function handleAdminLogout() { localStorage.removeItem('smh_admin_session'); adminUserObj = null; document.getElementById("adminDashboardView").style.display="none"; document.getElementById("loginView").style.display="flex"; document.getElementById("adminForm").reset(); }
-async function handleForgotPass() { const u = document.getElementById('fgUser').value.trim(); const p = document.getElementById('fgPass').value.trim(); if(!u || !p) { alert("Fill all fields."); return; } const btn = document.getElementById('fgBtn'); btn.innerHTML = `<span class="loading-spinner"></span>`; try { const res = await fetch(`${ADMIN_WORKER_URL}/api/admin-forgot-password`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: u, newPassword: p }) }); const data = await res.json(); if(data.success) { showToast("Password Updated ✅"); clsMod('forgotModal'); document.getElementById('fgUser').value=""; document.getElementById('fgPass').value=""; } else { showToast(data.message || "User Not Found ❌", true); } } catch(e) { showToast("Network Error", true); } finally { btn.innerHTML = `UPDATE PASSWORD`; } }
+/* CM234 - JS Admin Authentication */
+window.onload=()=>{const saved=localStorage.getItem('smh_admin_session');if(saved){adminUserObj=JSON.parse(saved);showDashboard();}};
+const handleAdminLogin=async(e)=>{e.preventDefault();const u=document.getElementById('adminUser').value.trim(),p=document.getElementById('adminPass').value.trim();const b=document.getElementById('loginBtn'),err=document.getElementById('loginError');b.innerHTML=`<span class="loading-spinner"></span>`;err.innerText="";try{const res=await fetch(`${ADMIN_WORKER_URL}/api/admin-login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})});const data=await res.json();if(data.success&&data.user){adminUserObj=data.user;localStorage.setItem('smh_admin_session',JSON.stringify(adminUserObj));showDashboard();}else err.innerText=data.message||"Login Failed.";}catch(e){err.innerText="Network Error.";}finally{b.innerHTML=`<span>➔ ADMIN LOGIN</span>`;}};
+const handleAdminLogout=()=>{localStorage.removeItem('smh_admin_session');adminUserObj=null;document.getElementById("adminDashboardView").style.display="none";document.getElementById("loginView").style.display="flex";document.getElementById("adminForm").reset();};
+const handleForgotPass=async()=>{const u=document.getElementById('fgUser').value.trim(),p=document.getElementById('fgPass').value.trim();if(!u||!p)return alert("Fill all fields.");const b=document.getElementById('fgBtn');b.innerHTML=`<span class="loading-spinner"></span>`;try{const res=await fetch(`${ADMIN_WORKER_URL}/api/admin-forgot-password`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:u,newPassword:p})});const data=await res.json();if(data.success){showToast("Password Updated");clsMod('forgotModal');document.getElementById('fgUser').value="";document.getElementById('fgPass').value="";}else showToast(data.message||"Failed",true);}catch(e){showToast("Network Error",true);}finally{b.innerHTML=`UPDATE PASSWORD`;}};
 
-/* CM231 - JS Dashboard Setup and Month Dropdown */
-function showDashboard() { document.getElementById("loginView").style.display="none"; document.getElementById("adminDashboardView").style.display="flex"; popMos("aMonth"); fetchAdminData(); }
-const popMos = (elId) => { const s = document.getElementById(elId); let h = ""; for(let m=cM-2; m<=11; m++) { if(m>=0 && m<12) h+=`<option value="${m}-${cY}">${AppConf.mos[m].substring(0,3)} ${cY}</option>`; } s.innerHTML = h; s.value = `${cM}-${cY}`; s.onchange = () => { fetchAdminData(); }; };
+/* CM235 - JS Dashboard Fetch */
+const showDashboard=()=>{document.getElementById("loginView").style.display="none";document.getElementById("adminDashboardView").style.display="flex";const s=document.getElementById("aMonth");let h="";for(let m=cM-2;m<=11;m++){if(m>=0&&m<12)h+=`<option value="${m}-${cY}">${AppConf.mos[m].substring(0,3)} ${cY}</option>`;}s.innerHTML=h;s.value=`${cM}-${cY}`;s.onchange=fetchAdminData;fetchAdminData();};
+const fetchAdminData=async()=>{if(!adminUserObj)return;showLoader();try{const res=await fetch(`${ADMIN_WORKER_URL}/api/admin-data`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({adminId:adminUserObj.user_id})});const data=await res.json();if(data.success){allUsersList=data.users;allAttendanceData=data.attendance;allRequestsData=data.requests;renderAdminTable();const p=allRequestsData.filter(r=>r.status==='Pending').length;document.getElementById("aReqCount").innerText=p;}else showToast("Failed to load data",true);}catch(e){showToast("Network Error",true);}finally{hideLoader();}};
 
-/* CM232 - JS Fetch All Admin Data */
-async function fetchAdminData() { if(!adminUserObj) return; showLoader(); try { const payload = { adminId: adminUserObj.user_id, monthValue: document.getElementById("aMonth").value }; const res = await fetch(`${ADMIN_WORKER_URL}/api/admin-data`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); const data = await res.json(); if(data.success) { allUsersList = data.users; allAttendanceData = data.attendance; allRequestsData = data.requests; renderAdminTable(); updateReqCount(); } else { showToast("Failed to load data", true); } } catch(e) { showToast("Error loading admin data", true); } finally { hideLoader(); } }
-const updateReqCount = () => { const pendingCount = allRequestsData.filter(r => r.status === 'Pending').length; document.getElementById("aReqCount").innerText = pendingCount; };
+/* CM236 - JS Build Grid Helper */
+const buildGrid=(c,st,uId,dKey)=>{let h=calcHrs(c,st),sS="A",sC="#991b1b",sB="#fee2e2";if(h!=="-"){sS="P";sC="#166534";sB="#dcfce7";}else if(c.isFuture){sS="W";sC="#64748b";sB="#f1f5f9";}const fC=(v,k,l)=>{let dV=v||"-",wI=dV.startsWith('P(')?`<span class="wait-ico" title="Waiting">⏳</span>`:'';if(wI)dV=dV.replace('P(','').replace(')','');let cS=wI?'color:#ef4444;':'';return `<span onclick="prepMod('${uId}','${dKey}','${k}','${dV}','${l}')" style="${cS}">${k.toUpperCase()}: ${dV} ${wI}</span>`;};let gH='';if(st==='2')gH=`<div class="p-r">${fC(c.mi,'mi','MRG IN')}${fC(c.eo,'eo','EVN OUT')}</div>`;else if(st==='night')gH=`<div class="p-r">${fC(c.ni,'ni','NGT IN')}${fC(c.no,'no','NGT OUT')}</div>`;else gH=`<div class="p-r">${fC(c.mi,'mi','MRG IN')}${fC(c.mo,'mo','MRG OUT')}</div><div class="p-r">${fC(c.ei,'ei','EVN IN')}${fC(c.eo,'eo','EVN OUT')}</div>`;return `<div class="punch-grid">${gH}<div class="p-f" style="background:${sB};color:${sC}"><span>Hrs: <span class="hrs-bold">${h}</span></span><span class="st-b" style="background:${sC}">${sS}</span></div></div>`;};
 
-/* CM233 - JS Calculate Hours Helper */
-const calcHrs = (r, st) => { let tm=0; if(st=='4') { if(r.mi!=="-"&&r.mo!=="-") tm+=(pTm(r.mo)-pTm(r.mi)); if(r.ei!=="-"&&r.eo!=="-") tm+=(pTm(r.eo)-pTm(r.ei)); } else if(st=='2') { if(r.mi!=="-"&&r.eo!=="-") tm+=(pTm(r.eo)-pTm(r.mi)); } else { if(r.ni!=="-"&&r.no!=="-") tm+=((24*60-pTm(r.ni))+pTm(r.no)); } return fH(tm); };
+/* CM237 - JS Render Admin Table */
+const renderAdminTable=()=>{const vp=document.getElementById("aMonth").value.split('-'),sM=parseInt(vp[0]),sY=parseInt(vp[1]),isCur=(sM===cM&&sY===cY),mD=new Date(sY,sM+1,0).getDate(),thd=document.getElementById("aTableHead");let thH=`<tr><th class="sticky-col sno">S.No</th><th class="sticky-col id">ID</th><th class="td-name">NAME & DETAILS</th>`;for(let d=1;d<=mD;d++){const isT=(isCur&&d===cD);thH+=`<th class="${isT?'today-col':''}" ${isT?'id="td-today-th"':''}>${d} ${AppConf.mos[sM].substring(0,3)}</th>`;}thd.innerHTML=thH+`</tr>`;const tb=document.getElementById("aTableBody");tb.innerHTML='';let tA=0;allUsersList.forEach((stf,idx)=>{let sN=stf.shift_type=='2'?'2-SHIFTS':(stf.shift_type=='4'?'4-SHIFTS':'NIGHT SHIFT');let nC=`<td class="td-name"><div class="name-wrap"><div class="n-row">👤 ${stf.full_name}</div><div class="r-row">${stf.role||'STAFF'}</div><div class="st-row"><span class="s-row">${sN} <button class="shift-icon-btn" onclick="trigShift('${stf.user_id}','${stf.shift_type}')">⇄</button></span><span class="sb sb-w">WORKING DAYS: ${mD}</span><button class="gear-icon-btn" onclick="opnUserModal('edit','${stf.user_id}')">⚙️</button></div></div></td>`;let tr=`<tr><td class="sticky-col sno">${idx+1}</td><td class="sticky-col id">${stf.user_id}</td>${nC}`;for(let d=1;d<=mD;d++){const isT=(isCur&&d===cD);let dK=`${String(d).padStart(2,'0')} ${AppConf.mos[sM].substring(0,3)} ${sY}`;let dL=allAttendanceData.filter(l=>String(l.user_id)===String(stf.user_id)&&l.attendance_date===dK);dL.sort((a,b)=>pTm(a.taken_current_time)-pTm(b.taken_current_time));let eS=(dL.length>0&&dL[0].shift_type)?dL[0].shift_type:stf.shift_type;let rD={mi:"-",mo:"-",ei:"-",eo:"-",ni:"-",no:"-",isFuture:(sY>cY||(sY===cY&&sM>cM)||(isCur&&d>cD))};let ep=eS=='2'?['mi','eo']:(eS=='4'?['mi','mo','ei','eo']:['ni','no']);for(let i=0;i<Math.min(dL.length,ep.length);i++)rD[ep[i]]=dL[i].taken_current_time;if(isT&&rD.mi!=="-")tA++;tr+=`<td class="${isT?'today-col':''}">${buildGrid(rD,eS,stf.user_id,dK)}</td>`;}tb.innerHTML+=tr+`</tr>`;});document.getElementById("liveStaffCount").innerHTML=`<span class="blink-dot"></span>LIVE STAFF: ${tA}`;document.getElementById("aTableFoot").innerHTML=`<tr class="footer-row"><td colspan="${3+mD}"><div class="footer-stats"><span class="fs-lbl">TODAY TOTALS:</span><span class="fs-item">LIVE IN HOSPITAL: ${tA}</span></div></td></tr>`;setTimeout(()=>{const e=document.getElementById('td-today-th');if(e)e.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});},300);};
 
-/* CM234 - JS Build Grid Cell for Admin */
-const buildGrid = (c, st) => { let h = calcHrs(c, st); let statStr = "A", statCol = "#991b1b", statBg = "#fee2e2"; if(h !== "-") { statStr = "P"; statCol = "#166534"; statBg = "#dcfce7"; } else if(c.isFuture) { statStr = "W"; statCol = "#64748b"; statBg = "#f1f5f9"; } return `<div class="punch-grid"><div class="p-r"><span>MI:${c.mi}</span><span>MO:${c.mo}</span></div><div class="p-r"><span>EI:${c.ei}</span><span>EO:${c.eo}</span></div><div class="p-r"><span>NI:${c.ni}</span><span>NO:${c.no}</span></div><div class="p-f" style="background:${statBg}; color:${statCol}"><span>Hrs: <span class="hrs-bold">${h}</span></span><span class="st-b" style="background:${statCol}">${statStr}</span></div></div>`; };
+/* CM238 - JS Time Modification Logic */
+const prepMod=(uId,dK,pK,cV,l)=>{curEditUser=uId;curEditDate=dK;curPunchKey=pK;oldTimeVal=cV;const u=allUsersList.find(x=>String(x.user_id)===String(uId));document.getElementById("tmTitle").innerText=`EDIT ${l}`;document.getElementById("tmCtx").innerHTML=`USER: ${u?u.full_name:uId} <br> DATE: ${dK}`;setTVal('tm',cV);opnMod("timeModModal");};
+const saveInlineTime=async()=>{const nT=getTVal('tm');showLoader();try{const res=await fetch(`${ADMIN_WORKER_URL}/api/admin-update-time`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:curEditUser,date:curEditDate,newTime:nT,oldTime:oldTimeVal})});const data=await res.json();if(data.success){clsMod('timeModModal');showToast("Time Updated");fetchAdminData();}else showToast("Failed",true);}catch(e){showToast("Error",true);}finally{hideLoader();}};
 
-/* CM235 - JS Render Admin Table Logic */
-const renderAdminTable = () => { const vp = document.getElementById("aMonth").value.split('-'); const sM = parseInt(vp[0]), sY = parseInt(vp[1]); const isCurMonth = (sM === cM && sY === cY); const mD = new Date(sY, sM+1, 0).getDate(); const thd = document.getElementById("aTableHead"); let thHTML = `<tr><th class="sticky-col sno">S.No</th><th class="sticky-col id">ID</th><th class="td-name">NAME, SHIFT & STATS</th>`; for(let d=1; d<=mD; d++) { const isToday = (isCurMonth && d===cD); thHTML += `<th class="${isToday ? 'today-col' : ''}" ${isToday ? 'id="td-today-th"' : ''}>${d} ${AppConf.mos[sM].substring(0,3)}</th>`; } thd.innerHTML = thHTML + `</tr>`; const tb = document.getElementById("aTableBody"); tb.innerHTML = ''; let totAtt=0, totLate=0, liveStf=0; allUsersList.forEach((stf, idx) => { let shiftName = stf.shift_type == '2' ? '2-SHIFTS' : (stf.shift_type == '4' ? '4-SHIFTS' : 'NIGHT SHIFT'); let stats = `<div class="st-row"><span class="sb sb-w">TOTAL DAYS: ${mD}</span></div>`; let sh = `<div class="s-row"><span>${shiftName}</span><button class="shift-icon-btn" onclick="trigShift('${stf.user_id}', '${stf.shift_type}')" title="Change Shift">⇄</button></div>`; let nc = `<td class="td-name"><div class="name-wrap"><div class="n-row">👤 ${stf.full_name}</div><div class="r-row">${stf.role || 'STAFF'}</div>${sh}${stats}</div></td>`; let tr = `<tr><td class="sticky-col sno">${idx+1}</td><td class="sticky-col id">${stf.user_id}</td>${nc}`; for(let d=1; d<=mD; d++) { const isToday = (isCurMonth && d===cD); let dKey = `${String(d).padStart(2,'0')} ${AppConf.mos[sM].substring(0,3)} ${sY}`; let dayLogs = allAttendanceData.filter(l => l.user_id === stf.user_id && l.attendance_date === dKey); dayLogs.sort((a,b) => pTm(a.taken_current_time) - pTm(b.taken_current_time)); let rD = { mi: "-", mo: "-", ei: "-", eo: "-", ni: "-", no: "-", isFuture: (sY>cY || (sY===cY && sM>cM) || (isCurMonth && d>cD)) }; let ep = stf.shift_type=='2'?['mi','eo']:(stf.shift_type=='4'?['mi','mo','ei','eo']:['ni','no']); for(let i=0; i<Math.min(dayLogs.length, ep.length); i++) rD[ep[i]] = dayLogs[i].taken_current_time; if(isToday && rD.mi !== "-") totAtt++; tr += `<td class="${isToday ? 'today-col' : ''}" onclick="opnAttMod('${stf.user_id}', '${stf.full_name}', '${stf.shift_type}', '${dKey}', '${JSON.stringify(rD)}')">${buildGrid(rD, stf.shift_type)}</td>`; } tb.innerHTML += tr + `</tr>`; }); document.getElementById("liveStaffCount").innerHTML = `<span class="blink-dot"></span>LIVE STAFF: ${totAtt}`; document.getElementById("aTableFoot").innerHTML = `<tr class="footer-row"><td colspan="${3+mD}"><div class="footer-stats"><span class="fs-lbl">TODAY TOTALS:</span><span class="fs-item">ATTENDED: ${totAtt}</span><span class="fs-item" style="color:#10b981;">LIVE IN HOSPITAL: ${totAtt}</span></div></td></tr>`; setTimeout(()=>{ const el=document.getElementById('td-today-th'); if(el) el.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); }, 300); };
+/* CM239 - JS Shift Change Logic */
+const trigShift=(uId,cT)=>{curEditUser=uId;if(document.getElementById(`s${cT}`))document.getElementById(`s${cT}`).checked=true;opnMod("shiftModal");};
+const saveShift=async()=>{const v=document.querySelector('input[name="shiftSel"]:checked').value,b=document.getElementById('shiftSaveBtn');b.innerHTML='UPDATING...';try{const res=await fetch(`${ADMIN_WORKER_URL}/api/admin-update-shift`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:curEditUser,newShift:v})});const data=await res.json();if(data.success){clsMod("shiftModal");showToast("Shift Updated");fetchAdminData();}else showToast("Failed",true);}catch(e){showToast("Error",true);}finally{b.innerHTML='CONFIRM SHIFT';}};
 
-/* CM236 - JS Admin Edit Time Modal Logic */
-let curEditUser = "", curEditDate = "", curEditShift = "";
-const opnAttMod = (uId, uName, sType, dateStr, rDStr) => { curEditUser=uId; curEditDate=dateStr; curEditShift=sType; const rD = JSON.parse(rDStr); document.getElementById("attModTitle").innerText = `EDIT ATTENDANCE - ${uName}`; document.getElementById("attModCtx").innerHTML = `<div style="color:#3b82f6;">SHIFT: ${sType.toUpperCase()}</div><div style="color:#0f172a;">DATE: ${dateStr}</div>`; const c = document.getElementById("attModCont"); c.innerHTML=""; const p = [ {k:'mi', l:'MRG IN'}, {k:'mo', l:'MRG OUT'}, {k:'ei', l:'EVN IN'}, {k:'eo', l:'EVN OUT'}, {k:'ni', l:'NGT IN'}, {k:'no', l:'NGT OUT'} ]; p.forEach(x => { c.innerHTML += `<div class="time-row" id="tr-${x.k}"><span class="time-lbl">${x.l}</span><span class="time-val">${rD[x.k]}</span><button class="time-edit-btn" onclick="edtT('${x.k}', '${rD[x.k]}')">✎</button></div>`; }); opnMod("attModal"); };
-const edtT = (k, val) => { const el = document.getElementById(`tr-${k}`); let h="", m="", a=""; for(let i=1;i<=12;i++) h+=`<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`; for(let i=0;i<60;i++) m+=`<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`; a = `<option value="AM">AM</option><option value="PM">PM</option>`; el.innerHTML = `<span class="time-lbl">${k.toUpperCase()}</span><div class="edit-mode-wrap"><select class="t-sel" id="h-${k}">${h}</select>:<select class="t-sel" id="m-${k}">${m}</select><select class="t-sel" id="a-${k}">${a}</select> <button class="save-t-btn" onclick="savT('${k}')">SAVE</button></div>`; };
-async function savT(k) { const nT = `${document.getElementById(`h-${k}`).value}:${document.getElementById(`m-${k}`).value} ${document.getElementById(`a-${k}`).value}`; try { showLoader(); const res = await fetch(`${ADMIN_WORKER_URL}/api/admin-update-time`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ adminId: adminUserObj.user_id, userId: curEditUser, date: curEditDate, punchKey: k, newTime: nT }) }); const data = await res.json(); if(data.success) { clsMod('attModal'); showToast("Time Updated ✅"); fetchAdminData(); } else { showToast("Failed to update time", true); } } catch(e) { showToast("Network Error", true); } finally { hideLoader(); } }
+/* CM240 - JS Bulk Request Logic */
+const openAdminReqModal=()=>{const c=document.getElementById("reqAdminCont");c.innerHTML="";if(allRequestsData.length===0){c.innerHTML="<tr><td colspan='6'>NO PENDING REQUESTS.</td></tr>";opnMod("reqModal");return;}allRequestsData.forEach(r=>{if(r.status!=='Pending')return;c.innerHTML+=`<tr><td>⏳</td><td><input type="checkbox" class="req-chk" value="${r.request_id}"></td><td>${r.request_date}<br><span style="color:#ef4444;font-size:8px;">UID: ${r.user_id}</span></td><td><span style="color:#3b82f6;font-weight:900;">${r.mod_type}</span></td><td><span class="hrs-bold">${r.mod_time}</span></td><td>${r.description}</td></tr>`;});opnMod("reqModal");};
+const approveSelectedRequests=async()=>{const cb=document.querySelectorAll('.req-chk:checked');if(cb.length===0)return showToast("Select requests to approve",true);const b=document.getElementById('bulkApproveBtn');b.innerHTML='APPROVING...';showLoader();try{const reqIds=Array.from(cb).map(c=>parseInt(c.value));await Promise.all(reqIds.map(id=>fetch(`${ADMIN_WORKER_URL}/api/admin-action-request`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({reqId:id,status:'Approved'})})));clsMod('reqModal');showToast(`Approved ${reqIds.length} Requests`);fetchAdminData();}catch(e){showToast("Error",true);}finally{b.innerHTML='APPROVE SELECTED ✅';hideLoader();}};
 
-/* CM237 - JS Admin Shift Change Logic */
-const trigShift = (uId, curType) => { curEditUser=uId; document.getElementById("shiftModTitle").innerText = `CHANGE SHIFT (APPLIES FROM TODAY)`; if(document.getElementById(`s${curType}`)) document.getElementById(`s${curType}`).checked = true; opnMod("shiftModal"); };
-async function saveShift() { const v = document.querySelector('input[name="shiftSel"]:checked').value; const btn = document.getElementById('shiftSaveBtn'); btn.innerHTML = 'UPDATING...'; try { const res = await fetch(`${ADMIN_WORKER_URL}/api/admin-update-shift`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ adminId: adminUserObj.user_id, userId: curEditUser, newShift: v }) }); const data = await res.json(); if(data.success) { clsMod("shiftModal"); showToast("Shift Updated ✅"); fetchAdminData(); } else { showToast("Failed to update shift", true); } } catch(e) { showToast("Network Error", true); } finally { btn.innerHTML = 'CONFIRM SHIFT'; } }
-
-/* CM238 - JS Admin Approve Reject Requests */
-const openAdminReqModal = () => { const c = document.getElementById("reqAdminCont"); c.innerHTML=""; if(allRequestsData.length===0){ c.innerHTML = "<div style='padding:10px; font-size:10px; font-weight:900;'>NO PENDING REQUESTS.</div>"; opnMod("reqModal"); return; } allRequestsData.forEach(r => { let acts = r.status==='Pending' ? `<div class="req-act-wrap"><button class="req-btn btn-app" onclick="actReq(${r.request_id}, 'Approved')">APPROVE ✅</button><button class="req-btn btn-rej" onclick="actReq(${r.request_id}, 'Rejected')">REJECT ❌</button></div>` : `<div style="text-align:right; font-weight:900; color:${r.status==='Approved'?'#10b981':'#ef4444'};">${r.status.toUpperCase()}</div>`; c.innerHTML += `<div class="admin-req-item"><div class="admin-req-header"><span class="req-uid">USER ID: ${r.user_id}</span><span class="req-date">${r.request_date}</span></div><div class="req-type">${r.mod_type}</div><div class="req-desc">${r.description}</div>${acts}</div>`; }); opnMod("reqModal"); };
-async function actReq(reqId, newStatus) { try { showLoader(); const res = await fetch(`${ADMIN_WORKER_URL}/api/admin-action-request`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ adminId: adminUserObj.user_id, reqId: reqId, status: newStatus }) }); const data = await res.json(); if(data.success) { clsMod('reqModal'); showToast(`Request ${newStatus} ✅`); fetchAdminData(); } else { showToast("Failed to update", true); } } catch(e) { showToast("Network Error", true); } finally { hideLoader(); } }
+/* CM241 - JS User Management Logic (Add/Edit/Delete) */
+const opnUserModal=(mode,uId="")=>{userModType=mode;document.getElementById("userDelBtn").style.display=mode==='edit'?'block':'none';document.getElementById("userModalTitle").innerText=mode==='add'?'ADD NEW USER':'EDIT USER';if(mode==='add'){['uId','uName','uFullName','uPass','uRole'].forEach(id=>document.getElementById(id).value="");document.getElementById('uShiftType').value='4';document.getElementById('uAccess').value='staff';}else{const u=allUsersList.find(x=>String(x.user_id)===String(uId));if(u){curEditUser=u.user_id;document.getElementById('uId').value=u.user_id;document.getElementById('uName').value=u.username;document.getElementById('uFullName').value=u.full_name;document.getElementById('uPass').value=u.password;document.getElementById('uRole').value=u.role;document.getElementById('uShiftType').value=u.shift_type;document.getElementById('uAccess').value=u.access||'staff';setTVal('uS1',u.shift_1_time);setTVal('uS2',u.shift_2_time);setTVal('uS3',u.shift_3_time);setTVal('uS4',u.shift_4_time);setTVal('uNI',u.night_in_time);setTVal('uNO',u.night_out_time);}}togShtF();opnMod("userModal");};
+const saveUser=async()=>{const pl={userId:document.getElementById('uId').value.trim(),username:document.getElementById('uName').value.trim(),fullName:document.getElementById('uFullName').value.trim(),password:document.getElementById('uPass').value.trim(),role:document.getElementById('uRole').value.trim(),shiftType:document.getElementById('uShiftType').value,access:document.getElementById('uAccess').value,s1:getTVal('uS1'),s2:getTVal('uS2'),s3:getTVal('uS3'),s4:getTVal('uS4'),ni:getTVal('uNI'),no:getTVal('uNO')};if(!pl.userId||!pl.username||!pl.password)return showToast("Fill Required Fields",true);const b=document.getElementById('userSaveBtn');b.innerHTML='SAVING...';showLoader();try{const ep=userModType==='add'?'/api/admin-add-user':'/api/admin-edit-user';const res=await fetch(`${ADMIN_WORKER_URL}${ep}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(pl)});const data=await res.json();if(data.success){clsMod('userModal');showToast(`User ${userModType==='add'?'Added':'Updated'}`);fetchAdminData();}else showToast("Failed",true);}catch(e){showToast("Error",true);}finally{b.innerHTML='SAVE USER';hideLoader();}};
+const opnDelConfirm=()=>{document.getElementById("delUidSpan").innerText=curEditUser;document.getElementById("delUserPass").value="";opnMod("delConfirmModal");};
+const executeDeleteUser=async()=>{const p=document.getElementById("delUserPass").value.trim();if(!p)return showToast("Password Required",true);showLoader();try{const res=await fetch(`${ADMIN_WORKER_URL}/api/admin-delete-user`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:curEditUser,userPassword:p})});const data=await res.json();if(data.success){clsMod('delConfirmModal');clsMod('userModal');showToast("User Deleted");fetchAdminData();}else showToast(data.message||"Failed to delete",true);}catch(e){showToast("Error",true);}finally{hideLoader();}};
 </script>
 </body>
 </html>
