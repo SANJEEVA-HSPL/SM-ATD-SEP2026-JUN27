@@ -4,34 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SM-STAFF-ATD</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a365d">
+<link rel="icon" type="image/png" href="https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png">
+<link rel="apple-touch-icon" href="https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={theme:{extend:{}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;800;900&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0f172a">
-<link rel="apple-touch-icon" href="https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png">
 <style>
 
-/* CM096 - CSS Global Reset and Body */
+/* CM348 - CSS Global Reset and Body */
 * { scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; box-sizing: border-box; }
 ::-webkit-scrollbar { display: none; }
 body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0f4f8; min-height: 100vh; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #1a202c; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-/* CM097 - CSS Layout and Loaders */
+/* CM349 - CSS Layout and Loaders */
 #appContainer { width: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; }
 .loading-spinner { border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; border-top: 2px solid #fff; width: 14px; height: 14px; animation: spin 1s linear infinite; display: inline-block; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 .loader-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.8); z-index: 9999; display: none; align-items: center; justify-content: center; flex-direction: column; }
 .main-loader { border: 4px solid #e2e8f0; border-top: 4px solid #3182ce; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
 
-/* CM098 - CSS Admin Corner Button */
+/* CM350 - CSS Admin Corner Button */
 .admin-corner-btn { position: absolute; top: 12px; right: 12px; background: linear-gradient(145deg, #1a365d, #2b6cb0); color: #fff; padding: 6px 14px; border-radius: 8px; font-size: 9px; font-weight: 900; text-decoration: none; box-shadow: 4px 4px 10px rgba(0,0,0,0.15); text-transform: uppercase; letter-spacing: 0.5px; z-index: 1000; transition: 0.2s; border: 1px solid #2b6cb0; }
 .admin-corner-btn:active { transform: translateY(2px); box-shadow: 2px 2px 5px rgba(0,0,0,0.15); }
 
-/* CM099 - CSS Login Card Styles HD */
+/* CM351 - CSS Login Card Styles HD */
 .wrapper { overflow: hidden; width: 240px; background: #ffffff; padding: 18px 14px; border-radius: 16px; box-shadow: 10px 10px 20px #d1d9e6, -10px -10px 20px #ffffff; border-top: 5px solid #3182ce; position: relative; }
 .hospital-logo-container { display: flex; justify-content: center; margin-bottom: 8px; width: 100%; }
 .hospital-logo-container img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #3182ce; padding: 2px; object-fit: contain; background: #fff; box-shadow: 0px 4px 10px rgba(49,130,206,0.2); }
@@ -39,12 +39,13 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 .wrapper .title-text { display: flex; width: 100%; margin-bottom: 12px; border-bottom: 2px solid #edf2f7; padding-bottom: 6px; justify-content: center; }
 .wrapper .title { font-size: 10px; font-weight: 900; color: #4a5568; text-transform: uppercase; }
 
-/* CM100 - CSS Forms, Eye Icon and Inputs */
+/* CM352 - CSS Forms, Eye Icon and Inputs */
 .form-inner form .field { height: 34px; width: 100%; margin-top: 10px; position: relative; }
 .input-icon { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); font-size: 11px; color: #3182ce; z-index: 10; filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1)); }
 .eye-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 14px; color: #4a5568; z-index: 10; transition: 0.2s; }
 .eye-icon:hover { color: #3182ce; }
-.form-inner form .field input { height: 100%; width: 100%; outline: none; padding-left: 26px; padding-right: 26px; border-radius: 6px; border: 1px solid #cbd5e0; font-family: 'Roboto Slab', serif; font-size: 10px; transition: all 0.3s ease; background: inset 2px 2px 5px rgba(0,0,0,0.02); color: #2d3748; font-weight: 900; box-shadow: inset 0px 2px 4px rgba(0,0,0,0.03); letter-spacing: 0.5px; }
+.form-inner form .field input { height: 100%; width: 100%; outline: none; padding-left: 26px; padding-right: 26px; border-radius: 6px; border: 1px solid #cbd5e0; font-family: 'Roboto Slab', serif; font-size: 10px; transition: all 0.3s ease; background: inset 2px 2px 5px rgba(0,0,0,0.02); color: #2d3748; font-weight: 900; box-shadow: inset 0px 2px 4px rgba(0,0,0,0.03); letter-spacing: 0.5px; text-transform: uppercase; }
+.form-inner form .field input#staffPass { text-transform: none; }
 .form-inner form .field input:focus { border-color: #3182ce; background: #fff; box-shadow: 0px 0px 0px 2px rgba(49,130,206,0.2); }
 .form-inner form .btn { height: 36px; border-radius: 6px; overflow: hidden; margin-top: 16px; background: linear-gradient(145deg, #4299e1, #2b6cb0); box-shadow: 0px 4px 10px rgba(43,108,176,0.3); display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; transition: 0.2s; border: none; outline: none; width: 100%; font-family: 'Roboto Slab', serif; border-bottom: 2px solid #1a365d; }
 .form-inner form .btn:active { transform: translateY(2px); box-shadow: 0px 2px 5px rgba(43,108,176,0.4); border-bottom-width: 0px; }
@@ -53,7 +54,7 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 .forgot-link { display: block; text-align: center; margin-top: 12px; font-size: 9px; color: #4a5568; font-weight: 900; text-decoration: none; transition: 0.2s; text-transform: uppercase; }
 .forgot-link:hover { color: #3182ce; }
 
-/* CM101 - CSS Dashboard Header Elements HD */
+/* CM353 - CSS Dashboard Header Elements HD */
 .dashboard-view { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f0f4f8; }
 .dash-header { background: #ffffff; padding: 10px 14px; box-shadow: 0px 4px 15px rgba(0,0,0,0.04); display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #3182ce; position: sticky; top: 0; z-index: 100; }
 .dash-title-wrap { display: flex; align-items: center; gap: 8px; }
@@ -68,7 +69,7 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 .hd-icon-btn.reload { color: #38a169; font-weight: 900; }
 .hd-icon-btn.out { color: #e53e3e; font-weight: 900; }
 
-/* CM102 - CSS Profile and Metrics Overview Compact */
+/* CM354 - CSS Profile and Metrics Overview Compact */
 .dash-content { padding: 10px; max-width: 1400px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 10px; }
 .profile-clean { padding: 4px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: #2d3748; text-transform: uppercase; background: transparent; }
 .prof-item { display: flex; align-items: center; gap: 4px; padding: 2px 6px; background: #fff; border-radius: 4px; box-shadow: 2px 2px 4px #d1d9e6, -2px -2px 4px #ffffff; border: 1px solid #edf2f7; }
@@ -82,7 +83,7 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 .stat-label { font-size: 9px; color: #4a5568; text-transform: uppercase; font-weight: 900; letter-spacing: 0.5px; }
 .stat-num { font-size: 11px; font-weight: 900; color: #1a365d; line-height: 1; text-shadow: 0px 1px 1px rgba(0,0,0,0.1); }
 
-/* CM103 - CSS Table Wrapper and Cells Reduced Size */
+/* CM355 - CSS Table Wrapper and Cells Reduced Size */
 .overview-title-box { background: linear-gradient(145deg, #1a365d, #3182ce); color: #fff; padding: 6px 16px; border-radius: 6px; display: inline-block; box-shadow: 0px 4px 10px rgba(0,0,0,0.2); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; margin: 8px auto; text-align: center; border: 1px solid #2b6cb0; text-shadow: 0px 1px 2px rgba(0,0,0,0.4); }
 .table-wrapper { background: #fff; border-radius: 8px; box-shadow: 4px 4px 12px #d1d9e6, -4px -4px 12px #ffffff; overflow-x: auto; padding: 4px; border: 1px solid #e2e8f0; }
 .att-table { width: 100%; border-collapse: collapse; min-width: 800px; }
@@ -90,12 +91,15 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 .att-table th { background: linear-gradient(to bottom, #ffffff, #f7fafc); color: #1a365d; font-weight: 900; position: sticky; top: 0; font-size: 9px; text-transform: uppercase; z-index: 10; border-bottom: 2px solid #3182ce; text-shadow: 0px 1px 1px rgba(255,255,255,1); }
 .att-table tr:hover { background: #f0f4f8; }
 .date-col { font-weight: 900; color: #3182ce; text-align: left; position: relative; }
-.shift-chg-ind { font-size: 7px; color: #d69e2e; display: block; margin-top: 1px; text-transform: uppercase; font-weight: 900; letter-spacing: 0.5px; }
 .time-cell { display: inline-flex; align-items: center; justify-content: center; gap: 4px; background: #ffffff; padding: 2px 4px; border-radius: 4px; border: 1px solid #cbd5e0; font-family: 'Roboto Slab', serif; font-size: 9px; font-weight: 900; color: #1a365d; box-shadow: inset 0px 1px 2px rgba(0,0,0,0.05); min-width: 50px; transition: 0.2s; cursor: pointer; }
 .time-cell:hover { border-color: #3182ce; }
+.time-cell.leave-mode { background: linear-gradient(145deg, #ecc94b, #d69e2e); color: #fff; border-color: #b7791f; text-shadow: 0px 1px 1px rgba(0,0,0,0.2); box-shadow: 0px 2px 4px rgba(0,0,0,0.1); cursor: default; }
+.shift-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 900; background: #f1f5f9; padding: 2px 6px; border-radius: 4px; border: 1px solid #cbd5e1; color: #0f172a; text-transform: uppercase; cursor: pointer; transition: 0.2s; box-shadow: 1px 1px 2px rgba(0,0,0,0.05); }
+.shift-badge:hover { background: #e2e8f0; border-color: #94a3b8; }
+.shift-badge:active { transform: translateY(1px); box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1); }
 .hrs-bold { color: #000000; font-weight: 900; font-size: 10px; text-shadow: 0px 1px 2px rgba(0,0,0,0.3); background: #f7fafc; padding: 2px 4px; border-radius: 4px; border: 1px solid #cbd5e0; display: inline-block; min-width: 40px; }
 
-/* CM104 - CSS HD Action Buttons and Comments */
+/* CM356 - CSS HD Action Buttons and Comments */
 .status-badge { padding: 2px 4px; border-radius: 4px; font-size: 8px; font-weight: 900; color: #fff; text-transform: uppercase; box-shadow: 1px 1px 3px rgba(0,0,0,0.15); display: inline-block; min-width: 40px; letter-spacing: 0.5px; }
 .bg-present { background: linear-gradient(145deg, #48bb78, #38a169); } .bg-absent { background: linear-gradient(145deg, #f56565, #e53e3e); } .bg-late { background: linear-gradient(145deg, #ecc94b, #d69e2e); color: #1a202c; } .bg-pending { background: #a0aec0; }
 .comment-box-container { display: flex; align-items: center; justify-content: center; gap: 4px; position: relative; }
@@ -105,10 +109,8 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 .action-btn:active { transform: translateY(1px); border-bottom-width: 0px; box-shadow: 0px 1px 2px rgba(0,0,0,0.2); }
 .action-btn-saved { background: linear-gradient(145deg, #4299e1, #3182ce); border: none; border-bottom: 1px solid #1a365d; min-width: 26px; padding: 0; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; height: 22px; border-radius: 4px; cursor: default; }
 .action-btn-pend { background: transparent; border: none; font-size: 14px; cursor: default; padding: 0; min-width: 26px; text-align: center; }
-.leave-cell-wrap { display: flex; align-items: center; justify-content: center; gap: 4px; }
-.leave-text-btn { font-size: 9px; font-weight: 900; color: #1a365d; text-transform: uppercase; cursor: pointer; }
 
-/* CM105 - CSS Panels Instructions and Modals */
+/* CM357 - CSS Panels Instructions and Modals */
 .instructions-panel { background: #fff; padding: 10px; border-radius: 8px; border-left: 4px solid #d69e2e; box-shadow: 3px 3px 8px #d1d9e6, -3px -3px 8px #ffffff; margin-top: 8px; border-right: 1px solid #edf2f7; border-top: 1px solid #edf2f7; border-bottom: 1px solid #edf2f7; }
 .inst-title { font-size: 11px; font-weight: 900; color: #1a365d; margin-bottom: 6px; text-transform: uppercase; }
 .inst-list { margin: 0; padding-left: 14px; font-size: 9px; color: #2d3748; font-weight: 800; line-height: 1.5; }
@@ -125,8 +127,9 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 .time-inputs-wrap { display: flex; gap: 6px; }
 .modal-btn { width: 100%; background: linear-gradient(145deg, #4299e1, #3182ce); color: #fff; border: none; padding: 8px; border-radius: 6px; font-weight: 900; cursor: pointer; margin-top: 8px; font-size: 10px; text-transform: uppercase; font-family: 'Roboto Slab', serif; border-bottom: 2px solid #1a365d; }
 .modal-btn:active { transform: translateY(2px); border-bottom-width: 0px; box-shadow: 0px 1px 2px rgba(0,0,0,0.2); }
+.modal-btn.cancel { background: linear-gradient(145deg, #e2e8f0, #cbd5e0); color: #1a202c; border-bottom-color: #a0aec0; }
 
-/* CM106 - CSS Request Items Notifications & Toasts */
+/* CM358 - CSS Request Items Notifications & Toasts Bottom No Box */
 .req-table-wrap { max-height: 60vh; overflow-y: auto; overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 6px; }
 .req-table { width: 100%; border-collapse: collapse; min-width: 400px; text-align: left; }
 .req-table th, .req-table td { padding: 6px 8px; border-bottom: 1px solid #edf2f7; font-size: 9px; font-weight: 800; color: #2d3748; white-space: nowrap; }
@@ -135,19 +138,19 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 .req-stat-badge { padding: 2px 6px; border-radius: 4px; font-size: 8px; font-weight: 900; text-transform: uppercase; color: #fff; }
 .stat-app { background: #38a169; } .stat-rej { background: #e53e3e; } .stat-pen { background: #d69e2e; }
 .hidden-date-picker { position: absolute; opacity: 0; width: 0; height: 0; border: none; pointer-events: none; }
-.toast-msg { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: transparent; color: #10b981; font-size: 12px; font-weight: 900; text-transform: uppercase; box-shadow: none; display: none; z-index: 2000; border: none; text-shadow: 0px 1px 2px rgba(255,255,255,0.8); opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+.toast-msg { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #1a202c; color: #10b981; font-size: 12px; font-weight: 900; text-transform: uppercase; box-shadow: 0px 4px 10px rgba(0,0,0,0.3); display: none; z-index: 2000; border: none; padding: 10px 20px; border-radius: 8px; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
 .toast-msg.error { color: #ef4444; }
-@media print { @page { size: A4 landscape; margin: 5mm; } body { background: #fff; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .dash-header, .header-actions, .instructions-panel, .admin-corner-btn, .leave-cell-wrap { display: none !important; } .table-wrapper { height: auto; overflow: visible; box-shadow: none; border: none; } .att-table { zoom: 0.7; } .att-table th, .att-table td { border: 1px solid #000; } }
+@media print { @page { size: A4 landscape; margin: 5mm; } body { background: #fff; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .dash-header, .header-actions, .instructions-panel, .admin-corner-btn, .shift-badge { display: none !important; } .table-wrapper { height: auto; overflow: visible; box-shadow: none; border: none; } .att-table { zoom: 0.7; } .att-table th, .att-table td { border: 1px solid #000; } }
 </style>
 </head>
 <body>
 
-<!-- CM107 - HTML Setup and Loaders -->
+<!-- CM359 - HTML Setup and Loaders -->
 <div id="appContainer">
 <a href="#" id="adminCornerLink" class="admin-corner-btn">🛡️ ADMIN LOGIN</a>
 <div class="loader-overlay" id="pageLoader"><div class="main-loader"></div><div style="margin-top:10px; font-weight:900; color:#3182ce; font-size:10px;">LOADING DATA...</div></div>
 
-<!-- CM108 - HTML Login View Area -->
+<!-- CM360 - HTML Login View Area -->
 <div id="loginView" class="wrapper">
 <div class="hospital-logo-container"><img id="hospLogo" src="" alt="Logo"></div>
 <div class="hospital-name" style="font-size:11px;">SANJEEVA MULTISPECIALITY HOSPITAL<br>STAFF ATTENDANCE</div>
@@ -163,7 +166,7 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 </form>
 </div></div></div>
 
-<!-- CM109 - HTML Dashboard Wrapper -->
+<!-- CM361 - HTML Dashboard Wrapper -->
 <div id="staffDashboardView" class="dashboard-view">
 <div class="dash-header">
 <div class="dash-title-wrap"><img id="dashLogo" src="" alt="Logo" class="dash-logo-small"><div class="dash-title-text"><span>SANJEEVA MULTISPECIALITY HOSPITAL</span><span style="font-size:9px; color:#4a5568;">ALLAGADDA</span></div></div>
@@ -174,14 +177,14 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 <button class="hd-icon-btn out" onclick="handleLogout()" title="Logout">⏻</button></div>
 </div>
 
-<!-- CM110 - HTML Profile Status Area -->
+<!-- CM362 - HTML Profile Status Area -->
 <div class="dash-content">
 <div class="profile-clean">
 <div class="prof-item"><span class="prof-icon">🆔</span> ID: <span class="val-bold" id="sId">-</span></div>
 <div class="prof-item"><span class="prof-icon">👤</span> NAME: <span class="val-bold" id="sName">-</span></div>
 <div class="prof-item"><span class="prof-icon">💼</span> ROLE: <span class="val-bold" id="sRole">-</span></div>
-<div class="prof-item"><span class="prof-icon">⏱️</span> SHIFT: <select class="select-micro" id="sShift" onchange="confirmShiftChange(this)"><option value="4">4 Shifts</option><option value="2">2 Shifts</option><option value="night">Night</option></select></div>
 <div class="prof-item"><span class="prof-icon">📅</span> MONTH: <select class="select-micro" id="sMonth"></select></div>
+<div class="prof-item" style="background:#edf2f7; cursor:pointer;" onclick="document.getElementById('nativeDate').showPicker()"><span class="prof-icon">📅</span> <span class="val-bold" style="color:#e53e3e;">APPLY LEAVE</span></div>
 <div class="prof-item" style="width:100%; justify-content:center; margin-top:4px; background:#e2e8f0; border-color:#cbd5e0;"><span class="prof-icon">⌚</span> TIMINGS: <span class="val-bold" id="sTimings">-</span></div>
 </div>
 <div class="summary-grid">
@@ -191,21 +194,25 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 <div class="stat-card late"><span class="stat-label">PENDING:</span><span class="stat-num" id="sL">0</span></div>
 </div>
 
-<!-- CM111 - HTML Interactive Data Table -->
+<!-- CM363 - HTML Interactive Data Table -->
 <div style="text-align:center; width:100%;"><div class="overview-title-box">ATTENDANCE OVERVIEW - <span id="tblMonthName"></span></div></div>
 <div class="table-wrapper"><table class="att-table">
-<thead id="tblHead"></thead><tbody id="sTableBody"></tbody></table></div>
+<thead id="tblHead">
+<tr><th>📅 DATE</th><th>⏱️ SHIFT</th><th>MRG IN</th><th>MRG OUT</th><th>EVG IN</th><th>EVG OUT</th><th>NGT IN</th><th>NGT OUT</th><th>⏳ HRS</th><th>📊 STATUS</th><th>💬 COMMENT</th></tr>
+</thead>
+<tbody id="sTableBody"></tbody></table></div>
 <div class="instructions-panel">
 <div class="inst-title">📝 IMPORTANT INSTRUCTIONS</div>
 <ul class="inst-list">
 <li><span class="ico">🖱️</span> Click directly on the Time Cell to raise a Modification Request.</li>
-<li><span class="ico">📅</span> Click the Calendar icon to Apply Leave in advance.</li>
+<li><span class="ico">⚙️</span> Click the shift badge (e.g., ⚙️ 4) to change your shift for that specific day.</li>
+<li><span class="ico">📅</span> Click the Top <b style="color:#e53e3e;">APPLY LEAVE</b> button to apply leave for any future date.</li>
 <li><span style="color:#ef4444; font-weight:900;">RED TIME</span> indicates you punched 10 minutes Late (IN) or Early (OUT).</li>
 </ul>
 </div>
 </div></div>
 
-<!-- CM112 - HTML Interactive Modals Overlay -->
+<!-- CM364 - HTML Interactive Modals Overlay -->
 <div class="modal-overlay" id="modModal"><div class="modal-box"><button class="modal-close" onclick="clsMod('modModal')">&times;</button><div class="modal-title" id="modTitle">MODIFICATION REQUEST</div>
 <div style="background:#f7fafc; padding:6px; border-radius:6px; border:1px solid #e2e8f0; margin-bottom:10px; font-size:9px;"><div style="font-weight:900; color:#3182ce; margin-bottom:2px;" id="modDateDisp">DATE: </div></div>
 <div class="modal-field"><label>Select Punch:</label><select id="modPunchSel"></select></div>
@@ -215,7 +222,7 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 <input type="date" id="nativeDate" class="hidden-date-picker" onchange="submitLeaveRequest(this)">
 
 <div class="modal-overlay" id="reqListModal"><div class="modal-box" style="max-width:550px;"><button class="modal-close" onclick="clsMod('reqListModal')">&times;</button><div class="modal-title">YOUR REQUESTS</div>
-<div class="req-table-wrap"><table class="req-table"><thead><tr><th>STATUS</th><th>DATE</th><th>TYPE</th><th>SHIFT TIME</th><th>MOD TIME</th><th>COMMENT</th></tr></thead><tbody id="reqListCont"></tbody></table></div></div></div>
+<div class="req-table-wrap"><table class="req-table"><thead><tr><th>STATUS</th><th>DATE</th><th>TYPE</th><th>MOD TIME</th><th>COMMENT</th></tr></thead><tbody id="reqListCont"></tbody></table></div></div></div>
 
 <div class="modal-overlay" id="forgotModal"><div class="modal-box"><button class="modal-close" onclick="clsMod('forgotModal')">&times;</button><div class="modal-title">FORGOT PASSWORD</div>
 <div style="font-size:9px; color:#4a5568; margin-bottom:8px; font-weight:900; line-height:1.4;">Only 4 digit numbers are allowed for password. Current password is required to set a new one.</div>
@@ -224,18 +231,30 @@ body { margin: 0; padding: 0; font-family: 'Roboto Slab', serif; background: #f0
 <div class="modal-field"><label>NEW PASSWORD (4 DIGITS):</label><input type="password" id="fpPass" placeholder="Enter New Password"><span class="eye-icon-mod" onclick="togglePass('fpPass', this)">👁️</span></div>
 <div class="modal-field"><label>CONFIRM NEW PASSWORD:</label><input type="password" id="fpConf" placeholder="Confirm New Password"><span class="eye-icon-mod" onclick="togglePass('fpConf', this)">👁️</span></div>
 <button class="modal-btn" id="fpBtn" onclick="handleForgotPass()">SET NEW PASSWORD</button></div></div>
+
+<!-- CM365 - HTML Custom Confirm Modal Component -->
+<div class="modal-overlay" id="confirmModal"><div class="modal-box"><div class="modal-title" id="confirmTitle" style="margin-bottom:8px;">CONFIRM ACTION</div>
+<div style="font-size:10px; color:#4a5568; font-weight:800; margin-bottom:14px; line-height:1.4;" id="confirmMessage">Are you sure you want to proceed?</div>
+<div style="display:flex; gap:8px;"><button class="modal-btn cancel" id="confirmCancelBtn">CANCEL</button><button class="modal-btn" id="confirmOkBtn" style="background:linear-gradient(145deg, #e53e3e, #c53030); border-bottom-color:#9b2c2c;">PROCEED</button></div>
+</div></div>
+
+<!-- CM366 - HTML Shift Change Modal Component -->
+<div class="modal-overlay" id="shiftChangeModal"><div class="modal-box"><button class="modal-close" onclick="clsMod('shiftChangeModal')">&times;</button><div class="modal-title">CHANGE SHIFT</div>
+<div style="background:#f7fafc; padding:6px; border-radius:6px; border:1px solid #e2e8f0; margin-bottom:10px; font-size:9px;"><div style="font-weight:900; color:#3182ce; margin-bottom:2px;" id="scDateDisp">DATE: </div></div>
+<div class="modal-field"><label>Select New Shift:</label><select id="scShiftSel"><option value="4">4</option><option value="2">2</option><option value="Night">Night</option></select></div>
+<button class="modal-btn" id="scSubBtn" onclick="submitShiftChange()">UPDATE SHIFT</button></div></div>
 <div class="toast-msg" id="toastMsg"></div>
 </div>
 
 <script>
-/* CM113 - JS Globals and Configs */
+/* CM367 - JS Globals and Configs */
 const AppLinks = { logo: "https://sanjeeva-hspl.github.io/SM-IMG/02-SMH-HOSPITAL%20LOGO.png", workerUrl: "https://to-web-staff.contact-sanjeevahospital.workers.dev", adminUrl: "https://sanjeeva-hspl.github.io/SM-ATD-SEP2026-JUN27/admin/" };
 document.getElementById('hospLogo').src = AppLinks.logo; document.getElementById('dashLogo').src = AppLinks.logo; document.getElementById('adminCornerLink').href = AppLinks.adminUrl;
 const AppConf = { mos: ["January","February","March","April","May","June","July","August","September","October","November","December"] };
 const today = new Date(); const cY = today.getFullYear(); const cM = today.getMonth(); const cD = today.getDate();
-let currentUser = null; let currentMonthData = []; let currentRequests = []; let curModDateStr = "";
+let currentUser = null; let currentMonthData = []; let currentRequests = []; let curModDateStr = ""; let curShiftDateStr = "";
 
-/* CM114 - JS Util Helpers Input Validations */
+/* CM368 - JS Util Helpers Input Validations and Modals */
 const enfU = (e) => e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
 document.getElementById("staffUser").addEventListener('input', enfU);
 const clsMod = (id) => document.getElementById(id).style.display = "none";
@@ -243,51 +262,54 @@ const opnMod = (id) => document.getElementById(id).style.display = "flex";
 const showLoader = () => document.getElementById('pageLoader').style.display = "flex";
 const hideLoader = () => document.getElementById('pageLoader').style.display = "none";
 const showToast = (msg, isError = false) => { const t = document.getElementById('toastMsg'); t.innerText = msg; t.className = `toast-msg ${isError ? 'error' : ''}`; t.style.display = 'block'; setTimeout(()=>t.style.opacity = '1', 10); setTimeout(() => { t.style.opacity = '0'; setTimeout(()=>t.style.display='none', 300); }, 3000); };
+window.customConfirm = (message, title = "Confirm") => { return new Promise((resolve) => { document.getElementById('confirmTitle').innerText = title; document.getElementById('confirmMessage').innerText = message; const modal = document.getElementById('confirmModal'); modal.style.display = 'flex'; document.getElementById('confirmOkBtn').onclick = () => { modal.style.display = 'none'; resolve(true); }; document.getElementById('confirmCancelBtn').onclick = () => { modal.style.display = 'none'; resolve(false); }; }); };
 const popT = () => { let hr="", mn=""; for(let i=1;i<=12;i++) hr+=`<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`; for(let i=0;i<60;i++) mn+=`<option value="${String(i).padStart(2,'0')}">${String(i).padStart(2,'0')}</option>`; document.getElementById('modHr').innerHTML=hr; document.getElementById('modMin').innerHTML=mn; };
 popT();
 const togglePass = (id, el) => { const i = document.getElementById(id); if(i.type === "password"){ i.type = "text"; el.innerText = "🙈"; } else { i.type = "password"; el.innerText = "👁️"; } };
 
-/* CM115 - JS Time Calculation Helpers */
-const pTm = (tStr) => { if(!tStr || tStr === "-") return null; let c = tStr.replace('P(','').replace(')','').trim(); if(!c || c==="-") return null; const [t, m] = c.split(' '); let [h, min] = t.split(':'); h = parseInt(h, 10); if (h === 12) h = 0; if (m === 'PM') h += 12; return h * 60 + parseInt(min, 10); };
+/* CM369 - JS Time Calculation Helpers */
+const pTm = (tStr) => { if(!tStr || tStr === "-" || tStr.toUpperCase() === "LEAVE" || tStr.includes('⏳')) return null; let c = tStr.replace('P(','').replace(')','').trim(); if(!c || c==="-") return null; const [t, m] = c.split(' '); let [h, min] = t.split(':'); h = parseInt(h, 10); if (h === 12) h = 0; if (m === 'PM') h += 12; return h * 60 + parseInt(min, 10); };
 const fH = (m) => { if(m<=0 || m>1440) return "-"; const h = Math.floor(m/60); const mn = m%60; return `${h}h ${mn}m`; };
 
-/* CM116 - JS Authentication Networking */
+/* CM370 - JS Authentication Networking */
 window.onload = () => { const saved = localStorage.getItem('smh_user_session'); if (saved) { currentUser = JSON.parse(saved); showDashboard(); } };
 async function handleLogin(e) { e.preventDefault(); const username = document.getElementById('staffUser').value.trim(); const password = document.getElementById('staffPass').value.trim(); const btn = document.getElementById('loginBtn'); const err = document.getElementById('loginError'); btn.innerHTML = `<span class="loading-spinner"></span>`; err.innerText = ""; try { const res = await fetch(`${AppLinks.workerUrl}/api/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password }) }); const data = await res.json(); if (data.success && data.user) { currentUser = data.user; localStorage.setItem('smh_user_session', JSON.stringify(currentUser)); showDashboard(); } else { err.innerText = data.message || "Login Failed. Try again."; } } catch (error) { err.innerText = "Network Error."; } finally { btn.innerHTML = `<span>➔ LOGIN</span>`; } }
 function handleLogout() { localStorage.removeItem('smh_user_session'); currentUser = null; document.getElementById("staffDashboardView").style.display="none"; document.getElementById("loginView").style.display="block"; document.getElementById("staffForm").reset(); document.getElementById('adminCornerLink').style.display='block'; }
 
-/* CM117 - JS Forgot Password Flow */
-async function handleForgotPass() { const u = document.getElementById("fpUser").value.trim(); const oP = document.getElementById("fpOld").value.trim(); const p = document.getElementById("fpPass").value.trim(); const cP = document.getElementById("fpConf").value.trim(); if(!u || !oP || !p || !cP) return alert("Fill all fields"); if(!/^\d{4}$/.test(p)) return alert("New password must be exactly 4 digits."); if(p !== cP) return alert("New passwords do not match!"); const btn = document.getElementById("fpBtn"); btn.innerHTML = `<span class="loading-spinner"></span>`; try { const res = await fetch(`${AppLinks.workerUrl}/api/forgot-password`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, oldPassword: oP, newPassword: p }) }); const data = await res.json(); if(data.success) { clsMod('forgotModal'); showToast("PASSWORD UPDATED"); document.getElementById('fpUser').value=''; document.getElementById('fpOld').value=''; document.getElementById('fpPass').value=''; document.getElementById('fpConf').value=''; } else { alert(data.message || "Failed to update"); } } catch(e) { alert("Network Error"); } finally { btn.innerHTML = `SET NEW PASSWORD`; } }
+/* CM371 - JS Forgot Password Flow */
+async function handleForgotPass() { const u = document.getElementById("fpUser").value.trim(); const oP = document.getElementById("fpOld").value.trim(); const p = document.getElementById("fpPass").value.trim(); const cP = document.getElementById("fpConf").value.trim(); if(!u || !oP || !p || !cP) return showToast("Fill all fields", true); if(!/^\d{4}$/.test(p)) return showToast("New password must be exactly 4 digits.", true); if(p !== cP) return showToast("New passwords do not match!", true); const btn = document.getElementById("fpBtn"); btn.innerHTML = `<span class="loading-spinner"></span>`; try { const res = await fetch(`${AppLinks.workerUrl}/api/forgot-password`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, oldPassword: oP, newPassword: p }) }); const data = await res.json(); if(data.success) { clsMod('forgotModal'); showToast("PASSWORD UPDATED"); document.getElementById('fpUser').value=''; document.getElementById('fpOld').value=''; document.getElementById('fpPass').value=''; document.getElementById('fpConf').value=''; } else { showToast(data.message || "Failed to update", true); } } catch(e) { showToast("Network Error", true); } finally { btn.innerHTML = `SET NEW PASSWORD`; } }
 
-/* CM118 - JS Initial Dashboard Setup */
-function showDashboard() { document.getElementById('adminCornerLink').style.display='none'; document.getElementById("loginView").style.display="none"; document.getElementById("staffDashboardView").style.display="flex"; document.getElementById("sId").innerText = currentUser.user_id; document.getElementById("sName").innerText = currentUser.full_name; document.getElementById("sRole").innerText = currentUser.role || 'Staff'; document.getElementById("sShift").value = currentUser.shift_type; let tStr = currentUser.shift_type=='2'?`M-IN: ${currentUser.shift_1_time||'-'} | E-OUT: ${currentUser.shift_4_time||'-'}`:(currentUser.shift_type=='night'?`N-IN: ${currentUser.night_in_time||'-'} | N-OUT: ${currentUser.night_out_time||'-'}`:`M-IN: ${currentUser.shift_1_time||'-'} | M-OUT: ${currentUser.shift_2_time||'-'} | E-IN: ${currentUser.shift_3_time||'-'} | E-OUT: ${currentUser.shift_4_time||'-'}`); document.getElementById("sTimings").innerText = tStr; popMos(); fetchDashboardData(); }
+/* CM372 - JS Initial Dashboard Setup */
+function showDashboard() { document.getElementById('adminCornerLink').style.display='none'; document.getElementById("loginView").style.display="none"; document.getElementById("staffDashboardView").style.display="flex"; document.getElementById("sId").innerText = currentUser.user_id; document.getElementById("sName").innerText = currentUser.full_name; document.getElementById("sRole").innerText = currentUser.role || 'Staff'; let tStr = currentUser.shift_type=='2'||currentUser.shift_type=='2 Shifts'?`M-IN: ${currentUser.shift_1_time||'-'} | E-OUT: ${currentUser.shift_4_time||'-'}`:(String(currentUser.shift_type).toUpperCase().includes('NIGHT')?`N-IN: ${currentUser.night_in_time||'-'} | N-OUT: ${currentUser.night_out_time||'-'}`:`M-IN: ${currentUser.shift_1_time||'-'} | M-OUT: ${currentUser.shift_2_time||'-'} | E-IN: ${currentUser.shift_3_time||'-'} | E-OUT: ${currentUser.shift_4_time||'-'}`); document.getElementById("sTimings").innerText = tStr; popMos(); fetchDashboardData(); }
 const popMos = () => { const s = document.getElementById("sMonth"); let h = ""; for(let m=cM-2; m<=11; m++) { if(m>=0 && m<12) h+=`<option value="${m}-${cY}">${AppConf.mos[m].substring(0,3)} ${cY}</option>`; } s.innerHTML = h; s.value = `${cM}-${cY}`; s.onchange = () => { fetchDashboardData(); }; };
-function confirmShiftChange(el) { if(!confirm("Are you sure you want to change the shift?")) { el.value = currentUser.shift_type; return; } currentUser.shift_type = el.value; let tStr = currentUser.shift_type=='2'?`M-IN: ${currentUser.shift_1_time||'-'} | E-OUT: ${currentUser.shift_4_time||'-'}`:(currentUser.shift_type=='night'?`N-IN: ${currentUser.night_in_time||'-'} | N-OUT: ${currentUser.night_out_time||'-'}`:`M-IN: ${currentUser.shift_1_time||'-'} | M-OUT: ${currentUser.shift_2_time||'-'} | E-IN: ${currentUser.shift_3_time||'-'} | E-OUT: ${currentUser.shift_4_time||'-'}`); document.getElementById("sTimings").innerText = tStr; renderTable(); }
 
-/* CM119 - JS Fetch Central Data */
+/* CM373 - JS Fetch Central Data */
 async function fetchDashboardData() { if(!currentUser) return; showLoader(); try { const resAtt = await fetch(`${AppLinks.workerUrl}/api/attendance`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, access: currentUser.access }) }); const dataAtt = await resAtt.json(); if(dataAtt.success) currentMonthData = dataAtt.logs; const resReq = await fetch(`${AppLinks.workerUrl}/api/requests/get`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, access: currentUser.access }) }); const dataReq = await resReq.json(); if(dataReq.success) currentRequests = dataReq.data; renderTable(); document.getElementById("sReqCount").innerText = currentRequests.length; } catch(e) { showToast("Error loading data", true); } finally { hideLoader(); } }
 
-/* CM120 - JS Time Validation Late Early 10 Mins */
-const chkLate = (actT, expT, isOut) => { if(!actT || actT==="-") return {val:"-", red:false, wait:false}; if(actT.startsWith("P(")) return {val:actT.replace("P(","").replace(")",""), red:true, wait:true}; if(!expT || expT==="-") return {val:actT, red:false, wait:false}; let a = pTm(actT), e = pTm(expT); let isRed = false; if(!isOut && a > e + 10) isRed = true; else if(isOut && a < e - 10) isRed = true; return {val:actT, red:isRed, wait:false}; };
+/* CM374 - JS Time Validation Late Early 10 Mins */
+const chkLate = (actT, expT, isOut) => { if(!actT || actT==="-") return {val:"-", red:false, wait:false}; if(actT.toUpperCase() === "LEAVE" || actT.includes('⏳')) return {val:actT, red:false, wait:false}; if(actT.startsWith("P(")) return {val:actT.replace("P(","").replace(")",""), red:true, wait:true}; if(!expT || expT==="-") return {val:actT, red:false, wait:false}; let a = pTm(actT), e = pTm(expT); let isRed = false; if(!isOut && a > e + 10) isRed = true; else if(isOut && a < e - 10) isRed = true; return {val:actT, red:isRed, wait:false}; };
 
-/* CM121 - JS Render Admin and Staff Table Switcher */
-function renderTable() { const vp = document.getElementById("sMonth").value.split('-'); const sM = parseInt(vp[0]), sY = parseInt(vp[1]); document.getElementById("tblMonthName").innerText = AppConf.mos[sM].toUpperCase(); const tb = document.getElementById("sTableBody"); const thd = document.getElementById("tblHead"); tb.innerHTML=''; renderStaff(sY, sM, tb, thd); }
+/* CM375 - JS Render Admin and Staff Table Switcher */
+function renderTable() { const vp = document.getElementById("sMonth").value.split('-'); const sM = parseInt(vp[0]), sY = parseInt(vp[1]); document.getElementById("tblMonthName").innerText = AppConf.mos[sM].toUpperCase(); const tb = document.getElementById("sTableBody"); tb.innerHTML=''; renderStaff(sY, sM, tb); }
 
-/* CM122 - JS Staff Table Logic and Hours Calculation */
-const calcHrs = (r, st) => { let tm=0; const g = (v) => pTm(v); if(st=='4') { let mi=g(r.mi), mo=g(r.mo), ei=g(r.ei), eo=g(r.eo); if(mi!==null && mo!==null && mo>=mi) tm+=(mo-mi); if(ei!==null && eo!==null && eo>=ei) tm+=(eo-ei); } else if(st=='2') { let mi=g(r.mi), eo=g(r.eo); if(mi!==null && eo!==null && eo>=mi) tm+=(eo-mi); } else { let ni=g(r.ni), no=g(r.no); if(ni!==null && no!==null) { if(no>=ni) tm+=(no-ni); else tm+=((24*60-ni)+no); } } return fH(tm); };
-const renderStaff = (sY, sM, tb, thd) => { let mD = new Date(sY, sM+1, 0).getDate(); let tW=0, tA=0, tP=0; let mEffS = currentUser.shift_type; if(mEffS=='2') thd.innerHTML = `<tr><th>📅 DATE</th><th>⏱️ SHIFT</th><th>🌅 MORNING IN</th><th>🌇 EVENING OUT</th><th>⏳ HRS</th><th>📊 STATUS</th><th>💬 COMMENT</th><th>⚙️ ACTION</th></tr>`; else if(mEffS=='night') thd.innerHTML = `<tr><th>📅 DATE</th><th>⏱️ SHIFT</th><th>🌃 NIGHT IN</th><th>🌃 NIGHT OUT</th><th>⏳ HRS</th><th>📊 STATUS</th><th>💬 COMMENT</th><th>⚙️ ACTION</th></tr>`; else thd.innerHTML = `<tr><th>📅 DATE</th><th>⏱️ SHIFT</th><th>🌅 MORNING IN</th><th>🌅 MORNING OUT</th><th>🌇 EVENING IN</th><th>🌇 EVENING OUT</th><th>⏳ HRS</th><th>📊 STATUS</th><th>💬 COMMENT</th><th>⚙️ ACTION</th></tr>`; for(let d=1; d<=mD; d++) { let dtS = `${String(d).padStart(2,'0')} ${AppConf.mos[sM].substring(0,3)} ${sY}`; let ls = currentMonthData.filter(l => String(l.user_id) === String(currentUser.user_id) && l.attendance_date === dtS); ls.sort((a,b) => pTm(a.taken_current_time) - pTm(b.taken_current_time)); let effS = (ls.length>0 && ls[0].shift_type) ? ls[0].shift_type : currentUser.shift_type; let shI = effS !== currentUser.shift_type ? `<span class="shift-chg-ind">Shift Changed</span>` : ''; let rD = { mi: "-", mo: "-", ei: "-", eo: "-", ni: "-", no: "-" }; let ep = effS=='2'?['mi','eo']:(effS=='4'?['mi','mo','ei','eo']:['ni','no']); for(let i=0; i<Math.min(ls.length, ep.length); i++) rD[ep[i]] = ls[i].taken_current_time; let sc = { mi: currentUser.shift_1_time, mo: currentUser.shift_2_time, ei: currentUser.shift_3_time, eo: currentUser.shift_4_time, ni: currentUser.night_in_time, no: currentUser.night_out_time }; let vD = { mi: chkLate(rD.mi, sc.mi, false), mo: chkLate(rD.mo, sc.mo, true), ei: chkLate(rD.ei, sc.ei, false), eo: chkLate(rD.eo, sc.eo, true), ni: chkLate(rD.ni, sc.ni, false), no: chkLate(rD.no, sc.no, true) }; let h = calcHrs({mi:vD.mi.val, mo:vD.mo.val, ei:vD.ei.val, eo:vD.eo.val, ni:vD.ni.val, no:vD.no.val}, effS); let isF = (sY>cY || (sY===cY && sM>cM) || (sY===cY && sM===cM && d>cD)); let st="Pending", scl="bg-pending"; if(isF || (d===cD && ls.length===0)) { st="Pending"; scl="bg-pending"; tP++; } else if (ls.length===0) { st="Absent"; scl="bg-absent"; tA++; } else { st="Present"; scl="bg-present"; tW++; } const mkC = (obj, k) => { let cS = obj.red ? 'color:#ef4444;' : ''; let wI = obj.wait ? ' <span style="font-size:8px;">⏳</span>' : ''; return `<td><div class="time-cell" style="${cS}" title="Click to Request Change" onclick="prepMod('${dtS}', '${k}', '${obj.val}')">${obj.val}${wI}</div></td>`; }; let comUI = ""; let exCom = currentRequests.find(r => String(r.user_id) === String(currentUser.user_id) && r.request_date === dtS && r.mod_type === 'Comment'); if(exCom) { if(exCom.status==='Approved') comUI = `<div class="action-btn-saved">✓</div>`; else comUI = `<div class="action-btn-pend" title="Pending">⏳</div>`; } else { comUI = `<div class="comment-box-container" id="cb-${d}"><input type="text" class="comment-input" placeholder="Note..."><button class="action-btn" onclick="subCom('${dtS}','cb-${d}', this)">➔</button></div>`; } let tCols = effS=='2'?`${mkC(vD.mi,'mi')}${mkC(vD.eo,'eo')}`:(effS=='night'?`${mkC(vD.ni,'ni')}${mkC(vD.no,'no')}`:`${mkC(vD.mi,'mi')}${mkC(vD.mo,'mo')}${mkC(vD.ei,'ei')}${mkC(vD.eo,'eo')}`); tb.innerHTML += `<tr><td class="date-col">${dtS}${shI}</td><td>${effS}</td>${tCols}<td><span class="hrs-bold">${h}</span></td><td><span class="status-badge ${scl}">${st}</span></td><td>${comUI}</td><td><div class="leave-cell-wrap"><span class="leave-text-btn" onclick="trigCal('${dtS}')">APPLY LEAVE 📅</span></div></td></tr>`; } document.getElementById("sT").innerText=mD; document.getElementById("sW").innerText=tW; document.getElementById("sA").innerText=tA; document.getElementById("sL").innerText=tP; };
+/* CM376 - JS Staff Table Logic & Leave Logic Integration */
+const calcHrs = (r, st) => { let tm=0; const g = (v) => pTm(v); if(st=='4'||st=='4 Shifts') { let mi=g(r.mi), mo=g(r.mo), ei=g(r.ei), eo=g(r.eo); if(mi!==null && mo!==null && mo>=mi) tm+=(mo-mi); if(ei!==null && eo!==null && eo>=ei) tm+=(eo-ei); } else if(st=='2'||st=='2 Shifts') { let mi=g(r.mi), eo=g(r.eo); if(mi!==null && eo!==null && eo>=mi) tm+=(eo-mi); } else { let ni=g(r.ni), no=g(r.no); if(ni!==null && no!==null) { if(no>=ni) tm+=(no-ni); else tm+=((24*60-ni)+no); } } return fH(tm); };
+const renderStaff = (sY, sM, tb) => { let mD = new Date(sY, sM+1, 0).getDate(); let tW=0, tA=0, tP=0; let mEffS = currentUser.shift_type || '2'; for(let d=1; d<=mD; d++) { let isF = (sY>cY || (sY===cY && sM>cM) || (sY===cY && sM===cM && d>cD)); if(isF) continue; let dtS = `${String(d).padStart(2,'0')} ${AppConf.mos[sM].substring(0,3)} ${sY}`; let ls = currentMonthData.filter(l => String(l.user_id) === String(currentUser.user_id) && l.attendance_date === dtS); let effS = (ls.length>0 && ls[0].shift_type) ? ls[0].shift_type : mEffS; let sN = effS=='2'||effS=='2 Shifts'?'2':(effS=='4'||effS=='4 Shifts'?'4':'NIGHT'); let rD = { mi: "-", mo: "-", ei: "-", eo: "-", ni: "-", no: "-" }; let ep = effS=='2'||effS=='2 Shifts'?['mi','eo']:(String(effS).toUpperCase().includes('NIGHT')?['ni','no']:['mi','mo','ei','eo']); if(ls.length>0 && ls[0].punch_type) { ls.forEach(l => { if(l.punch_type) rD[l.punch_type] = l.taken_current_time; }); } else { ls.sort((a,b) => pTm(a.taken_current_time) - pTm(b.taken_current_time)); for(let i=0; i<Math.min(ls.length, ep.length); i++) rD[ep[i]] = ls[i].taken_current_time; } let sc = { mi: currentUser.shift_1_time, mo: currentUser.shift_2_time, ei: currentUser.shift_3_time, eo: currentUser.shift_4_time, ni: currentUser.night_in_time, no: currentUser.night_out_time }; let vD = { mi: chkLate(rD.mi, sc.mi, false), mo: chkLate(rD.mo, sc.mo, true), ei: chkLate(rD.ei, sc.ei, false), eo: chkLate(rD.eo, sc.eo, true), ni: chkLate(rD.ni, sc.ni, false), no: chkLate(rD.no, sc.no, true) }; let st="Pending", scl="bg-pending", h="-"; let isLeaveReq = currentRequests.find(r => String(r.user_id) === String(currentUser.user_id) && r.request_date === dtS && String(r.mod_type).toLowerCase().includes('leave')); let dbLeave = ls.some(l => l.taken_current_time && l.taken_current_time.toUpperCase() === 'LEAVE'); if(isLeaveReq || dbLeave) { let isAppr = dbLeave || (isLeaveReq && isLeaveReq.status === 'Approved'); ['mi','mo','ei','eo','ni','no'].forEach(k => { if(vD[k].val === '-' || vD[k].val === '') vD[k] = {val: 'LEAVE', red: false, wait: !isAppr}; }); st = isAppr ? "Leave" : "Pending Leave"; scl = isAppr ? "bg-present" : "bg-pending"; h = "LEAVE"; if(isAppr) tW++; else tP++; } else { h = calcHrs({mi:vD.mi.val, mo:vD.mo.val, ei:vD.ei.val, eo:vD.eo.val, ni:vD.ni.val, no:vD.no.val}, effS); if(d===cD && ls.length===0) { st="Pending"; scl="bg-pending"; tP++; } else if (ls.length===0) { st="Absent"; scl="bg-absent"; tA++; } else { st="Present"; scl="bg-present"; tW++; } } const mkC = (obj, k) => { let wI = obj.wait ? ' <span style="font-size:8px;" title="Pending Approval">⏳</span>' : ''; if(obj.val === 'LEAVE') return `<td><div class="time-cell leave-mode" title="Leave">${obj.val}${wI}</div></td>`; let cS = obj.red ? 'color:#ef4444;' : ''; return `<td><div class="time-cell" style="${cS}" title="Click to Modify" onclick="prepMod('${dtS}', '${k}', '${obj.val}')">${obj.val}${wI}</div></td>`; }; const mkCDash = () => `<td><div class="time-cell" style="cursor:default; background:#f1f5f9; border-color:#e2e8f0; color:#94a3b8; box-shadow:none;">-</div></td>`; let tCols = ""; if (effS === '4 Shifts' || effS == '4') { tCols = `${mkC(vD.mi,'mi')}${mkC(vD.mo,'mo')}${mkC(vD.ei,'ei')}${mkC(vD.eo,'eo')}${mkCDash()}${mkCDash()}`; } else if (effS === '2 Shifts' || effS == '2') { tCols = `${mkC(vD.mi,'mi')}${mkCDash()}${mkCDash()}${mkC(vD.eo,'eo')}${mkCDash()}${mkCDash()}`; } else { tCols = `${mkCDash()}${mkCDash()}${mkCDash()}${mkCDash()}${mkC(vD.ni,'ni')}${mkC(vD.no,'no')}`; } let comUI = ""; let exCom = currentRequests.find(r => String(r.user_id) === String(currentUser.user_id) && r.request_date === dtS && r.mod_type === 'Comment'); if(exCom) { if(exCom.status==='Approved') comUI = `<div class="action-btn-saved" title="Approved">✓</div>`; else comUI = `<div class="action-btn-pend" title="Pending">⏳</div>`; } else { comUI = `<div class="comment-box-container" id="cb-${d}"><input type="text" class="comment-input" placeholder="Note..."><button class="action-btn" onclick="subCom('${dtS}','cb-${d}', this)">➔</button></div>`; } tb.innerHTML += `<tr><td class="date-col">${dtS}</td><td><span class="shift-badge" onclick="openShiftChange('${dtS}', '${effS}')" title="Change Shift">⚙️ ${sN}</span></td>${tCols}<td><span class="hrs-bold">${h}</span></td><td><span class="status-badge ${scl}">${st}</span></td><td>${comUI}</td></tr>`; } document.getElementById("sT").innerText=mD; document.getElementById("sW").innerText=tW; document.getElementById("sA").innerText=tA; document.getElementById("sL").innerText=tP; };
 
-/* CM124 - JS Interaction Modals Submission */
-const prepMod = (d, p, c) => { curModDateStr = d; document.getElementById("modDateDisp").innerText = `DATE: ${d.toUpperCase()}`; document.getElementById("modPunchSel").innerHTML = `<option value="${p}">${p.toUpperCase()} (Curr: ${c})</option>`; document.getElementById("modRea").value=""; opnMod("modModal"); };
-async function submitModification() { let pType = document.getElementById("modPunchSel").value; let nT = `${document.getElementById("modHr").value}:${document.getElementById("modMin").value} ${document.getElementById("modAmPm").value}`; let desc = document.getElementById("modRea").value.trim(); if(!desc) { alert("Please provide a reason."); return; } const btn = document.getElementById("modSubBtn"); btn.innerHTML = `<span class="loading-spinner"></span>`; try { await fetch(`${AppLinks.workerUrl}/api/requests/add`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, date: curModDateStr, type: `Modify ${pType}`, time: nT, desc: desc, status: 'Pending' }) }); clsMod("modModal"); showToast("SUBMITTED"); fetchDashboardData(); } catch(e) { showToast("Error", true); } finally { btn.innerHTML = `Submit Request`; } }
-const subCom = async (dS, id, btn) => { const b=document.getElementById(id); const inp=b.querySelector('input'); const v=inp.value.trim(); if(v==="") return; btn.innerHTML = `<span class="loading-spinner" style="width:10px;height:10px;border-width:2px;"></span>`; try { await fetch(`${AppLinks.workerUrl}/api/requests/add`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, date: dS, type: `Comment`, time: '-', desc: v, status: 'Pending' }) }); btn.classList.add('success'); btn.innerHTML = `✓`; setTimeout(() => { inp.value = ""; }, 2000); fetchDashboardData(); } catch(e) { showToast("Error", true); btn.innerHTML = `➔`; } };
+/* CM377 - JS Interaction Modals Submission */
+const prepMod = (d, p, c) => { if(c.includes('⏳')) c = c.replace('⏳','').trim(); curModDateStr = d; document.getElementById("modDateDisp").innerText = `DATE: ${d.toUpperCase()}`; document.getElementById("modPunchSel").innerHTML = `<option value="${p}">${p.toUpperCase()} (Curr: ${c})</option>`; document.getElementById("modRea").value=""; opnMod("modModal"); };
+async function submitModification() { let pType = document.getElementById("modPunchSel").value; let nT = `${document.getElementById("modHr").value}:${document.getElementById("modMin").value} ${document.getElementById("modAmPm").value}`; let desc = document.getElementById("modRea").value.trim(); if(!desc) return showToast("Please provide a reason.", true); const btn = document.getElementById("modSubBtn"); btn.innerHTML = `<span class="loading-spinner"></span>`; try { await fetch(`${AppLinks.workerUrl}/api/requests/add`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, date: curModDateStr, type: `Modify ${pType}`, time: nT, desc: desc, status: 'Pending' }) }); clsMod("modModal"); showToast("REQUEST SUBMITTED"); fetchDashboardData(); } catch(e) { showToast("Error", true); } finally { btn.innerHTML = `Submit Request`; } }
+const subCom = async (dS, id, btn) => { const b=document.getElementById(id); const inp=b.querySelector('input'); const v=inp.value.trim(); if(v==="") return; btn.innerHTML = `<span class="loading-spinner" style="width:10px;height:10px;border-width:2px;"></span>`; try { await fetch(`${AppLinks.workerUrl}/api/requests/add`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, date: dS, type: `Comment`, time: '-', desc: v, status: 'Pending' }) }); showToast("NOTE SUBMITTED"); fetchDashboardData(); } catch(e) { showToast("Error", true); btn.innerHTML = `➔`; } };
 
-/* CM125 - JS Leave Handling */
-const trigCal = (dS) => { curModDateStr = dS; document.getElementById('nativeDate').showPicker(); };
-async function submitLeaveRequest(el) { if(!el.value) return; if(!confirm(`Do you want to apply leave for ${el.value}?`)) { el.value=""; return; } showLoader(); try { await fetch(`${AppLinks.workerUrl}/api/requests/add`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, date: curModDateStr, type: `Leave Request`, time: '-', desc: `Applied Leave for ${el.value}`, status: 'Pending' }) }); showToast("SUBMITTED"); fetchDashboardData(); } catch(e) { showToast("Error", true); } finally { el.value=""; hideLoader(); } }
+/* CM378 - JS Leave Handling Global */
+async function submitLeaveRequest(el) { if(!el.value) return; let v = el.value.split('-'); let dS = `${v[2]} ${AppConf.mos[parseInt(v[1])-1].substring(0,3)} ${v[0]}`; const isConfirmed = await window.customConfirm(`Do you want to apply leave for ${dS}?`, "Apply Leave"); if(!isConfirmed) { el.value=""; return; } showLoader(); try { await fetch(`${AppLinks.workerUrl}/api/requests/add`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, date: dS, type: `Leave Request`, time: '-', desc: `Applied Leave`, status: 'Pending' }) }); showToast("LEAVE APPLIED"); fetchDashboardData(); } catch(e) { showToast("Error", true); } finally { el.value=""; hideLoader(); } }
 
-/* CM126 - JS Request History Viewer */
-function openRequestsModal() { const c=document.getElementById("reqListCont"); c.innerHTML=""; if(currentRequests.length === 0) { c.innerHTML = "<tr><td colspan='6' style='text-align:center;'>No requests found.</td></tr>"; } else { currentRequests.forEach(r => { let sC = r.status.toLowerCase()==='approved' ? 'stat-app' : (r.status.toLowerCase()==='rejected' ? 'stat-rej' : 'stat-pen'); c.innerHTML += `<tr><td><span class="req-stat-badge ${sC}">${r.status}</span></td><td>${r.request_date}</td><td>${r.mod_type}</td><td>-</td><td>${r.mod_time}</td><td>${r.description}</td></tr>`; }); } opnMod("reqListModal"); }
+/* CM379 - JS Request History Viewer */
+function openRequestsModal() { const c=document.getElementById("reqListCont"); c.innerHTML=""; if(currentRequests.length === 0) { c.innerHTML = "<tr><td colspan='5' style='text-align:center;'>No requests found.</td></tr>"; } else { currentRequests.forEach(r => { let sC = r.status.toLowerCase()==='approved' ? 'stat-app' : (r.status.toLowerCase()==='rejected' ? 'stat-rej' : 'stat-pen'); c.innerHTML += `<tr><td><span class="req-stat-badge ${sC}">${r.status}</span></td><td>${r.request_date}</td><td>${r.mod_type}</td><td>${r.mod_time}</td><td>${r.description}</td></tr>`; }); } opnMod("reqListModal"); }
+
+/* CM380 - JS Per Date Shift Change */
+function openShiftChange(dS, curS) { curShiftDateStr = dS; document.getElementById("scDateDisp").innerText = `DATE: ${dS.toUpperCase()}`; document.getElementById("scShiftSel").value = String(curS).includes('4') ? '4' : (String(curS).toUpperCase().includes('NIGHT') ? 'Night' : '2'); opnMod("shiftChangeModal"); }
+async function submitShiftChange() { let nS = document.getElementById("scShiftSel").value; const btn = document.getElementById("scSubBtn"); btn.innerHTML = `<span class="loading-spinner"></span>`; try { await fetch(`${AppLinks.workerUrl}/api/attendance/update-shift`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.user_id, date: curShiftDateStr, newShift: nS }) }); clsMod("shiftChangeModal"); showToast("SHIFT UPDATED"); fetchDashboardData(); } catch(e) { showToast("Error updating shift", true); } finally { btn.innerHTML = `UPDATE SHIFT`; } }
 </script>
 </body>
 </html>
